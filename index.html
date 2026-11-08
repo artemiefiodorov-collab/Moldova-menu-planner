@@ -9,7 +9,7 @@
 <title>Список и План — Покупки, Меню на неделю и 120 рецептов</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com/3.4.17"></script>
 <style>
 :root {
@@ -220,6 +220,158 @@ html, body {
   box-shadow: 0 6px 20px rgba(0,0,0,0.2);
 }
 .toast-pill.show { display: inline-flex; }
+</style>
+<style id="market-theme">
+/* «Свежий рынок» — мятный фон, базилик, томатные акценты.
+   Подключить ПОСЛЕ основного <style>: перекрывает его, JS не трогаем. */
+
+:root {
+  --bg: #f3faf5;
+  --card: #ffffff;
+  --card-2: #eaf6ee;
+  --text: #17331f;
+  --muted: #6b8573;
+  --line: #dcebe1;
+  --tint: #1f9d63;            /* базилик */
+  --tint-soft: rgba(31, 157, 99, 0.12);
+  --green: #2bb673;           /* галочки, «куплено» */
+  --green-soft: rgba(43, 182, 115, 0.14);
+  --orange: #ff9f1c;          /* лимон-апельсин */
+  --orange-soft: rgba(255, 159, 28, 0.15);
+  --red: #f0583a;             /* томат: бейджи, «очистить» */
+  --cyan: #1c9bb5;
+  --cyan-soft: rgba(28, 155, 181, 0.13);
+  --shadow: 0 4px 16px rgba(31, 110, 70, 0.08);
+}
+:root[data-theme="dark"] {
+  --bg: #0d1511;
+  --card: #16211b;
+  --card-2: #1e2d25;
+  --text: #eaf6ee;
+  --muted: #8fa89a;
+  --line: #27382f;
+  --tint: #3ccf8a;
+  --tint-soft: rgba(60, 207, 138, 0.18);
+  --green: #3ccf8a;
+  --green-soft: rgba(60, 207, 138, 0.18);
+  --orange: #ffb340;
+  --orange-soft: rgba(255, 179, 64, 0.18);
+  --red: #ff7a5c;
+  --cyan: #52c7df;
+  --cyan-soft: rgba(82, 199, 223, 0.18);
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+html, body {
+  font-family: 'Nunito', 'Inter', -apple-system, sans-serif;
+  font-size: 16px; line-height: 1.4;
+}
+h1, h3 { font-family: 'Nunito', sans-serif; font-weight: 900 !important; letter-spacing: -0.01em; }
+.ios-shell { padding-top: 14px; }
+
+/* Карточки и строки: мягче, выше, без рамок — только тень */
+.ios-group {
+  border: none; border-radius: 22px; box-shadow: var(--shadow); margin-bottom: 14px;
+}
+.ios-row { min-height: 52px; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+.ios-row:active { background: var(--tint-soft); }
+
+/* Кнопки: пилюли, увеличенная зона нажатия */
+.ios-btn {
+  border-radius: 999px; font-family: 'Nunito', sans-serif; font-weight: 800;
+  font-size: 14.5px; padding: 10px 18px; min-height: 42px;
+}
+.ios-btn-sm { min-height: 36px; padding: 6px 14px; font-size: 13.5px; border-radius: 999px; }
+.ios-btn-primary, .ios-btn-green { box-shadow: 0 4px 12px rgba(31, 157, 99, 0.28); color: #fff; }
+.ios-btn-primary { background: var(--tint); }
+.ios-btn-soft { background: var(--tint-soft); color: var(--tint); }
+.ios-btn-gray { background: var(--card); border: 1px solid var(--line); color: var(--text); }
+
+/* Поля ввода */
+.ios-input-wrap { border-radius: 18px; border: 2px solid var(--line); box-shadow: none; padding: 4px 8px 4px 14px; }
+.ios-input-wrap:focus-within { border-color: var(--tint); box-shadow: 0 0 0 4px var(--tint-soft); }
+.ios-input { font-size: 16px; font-family: inherit; }
+.suggest-box { border: none; border-radius: 18px; box-shadow: 0 10px 28px rgba(31, 110, 70, 0.16); }
+
+/* Галочка: крупнее, с «пружиной» */
+.ios-check {
+  width: 26px; height: 26px; border: 2px solid #b9d3c2; font-size: 14px;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.ios-check.checked { background: var(--green); border-color: var(--green); transform: scale(1.08); }
+
+/* Быстрые чипсы */
+.ios-chip {
+  padding: 8px 14px; font-size: 14px; font-weight: 700; border: 1.5px solid var(--line);
+  background: var(--card); box-shadow: 0 2px 6px rgba(31, 110, 70, 0.05);
+}
+.ios-chip.active { background: var(--tint); border-color: var(--tint); color: #fff; }
+
+/* Папки рецептов: пастельные плитки у каждой свой цвет */
+.folder-card {
+  --fc: var(--tint);
+  background: color-mix(in srgb, var(--fc) 16%, var(--card));
+  border: none; border-radius: 24px; min-height: 108px; padding: 16px 14px;
+  box-shadow: var(--shadow);
+}
+.folder-card:active { background: color-mix(in srgb, var(--fc) 26%, var(--card)); }
+.folder-card .text-2xl { font-size: 34px; line-height: 1; }
+.folder-card .font-bold { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 16px; }
+.folder-card[data-folder="breakfast"] { --fc: #ffc83d; }
+.folder-card[data-folder="chicken"]   { --fc: #ff9f5a; }
+.folder-card[data-folder="mince"]     { --fc: #f0583a; }
+.folder-card[data-folder="meat"]      { --fc: #c9786a; }
+.folder-card[data-folder="fish"]      { --fc: #3fb4e0; }
+.folder-card[data-folder="quick"]     { --fc: #f2c14e; }
+.folder-card[data-folder="snack"]     { --fc: #3ccf8a; }
+.folder-card[data-folder="vacuum"]    { --fc: #1c9bb5; }
+
+/* Плашки дней ПН/ВТ… в плане */
+.open-rec-sheet > span.w-8 {
+  width: 42px !important; height: 42px !important; border-radius: 14px !important;
+  background: var(--tint-soft) !important; color: var(--tint) !important;
+  font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 13px !important;
+}
+
+/* Нижняя панель */
+.ios-tabbar {
+  background: rgba(255, 255, 255, 0.92); border-top: none;
+  box-shadow: 0 -6px 24px rgba(31, 110, 70, 0.08); padding-top: 8px;
+}
+:root[data-theme="dark"] .ios-tabbar { background: rgba(22, 33, 27, 0.92); }
+.tab-item { font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 800; }
+.tab-item .tab-ic { font-size: 24px; }
+.tab-item.active { color: var(--tint); }
+.tab-item.active .tab-ic { transform: translateY(-1px) scale(1.1); }
+.tab-badge { background: var(--red); }
+
+/* Шторки и тост */
+.sheet-box { border-radius: 28px 28px 0 0; background: var(--bg); }
+.sheet-handle { width: 44px; height: 5px; background: #c5dccd; }
+.toast-pill { background: rgba(23, 51, 31, 0.94); font-family: 'Nunito', sans-serif; font-weight: 800; }
+
+/* ===== Дополнения под market-patch.js ===== */
+.uppercase { text-transform: none !important; letter-spacing: 0 !important; font-size: 13px !important; font-weight: 800 !important; }
+
+/* Карточка «Сегодня на ужин» */
+.today-card {
+  background: linear-gradient(135deg, #1f9d63 0%, #53c98a 100%);
+  color: #fff; border-radius: 26px; padding: 18px 18px 16px; margin-bottom: 14px;
+  box-shadow: 0 10px 24px rgba(31, 157, 99, 0.32); cursor: pointer;
+}
+.today-card:active { transform: scale(0.985); }
+.today-kicker { font-size: 12.5px; font-weight: 800; opacity: 0.9; margin-bottom: 4px; }
+.today-title { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 20px; line-height: 1.2; }
+.today-hint { margin-top: 8px; display: inline-block; font-size: 13px; font-weight: 700;
+  background: rgba(255, 255, 255, 0.22); padding: 4px 12px; border-radius: 999px; }
+:root[data-theme="dark"] .today-card { background: linear-gradient(135deg, #1b7a4f 0%, #2f9e6a 100%); }
+
+/* Прогресс покупок */
+.progress-wrap { padding: 2px 6px 12px; }
+.progress-wrap .bar { height: 8px; border-radius: 999px; background: var(--card-2); margin-top: 6px; overflow: hidden; }
+.progress-wrap .bar i { display: block; height: 100%; background: linear-gradient(90deg, #2bb673, #7ad9a5); border-radius: 999px; transition: width 0.3s; }
+.done-banner { background: var(--green-soft); text-align: center; padding: 16px; font-weight: 900; font-size: 17px; color: var(--tint); box-shadow: none; }
+
 </style>
 </head>
 <body>
@@ -1767,6 +1919,117 @@ window.addEventListener('DOMContentLoaded', () => {
     el.addEventListener('click', e => { if (e.target === el) el.classList.remove('open'); });
   });
 });
+</script>
+<script id="market-patch">
+/* Надстройка «Свежий рынок»: карточка «Сегодня», «⋯»-меню, живые тексты, прогресс покупок.
+   Подключать ПОСЛЕ основного <script>, перед </body>. Основной код не меняется. */
+(function () {
+  const $ = id => document.getElementById(id);
+  const wrapFn = (name, after) => {
+    const orig = window[name];
+    if (typeof orig !== 'function') return;
+    window[name] = function () {
+      const r = orig.apply(this, arguments);
+      try { after(); } catch (e) { console.error(name, e); }
+      return r;
+    };
+  };
+
+  /* 1. Карточка «Сегодня на ужин» над списком дней */
+  function renderToday() {
+    const list = $('weekDaysList');
+    if (!list || !state.weeklyMenu || !state.weeklyMenu.length) return;
+    let card = $('todayCard');
+    if (!card) {
+      card = document.createElement('div');
+      card.id = 'todayCard';
+      list.parentNode.insertBefore(card, list);
+    }
+    const idx = (new Date().getDay() + 6) % 7;           // Пн = 0
+    const day = state.weeklyMenu[idx];
+    const r = day && getRecipeById(day.meals['Ужин']);
+    if (!r) { card.innerHTML = ''; card.className = ''; return; }
+    const hint = r.isVacuumPrep ? '🧊 Достаньте заготовку из морозилки заранее' : `⏱ ${r.timeMin} мин`;
+    card.className = 'today-card';
+    card.innerHTML =
+      `<div class="today-kicker">Сегодня на ужин · ${DAYS_CONFIG[idx].name}</div>` +
+      `<div class="today-title">${r.emoji || '🍽️'} ${escapeHtml(r.name)}</div>` +
+      `<div class="today-hint">${hint}</div>`;
+    card.onclick = () => openRecipeSheet(r.id);
+  }
+
+  /* 2. Прогресс покупок, «Всё куплено 🎉», живой пустой список */
+  function renderListExtras() {
+    const c = $('shoppingListGroups');
+    if (!c) return;
+    const total = state.shoppingList.length;
+    const done = state.shoppingList.filter(i => i.done).length;
+    if (total === 0) {
+      c.innerHTML = `<div class="ios-group" style="padding:32px 20px;text-align:center">
+        <div style="font-size:42px">🧺</div>
+        <div style="font-weight:900;font-size:17px;margin:6px 0 2px">Пока пусто</div>
+        <div class="text-xs" style="color:var(--muted)">Добавьте что-нибудь вкусное 🙂</div></div>`;
+      return;
+    }
+    const pct = Math.round(done / total * 100);
+    c.insertAdjacentHTML('afterbegin', done === total
+      ? `<div class="ios-group done-banner">Всё куплено 🎉</div>`
+      : `<div class="progress-wrap"><div class="text-xs font-bold">Куплено ${done} из ${total}</div><div class="bar"><i style="width:${pct}%"></i></div></div>`);
+  }
+
+  /* 3. Одна кнопка «⋯» вместо PDF / копирования / темы */
+  function addMoreMenu(headerBtnId, items) {
+    const anchor = $(headerBtnId);
+    if (!anchor) return;
+    const box = anchor.parentNode;
+    items.forEach(it => { const b = $(it.id); if (b) b.style.display = 'none'; });
+    const more = document.createElement('button');
+    more.className = 'ios-btn ios-btn-gray ios-btn-sm';
+    more.textContent = '⋯';
+    more.setAttribute('aria-label', 'Ещё');
+    more.onclick = () => {
+      const sheet = $('utilitySheet'), body = $('utilitySheetBody');
+      const rows = items.map((it, i) => {
+        const label = it.theme ? (state.theme === 'dark' ? '☀️ Светлая тема' : '🌙 Тёмная тема') : it.label;
+        return `<div class="ios-row cursor-pointer more-row" data-i="${i}"><span style="font-weight:700">${label}</span><span style="color:var(--muted)">›</span></div>`;
+      }).join('');
+      body.innerHTML = `<div class="flex items-center justify-between mb-2">
+        <h3 class="text-base font-extrabold m-0">Ещё</h3>
+        <button id="btnCloseMore" class="ios-btn ios-btn-gray ios-btn-sm">Готово</button></div>
+        <div class="ios-group">${rows}</div>`;
+      $('btnCloseMore').onclick = () => sheet.classList.remove('open');
+      body.querySelectorAll('.more-row').forEach(row => row.onclick = () => {
+        sheet.classList.remove('open');
+        const target = $(items[Number(row.dataset.i)].id);
+        if (target) target.click();
+      });
+      sheet.classList.add('open');
+    };
+    box.appendChild(more);
+  }
+
+  /* Живые заголовки */
+  const h1 = document.querySelector('#view-plan h1');
+  if (h1) h1.textContent = 'Что готовим на этой неделе';
+  const sub = document.querySelector('#view-plan p');
+  if (sub) sub.textContent = 'Будни — ужин, выходные — завтрак, перекус и ужин';
+
+  addMoreMenu('btnListSharePdf', [
+    { id: 'btnListSharePdf', label: '📄 Скачать PDF' },
+    { id: 'btnListCopyTxt',  label: '📋 Скопировать список' },
+    { id: 'btnTheme1', theme: true }
+  ]);
+  addMoreMenu('btnPlanPdf', [
+    { id: 'btnPlanPdf', label: '📄 Скачать PDF плана' },
+    { id: 'btnTheme2', theme: true }
+  ]);
+
+  wrapFn('renderWeekPlan', renderToday);
+  wrapFn('renderShoppingList', renderListExtras);
+  renderToday();
+  renderListExtras();
+})();
+
 </script>
 </body>
 </html>
