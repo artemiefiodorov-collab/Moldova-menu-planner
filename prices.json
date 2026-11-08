@@ -1,0 +1,1543 @@
+{
+  "updatedAt": "2026-11-08 11:25",
+  "currency": "MDL",
+  "sources": [
+    {
+      "id": "Metro",
+      "name": "Metro Moldova (Zakaz.md)",
+      "shortName": "Metro",
+      "status": "active_full",
+      "statusText": "Полный онлайн-каталог (SSR HTML, 37 412 товаров)",
+      "method": "Прямой HTTP/SSR парсинг карточек и категорий",
+      "url": "https://metro.zakaz.md/ru/",
+      "updatedAt": "2026-11-08 11:25",
+      "color": "#0284c7",
+      "badge": "100% покрытие корзины",
+      "notes": "Отдаёт структурированный серверный HTML с точным весом, ценой в MDL, штрихкодом EAN в URL и наличием в Кишинёве и Бельцах."
+    },
+    {
+      "id": "Kaufland",
+      "name": "Kaufland Moldova",
+      "shortName": "Kaufland",
+      "status": "active_promo",
+      "statusText": "Акционный веб-каталог (SSR HTML, ~300 товаров/нед.)",
+      "method": "Парсинг страницы обзора акций + Redu.md",
+      "url": "https://www.kaufland.md/ru/predlozheniya/obzor-aktsiy.html",
+      "updatedAt": "2026-11-08 11:25",
+      "color": "#e11d48",
+      "badge": "Промо-каталог 05.11–11.11",
+      "notes": "Публикует в открытом HTML все еженедельные скидки и предложения Kaufland Card XTRA с пересчётом цены за 1 кг/л. Полного регулярного прайс-листа на сайте нет."
+    },
+    {
+      "id": "Linella",
+      "name": "Linella (через агрегатор Redu.md)",
+      "shortName": "Linella",
+      "status": "aggregator_only",
+      "statusText": "Прямой сайт закрыт WAF · Скидки доступны через Redu.md",
+      "method": "Парсинг витрины Linella на Redu.md (SSR HTML)",
+      "url": "https://redu.md/ru/preturi/linella",
+      "updatedAt": "2026-11-08 11:25",
+      "color": "#16a34a",
+      "badge": "Агрегатор Redu (каталог 05.11–18.11)",
+      "notes": "Прямые запросы к linella.md блокируются антибот-защитой (WAF). Подтверждённые акционные и сравнительные цены Linella извлекаются через открытые страницы агрегатора redu.md."
+    },
+    {
+      "id": "ReduMix",
+      "name": "Local / Bonus / Rogob / Nr.1 (Redu.md)",
+      "shortName": "Local·Bonus·Rogob",
+      "status": "aggregator_only",
+      "statusText": "Агрегатор скидок 25 сетей Молдовы (SSR HTML)",
+      "method": "Парсинг страниц сетей на Redu.md",
+      "url": "https://redu.md/preturi/local",
+      "updatedAt": "2026-11-08 11:25",
+      "color": "#d97706",
+      "badge": "Топ-скидки сетей",
+      "notes": "Сравнивает подтверждённые историей за 30 дней скидки в сетях Local, Bonus, Rogob, Fidesco и Nr.1."
+    },
+    {
+      "id": "Croco",
+      "name": "Croco.md",
+      "shortName": "Croco",
+      "status": "unavailable_web",
+      "statusText": "Нет открытого веб-каталога (только мобильное приложение)",
+      "method": "Веб-парсинг технически недоступен",
+      "url": "https://play.google.com/store/apps/details?id=md.croco.app&hl=ru",
+      "updatedAt": "2026-11-08 11:25",
+      "color": "#64748b",
+      "badge": "Только Android/iOS App",
+      "notes": "Сервис Croco работает только как закрытое мобильное приложение со сканами буклетов и картами лояльности; открытый веб-каталог с ценами отсутствует (цены не имитируются)."
+    }
+  ],
+  "products": [
+    {
+      "id": "milk",
+      "name": "Молоко пастеризованное / UHT",
+      "cat": "dairy",
+      "icon": "🥛",
+      "baseUnit": "мл",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Молоко Casuta Mea 2,5% 1л",
+          "price": 15.9,
+          "regPrice": 18.99,
+          "packSize": 1000,
+          "packLabel": "1 л",
+          "url": "https://metro.zakaz.md/ru/products/lapte-casuta-mea-1000ml-moldova--04840331000449/",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Kaufland",
+          "title": "Молоко K-Classic Lapte UHT 1л",
+          "price": 17.9,
+          "regPrice": 19.9,
+          "packSize": 1000,
+          "packLabel": "1 л",
+          "url": "https://www.kaufland.md/ru/predlozheniya/obzor-aktsiy.html",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Metro",
+          "title": "Молоко JLC 2,5% 1л (мягкая уп.)",
+          "price": 20.49,
+          "regPrice": 20.49,
+          "packSize": 1000,
+          "packLabel": "1 л",
+          "url": "https://metro.zakaz.md/ru/products/lapte-jlc-1000ml-moldova--04840053000109/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "kefir",
+      "name": "Кефир 2,5%",
+      "cat": "dairy",
+      "icon": "🥛",
+      "baseUnit": "г",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Кефир Latti 2,5% 870г",
+          "price": 23.59,
+          "regPrice": 25.9,
+          "packSize": 870,
+          "packLabel": "870 г",
+          "url": "https://metro.zakaz.md/ru/products/kefir-latti-870g-moldova--04841259001204/",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Metro",
+          "title": "Кефир Latti 2,5% 420г",
+          "price": 15.99,
+          "regPrice": 15.99,
+          "packSize": 420,
+          "packLabel": "420 г",
+          "url": "https://metro.zakaz.md/ru/products/kefir-latti-420g-ukraina--04841259001211/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "sour_cream",
+      "name": "Сметана 15–20%",
+      "cat": "dairy",
+      "icon": "🥣",
+      "baseUnit": "г",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "Kaufland",
+          "title": "Сметана President 20% стакан 350г",
+          "price": 22.95,
+          "regPrice": 37.9,
+          "packSize": 350,
+          "packLabel": "350 г",
+          "url": "https://www.kaufland.md/ru/predlozheniya/obzor-aktsiy.html",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "ReduMix",
+          "title": "Сметана President 20% 350г (сеть Local)",
+          "price": 22.99,
+          "regPrice": 37.9,
+          "packSize": 350,
+          "packLabel": "350 г",
+          "url": "https://redu.md/preturi/kaufland",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Metro",
+          "title": "Сметана Latti 15% 300г (акция)",
+          "price": 23.59,
+          "regPrice": 24.9,
+          "packSize": 300,
+          "packLabel": "300 г",
+          "url": "https://metro.zakaz.md/ru/products/smantana-latti-300g-moldova--04841259000764/",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Metro",
+          "title": "Сметана President 20% 350г",
+          "price": 40.49,
+          "regPrice": 40.49,
+          "packSize": 350,
+          "packLabel": "350 г",
+          "url": "https://metro.zakaz.md/ru/products/smantana-president-350g-moldova--04840148004999/",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Linella",
+          "title": "Сметана President 20% 350г (данные Redu.md)",
+          "price": 40.99,
+          "regPrice": 40.99,
+          "packSize": 350,
+          "packLabel": "350 г",
+          "url": "https://redu.md/preturi/kaufland",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "curd",
+      "name": "Творог 5–9%",
+      "cat": "dairy",
+      "icon": "🍚",
+      "baseUnit": "г",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Творог JLC 2% 250г / Casuta Mea 9% 250г",
+          "price": 26.49,
+          "regPrice": 26.49,
+          "packSize": 250,
+          "packLabel": "250 г",
+          "url": "https://metro.zakaz.md/ru/products/branza-de-vaci-voinilact-250g-moldova--04841283000150/",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Metro",
+          "title": "Творог Ферма 9% 350г",
+          "price": 33.9,
+          "regPrice": 39.9,
+          "packSize": 350,
+          "packLabel": "350 г",
+          "url": "https://metro.zakaz.md/ru/products/branza-de-vaci-ferma-350g-ukraina--04820239248235/",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Kaufland",
+          "title": "Крем-сыр творожный K-Classic 200г",
+          "price": 20.95,
+          "regPrice": 27.45,
+          "packSize": 200,
+          "packLabel": "200 г",
+          "url": "https://www.kaufland.md/ru/predlozheniya/obzor-aktsiy.html",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "cheese",
+      "name": "Сыр твёрдый / Моцарелла",
+      "cat": "dairy",
+      "icon": "🧀",
+      "baseUnit": "г",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Сыр Latti Гауда 45% нарезка 150г",
+          "price": 35.99,
+          "regPrice": 35.99,
+          "packSize": 150,
+          "packLabel": "150 г",
+          "url": "https://metro.zakaz.md/ru/products/branza-latti-150g-moldova--04841259001051/",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Kaufland",
+          "title": "Сыр K-Classic Mozzarella Mini 125г",
+          "price": 18.65,
+          "regPrice": 27.9,
+          "packSize": 125,
+          "packLabel": "125 г",
+          "url": "https://www.kaufland.md/ru/predlozheniya/obzor-aktsiy.html",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Metro",
+          "title": "Сыр President Голландский 45% 180г",
+          "price": 58.9,
+          "regPrice": 58.9,
+          "packSize": 180,
+          "packLabel": "180 г",
+          "url": "https://metro.zakaz.md/ru/products/branza-president-180g-ukraina--04840148004302/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "branza",
+      "name": "Брынза (коровья / овечья)",
+      "cat": "dairy",
+      "icon": "🧀",
+      "baseUnit": "г",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Брынза Latti 200г (в блоке Latti)",
+          "price": 42.49,
+          "regPrice": 42.49,
+          "packSize": 200,
+          "packLabel": "200 г",
+          "url": "https://metro.zakaz.md/ru/products/branza-latti-400g-moldova--04841259000825/",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Metro",
+          "title": "Брынза Latti болгарская 400г (акция -10%)",
+          "price": 72.9,
+          "regPrice": 80.9,
+          "packSize": 400,
+          "packLabel": "400 г",
+          "url": "https://metro.zakaz.md/ru/products/branza-latti-400g-moldova--04841259000825/",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Metro",
+          "title": "Брынза овечья Latti 200г",
+          "price": 74.9,
+          "regPrice": 74.9,
+          "packSize": 200,
+          "packLabel": "200 г",
+          "url": "https://metro.zakaz.md/ru/products/branza-latti-400g-moldova--04841259000825/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "butter",
+      "name": "Масло сливочное 72,5–82,5%",
+      "cat": "dairy",
+      "icon": "🧈",
+      "baseUnit": "г",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Масло сладкосливочное Волошкове Поле 82,5% 180г",
+          "price": 30.9,
+          "regPrice": 33.9,
+          "packSize": 180,
+          "packLabel": "180 г",
+          "url": "https://metro.zakaz.md/ru/products/butter-voloshkove-pole-180g-ukraina--04820004236474/",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Metro",
+          "title": "Масло сливочное Inlac Крестьянское 72,5% 200г",
+          "price": 41.49,
+          "regPrice": 41.49,
+          "packSize": 200,
+          "packLabel": "200 г",
+          "url": "https://metro.zakaz.md/ru/products/butter-inlac-200g-moldova--04840071000167/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "eggs",
+      "name": "Яйца куриные",
+      "cat": "dairy",
+      "icon": "🥚",
+      "baseUnit": "шт",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Яйца куриные Fine Life M 10 шт",
+          "price": 46.99,
+          "regPrice": 46.99,
+          "packSize": 10,
+          "packLabel": "10 шт",
+          "url": "https://metro.zakaz.md/ru/products/oua-de-gaina-avicola-cimislia-moldova--04840742000243/",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Metro",
+          "title": "Яйца куриные Avicola Cimislia M для семьи 15 шт",
+          "price": 56.9,
+          "regPrice": 56.9,
+          "packSize": 15,
+          "packLabel": "15 шт",
+          "url": "https://metro.zakaz.md/ru/products/oua-de-gaina-avicola-cimislia-58g-moldova--04840844000394/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "chicken_fillet",
+      "name": "Куриное филе (грудка)",
+      "cat": "meat",
+      "icon": "🍗",
+      "baseUnit": "г",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Куриная грудка Floreni филе охлаждённое 450г",
+          "price": 55.9,
+          "regPrice": 55.9,
+          "packSize": 450,
+          "packLabel": "450 г",
+          "url": "https://metro.zakaz.md/ru/products/carne-floreni-450g-moldova--04840739000324/",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Metro",
+          "title": "Куриная грудка Floreni 900г",
+          "price": 102.9,
+          "regPrice": 102.9,
+          "packSize": 900,
+          "packLabel": "900 г",
+          "url": "https://metro.zakaz.md/ru/products/carne-floreni-900g-moldova--04840739003165/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "chicken_leg",
+      "name": "Курица (голени / бёдра / суповая)",
+      "cat": "meat",
+      "icon": "🍗",
+      "baseUnit": "г",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Голень куриная бройлер Carnprodlux 900г",
+          "price": 54.9,
+          "regPrice": 62.9,
+          "packSize": 900,
+          "packLabel": "900 г",
+          "url": "https://metro.zakaz.md/ru/categories/fresh-meat/country=moldova/",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Metro",
+          "title": "Голень куриная Qualiko охлаждённая 900г",
+          "price": 66.9,
+          "regPrice": 66.9,
+          "packSize": 900,
+          "packLabel": "900 г",
+          "url": "https://metro.zakaz.md/ru/products/carne-qualiko-900g-ukraina--04820107356512/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "chicken_liver",
+      "name": "Печень куриная",
+      "cat": "meat",
+      "icon": "🍗",
+      "baseUnit": "г",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Печень куриная Floreni бройлер охлаждённая 900г",
+          "price": 65.9,
+          "regPrice": 65.9,
+          "packSize": 900,
+          "packLabel": "900 г",
+          "url": "https://metro.zakaz.md/ru/products/ficat-floreni-900g-moldova--04840739003127/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "pork",
+      "name": "Свинина (мякоть / лопатка)",
+      "cat": "meat",
+      "icon": "🥩",
+      "baseUnit": "г",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Лопатка свиная без кости охлаждённая (весовая, шаг 500г)",
+          "price": 39.95,
+          "regPrice": 45.45,
+          "packSize": 500,
+          "packLabel": "500 г (79.90 MDL/кг)",
+          "url": "https://metro.zakaz.md/ru/products/carne-fara-mc-moldova--metromd28206100000000/",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Kaufland",
+          "title": "Рулет мясной Carmez Lancimit / Свинина Rogob (500г)",
+          "price": 48.75,
+          "regPrice": 73.25,
+          "packSize": 500,
+          "packLabel": "500 г (97.50 MDL/кг)",
+          "url": "https://www.kaufland.md/ru/predlozheniya/obzor-aktsiy.html",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Metro",
+          "title": "Биток свиной стейк охлаждённый (1 кг)",
+          "price": 127.9,
+          "regPrice": 127.9,
+          "packSize": 1000,
+          "packLabel": "1 кг",
+          "url": "https://metro.zakaz.md/ru/products/friptura-fara-mc-moldova--metromd28010200000000/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "beef",
+      "name": "Говядина / Фарш говяжий",
+      "cat": "meat",
+      "icon": "🥩",
+      "baseUnit": "г",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Говядина / Фарш говяжий охлаждённый (весовой, шаг 500г)",
+          "price": 61.95,
+          "regPrice": 61.95,
+          "packSize": 500,
+          "packLabel": "500 г (123.90 MDL/кг)",
+          "url": "https://metro.zakaz.md/ru/products/carne-tocata-fara-mc-moldova--metromd28007900000000/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "fish_hake",
+      "name": "Рыба (хек / скумбрия)",
+      "cat": "fish",
+      "icon": "🐟",
+      "baseUnit": "г",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Хек Fish House замороженный (шаг 500г)",
+          "price": 51.45,
+          "regPrice": 51.45,
+          "packSize": 500,
+          "packLabel": "500 г (102.90 MDL/кг)",
+          "url": "https://metro.zakaz.md/ru/products/fish-fish-house-uruguay--metromd28233400000000/",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Kaufland",
+          "title": "Филе скумбрии K-Classic в масле 170г",
+          "price": 28.95,
+          "regPrice": 39.9,
+          "packSize": 170,
+          "packLabel": "170 г",
+          "url": "https://www.kaufland.md/ru/predlozheniya/obzor-aktsiy.html",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Metro",
+          "title": "Скумбрия Fish House замороженная (1 кг)",
+          "price": 126.9,
+          "regPrice": 126.9,
+          "packSize": 1000,
+          "packLabel": "1 кг",
+          "url": "https://metro.zakaz.md/ru/products/fish-fish-house-moldova--metromd28130700000000/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "potato",
+      "name": "Картофель свежий",
+      "cat": "veggies",
+      "icon": "🥔",
+      "baseUnit": "г",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Картофель белый весовой (1 кг)",
+          "price": 11.99,
+          "regPrice": 11.99,
+          "packSize": 1000,
+          "packLabel": "1 кг",
+          "url": "https://metro.zakaz.md/ru/categories/vegetables/vegetable-type=cartof/",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Metro",
+          "title": "Картофель белый Bodeanu сетка 2кг",
+          "price": 27.99,
+          "regPrice": 27.99,
+          "packSize": 2000,
+          "packLabel": "2 кг",
+          "url": "https://metro.zakaz.md/ru/products/legume-bodeanu-2000g-moldova--04841897000218/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "onion",
+      "name": "Лук репчатый",
+      "cat": "veggies",
+      "icon": "🧅",
+      "baseUnit": "г",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Лук репчатый весовой (1 кг)",
+          "price": 7.99,
+          "regPrice": 7.99,
+          "packSize": 1000,
+          "packLabel": "1 кг",
+          "url": "https://metro.zakaz.md/ru/categories/vegetables/vegetable-type=ceapa/",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Metro",
+          "title": "Лук репчатый сетка 1,5кг",
+          "price": 14.99,
+          "regPrice": 14.99,
+          "packSize": 1500,
+          "packLabel": "1.5 кг",
+          "url": "https://metro.zakaz.md/ru/products/legume-bulbonion-fara-mc-1500g-moldova--04841897000140/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "carrot",
+      "name": "Морковь свежая",
+      "cat": "veggies",
+      "icon": "🥕",
+      "baseUnit": "г",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Морковь мытая Fresh for You 500г",
+          "price": 9.99,
+          "regPrice": 9.99,
+          "packSize": 500,
+          "packLabel": "500 г",
+          "url": "https://metro.zakaz.md/ru/products/legume-fresh-for-you-500g-moldova--04842142001196/",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Metro",
+          "title": "Морковь мытая Fresh for You 1кг",
+          "price": 13.49,
+          "regPrice": 13.49,
+          "packSize": 1000,
+          "packLabel": "1 кг",
+          "url": "https://metro.zakaz.md/ru/products/legume-fresh-for-you-1000g-moldova--04842142001417/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "cabbage",
+      "name": "Капуста белокочанная",
+      "cat": "veggies",
+      "icon": "🥬",
+      "baseUnit": "г",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Капуста белокочанная нового урожая (1 кг)",
+          "price": 5.49,
+          "regPrice": 5.49,
+          "packSize": 1000,
+          "packLabel": "1 кг",
+          "url": "https://metro.zakaz.md/ru/products/legume-alba-fara-mc-moldova--metromd28073900000000/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "beet",
+      "name": "Свёкла столовая",
+      "cat": "veggies",
+      "icon": "🟣",
+      "baseUnit": "г",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Свёкла столовая весовая (1 кг)",
+          "price": 6.99,
+          "regPrice": 6.99,
+          "packSize": 1000,
+          "packLabel": "1 кг",
+          "url": "https://metro.zakaz.md/ru/products/legume-fara-mc-moldova--metromd28083200000000/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "tomato",
+      "name": "Помидоры свежие",
+      "cat": "veggies",
+      "icon": "🍅",
+      "baseUnit": "г",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Помидор красный весовой (шаг 500г)",
+          "price": 19.99,
+          "regPrice": 19.99,
+          "packSize": 500,
+          "packLabel": "500 г (39.99 MDL/кг)",
+          "url": "https://metro.zakaz.md/ru/products/legume-fara-mc-moldova--metromd28073300000000/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "cucumber",
+      "name": "Огурцы свежие",
+      "cat": "veggies",
+      "icon": "🥒",
+      "baseUnit": "г",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Огурец корнишон свежий (шаг 500г)",
+          "price": 29.45,
+          "regPrice": 29.45,
+          "packSize": 500,
+          "packLabel": "500 г (58.90 MDL/кг)",
+          "url": "https://metro.zakaz.md/ru/products/legume-fara-mc-moldova--metromd28408000000000/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "pepper",
+      "name": "Перец сладкий болгарский",
+      "cat": "veggies",
+      "icon": "🫑",
+      "baseUnit": "г",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Перец сладкий весовой (шаг 500г)",
+          "price": 22.5,
+          "regPrice": 22.5,
+          "packSize": 500,
+          "packLabel": "500 г (44.99 MDL/кг)",
+          "url": "https://metro.zakaz.md/ru/products/legume-fara-mc-moldova--metromd28075900000000/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "zucchini",
+      "name": "Кабачки молодые",
+      "cat": "veggies",
+      "icon": "🥒",
+      "baseUnit": "г",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Кабачок свежий весовой (шаг 500г)",
+          "price": 21.5,
+          "regPrice": 21.5,
+          "packSize": 500,
+          "packLabel": "500 г (42.99 MDL/кг)",
+          "url": "https://metro.zakaz.md/ru/products/legume-fara-mc-moldova--metromd28084200000000/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "apple",
+      "name": "Яблоки свежие",
+      "cat": "veggies",
+      "icon": "🍎",
+      "baseUnit": "г",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Яблоко Голден (акция -10%, 1 кг)",
+          "price": 17.9,
+          "regPrice": 19.79,
+          "packSize": 1000,
+          "packLabel": "1 кг",
+          "url": "https://metro.zakaz.md/ru/products/fructe-auriu-fara-mc-moldova--metromd28080200000000/",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Metro",
+          "title": "Яблоко Гала (1 кг)",
+          "price": 21.49,
+          "regPrice": 21.49,
+          "packSize": 1000,
+          "packLabel": "1 кг",
+          "url": "https://metro.zakaz.md/ru/products/fructe-gala-fara-mc-moldova--metromd28861100000000/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "banana",
+      "name": "Бананы свежие",
+      "cat": "veggies",
+      "icon": "🍌",
+      "baseUnit": "г",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Банан Dole Эквадор (1 кг)",
+          "price": 35.49,
+          "regPrice": 35.49,
+          "packSize": 1000,
+          "packLabel": "1 кг",
+          "url": "https://metro.zakaz.md/ru/products/fructe-fara-mc-ecuador--metromd28254400000000/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "garlic",
+      "name": "Чеснок свежий",
+      "cat": "veggies",
+      "icon": "🧄",
+      "baseUnit": "г",
+      "isPantry": true,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Чеснок весовой (200 г из расчёта 63.90 MDL/кг)",
+          "price": 12.78,
+          "regPrice": 12.78,
+          "packSize": 200,
+          "packLabel": "200 г (63.90 MDL/кг)",
+          "url": "https://metro.zakaz.md/ru/products/legume-fara-mc-moldova--metromd28073800000000/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "greens",
+      "name": "Зелень свежая (петрушка, укроп, овощной набор)",
+      "cat": "veggies",
+      "icon": "🌿",
+      "baseUnit": "г",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Петрушка MolAgro ESP 100г",
+          "price": 12.99,
+          "regPrice": 12.99,
+          "packSize": 100,
+          "packLabel": "100 г",
+          "url": "https://metro.zakaz.md/ru/products/greens-molagro-100g-moldova--04841879000267/",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Kaufland",
+          "title": "Набор зелени и кореньев Asorti la zeamă 100г",
+          "price": 13.9,
+          "regPrice": 17.9,
+          "packSize": 100,
+          "packLabel": "100 г",
+          "url": "https://www.kaufland.md/ru/predlozheniya/obzor-aktsiy.html",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Metro",
+          "title": "Зелень микс Fresh For You укроп/петрушка 100г",
+          "price": 15.99,
+          "regPrice": 15.99,
+          "packSize": 100,
+          "packLabel": "100 г",
+          "url": "https://metro.zakaz.md/ru/products/greens-fresh-for-you-100g-moldova--04842142001028/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "buckwheat",
+      "name": "Крупа гречневая",
+      "cat": "grains",
+      "icon": "🥣",
+      "baseUnit": "г",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "ReduMix",
+          "title": "Гречка Гудвилл 800г (сеть Rogob через Redu.md)",
+          "price": 17.9,
+          "regPrice": 33.0,
+          "packSize": 800,
+          "packLabel": "800 г",
+          "url": "https://redu.md/",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Metro",
+          "title": "Гречка METRO Chef 900г",
+          "price": 18.99,
+          "regPrice": 18.99,
+          "packSize": 900,
+          "packLabel": "900 г",
+          "url": "https://metro.zakaz.md/ru/categories/buckwheat/grain=buckwheat/",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Metro",
+          "title": "Гречка ORA 900г",
+          "price": 20.49,
+          "regPrice": 20.49,
+          "packSize": 900,
+          "packLabel": "900 г",
+          "url": "https://metro.zakaz.md/ru/products/grits-ora-900g-moldova--04841259000894/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "rice",
+      "name": "Рис (длиннозёрный / круглый)",
+      "cat": "grains",
+      "icon": "🍚",
+      "baseUnit": "г",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Рис Ora длинный 900г",
+          "price": 18.49,
+          "regPrice": 18.49,
+          "packSize": 900,
+          "packLabel": "900 г",
+          "url": "https://metro.zakaz.md/ru/products/grits-ora-900g-grecia--04841259003031/",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Metro",
+          "title": "Рис Bunetto Premium Bob cu bob 900г (акция)",
+          "price": 26.9,
+          "regPrice": 34.49,
+          "packSize": 900,
+          "packLabel": "900 г",
+          "url": "https://metro.zakaz.md/ru/products/grits-bunetto-900g-moldova--04840747002020/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "oats",
+      "name": "Овсяные хлопья Геркулес",
+      "cat": "grains",
+      "icon": "🌾",
+      "baseUnit": "г",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Хлопья овсяные Bunetto Геркулес 450г",
+          "price": 9.99,
+          "regPrice": 9.99,
+          "packSize": 450,
+          "packLabel": "450 г",
+          "url": "https://metro.zakaz.md/ru/products/flakes-bunetto-450g-ukraina--04840747000842/",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Metro",
+          "title": "Хлопья овсяные ORA крупные 500г",
+          "price": 14.99,
+          "regPrice": 14.99,
+          "packSize": 500,
+          "packLabel": "500 г",
+          "url": "https://metro.zakaz.md/ru/products/flakes-ora-500g-lituania--04841259001129/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "pasta",
+      "name": "Макароны / Вермишель",
+      "cat": "grains",
+      "icon": "🍝",
+      "baseUnit": "г",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Макаронные изделия Pasta Zara 500г",
+          "price": 21.49,
+          "regPrice": 21.49,
+          "packSize": 500,
+          "packLabel": "500 г",
+          "url": "https://metro.zakaz.md/ru/products/pasta-pastazara-500g-italia--08004350130570/",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Metro",
+          "title": "Макаронные изделия Barilla 500г",
+          "price": 23.49,
+          "regPrice": 23.49,
+          "packSize": 500,
+          "packLabel": "500 г",
+          "url": "https://metro.zakaz.md/ru/products/pasta-barilla-500g-italia--08076802085912/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "cornmeal",
+      "name": "Крупа кукурузная (Малай для мамалыги)",
+      "cat": "grains",
+      "icon": "🌽",
+      "baseUnit": "г",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Кукурузная крупа Bunetto Polenta Mălai Extra 900г",
+          "price": 10.49,
+          "regPrice": 10.49,
+          "packSize": 900,
+          "packLabel": "900 г",
+          "url": "https://metro.zakaz.md/ru/products/grits-bunetto-900g-ukraina--04840747000347/",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Metro",
+          "title": "Крупа кукурузная Ora 900г",
+          "price": 12.99,
+          "regPrice": 12.99,
+          "packSize": 900,
+          "packLabel": "900 г",
+          "url": "https://metro.zakaz.md/ru/products/grits-iurceneanca-1000g-moldova--04840998000110/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "semolina",
+      "name": "Крупа манная",
+      "cat": "grains",
+      "icon": "🌾",
+      "baseUnit": "г",
+      "isPantry": true,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Крупа Bunetto манная 900г",
+          "price": 11.99,
+          "regPrice": 11.99,
+          "packSize": 900,
+          "packLabel": "900 г",
+          "url": "https://metro.zakaz.md/ru/products/grits-bunetto-900g-ukraina--04840747000347/",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Metro",
+          "title": "Крупа Ora манная 900г",
+          "price": 13.99,
+          "regPrice": 13.99,
+          "packSize": 900,
+          "packLabel": "900 г",
+          "url": "https://metro.zakaz.md/ru/products/grits-ora-900g-moldova--04841259001181/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "barley",
+      "name": "Крупа перловая",
+      "cat": "grains",
+      "icon": "🌾",
+      "baseUnit": "г",
+      "isPantry": true,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Крупа Bunetto перловая 900г",
+          "price": 9.99,
+          "regPrice": 9.99,
+          "packSize": 900,
+          "packLabel": "900 г",
+          "url": "https://metro.zakaz.md/ru/products/grits-bunetto-900g-moldova--04840747000316/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "peas_dry",
+      "name": "Горох колотый шлифованный",
+      "cat": "grains",
+      "icon": "🟡",
+      "baseUnit": "г",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Горох шлифованный целый Bunetto 1кг",
+          "price": 11.99,
+          "regPrice": 11.99,
+          "packSize": 1000,
+          "packLabel": "1 кг",
+          "url": "https://metro.zakaz.md/ru/products/grits-bunetto-900g-moldova--04840747000316/",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Metro",
+          "title": "Горох шлифованный Ora 900г",
+          "price": 12.99,
+          "regPrice": 12.99,
+          "packSize": 900,
+          "packLabel": "900 г",
+          "url": "https://metro.zakaz.md/ru/products/grits-ora-900g-moldova--04841259001181/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "flour",
+      "name": "Мука пшеничная в/с",
+      "cat": "grocery",
+      "icon": "🌾",
+      "baseUnit": "г",
+      "isPantry": true,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Мука пшеничная METRO Chef 2кг",
+          "price": 19.99,
+          "regPrice": 19.99,
+          "packSize": 2000,
+          "packLabel": "2 кг",
+          "url": "https://metro.zakaz.md/ru/products/produsele-populare-metro-chef-2000g-moldova--04842473000134/",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Metro",
+          "title": "Мука пшеничная Oleineac 2кг",
+          "price": 20.99,
+          "regPrice": 20.99,
+          "packSize": 2000,
+          "packLabel": "2 кг",
+          "url": "https://metro.zakaz.md/ru/products/faina-oleineac-2000g-moldova--04842473000110/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "oil",
+      "name": "Масло подсолнечное рафинированное",
+      "cat": "grocery",
+      "icon": "🌻",
+      "baseUnit": "мл",
+      "isPantry": true,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Масло подсолнечное Danova 955мл (акция)",
+          "price": 36.9,
+          "regPrice": 38.9,
+          "packSize": 955,
+          "packLabel": "955 мл",
+          "url": "https://metro.zakaz.md/ru/products/null--04840528000221/",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Metro",
+          "title": "Масло подсолнечное Bunetto 950мл",
+          "price": 39.99,
+          "regPrice": 39.99,
+          "packSize": 950,
+          "packLabel": "950 мл",
+          "url": "https://metro.zakaz.md/ru/products/ulei-bunetto-950ml-moldova--04840747000163/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "sugar",
+      "name": "Сахар кристаллический",
+      "cat": "grocery",
+      "icon": "🧂",
+      "baseUnit": "г",
+      "isPantry": true,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Сахар Magda 1кг",
+          "price": 19.49,
+          "regPrice": 19.49,
+          "packSize": 1000,
+          "packLabel": "1 кг",
+          "url": "https://metro.zakaz.md/ru/products/granulated-sugar-magda-1000g-moldova--04840391181027/",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Metro",
+          "title": "Сахар Domnita 1кг",
+          "price": 19.99,
+          "regPrice": 19.99,
+          "packSize": 1000,
+          "packLabel": "1 кг",
+          "url": "https://metro.zakaz.md/ru/products/granulated-sugar-domnita-1000g-moldova--04840391179918/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "salt",
+      "name": "Соль пищевая и базовые специи",
+      "cat": "grocery",
+      "icon": "🧂",
+      "baseUnit": "г",
+      "isPantry": true,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Соль Bunetto каменная 1кг",
+          "price": 8.49,
+          "regPrice": 8.49,
+          "packSize": 1000,
+          "packLabel": "1 кг",
+          "url": "https://metro.zakaz.md/ru/products/salt-bunetto-1000g-moldova--04840747004062/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "tomato_paste",
+      "name": "Томатная паста 25%",
+      "cat": "grocery",
+      "icon": "🥫",
+      "baseUnit": "г",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "Kaufland",
+          "title": "Паста томатная Liada 25% 275г (акция -31%)",
+          "price": 14.95,
+          "regPrice": 21.9,
+          "packSize": 275,
+          "packLabel": "275 г",
+          "url": "https://www.kaufland.md/ru/predlozheniya/obzor-aktsiy.html",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Metro",
+          "title": "Паста томатная Vita 25% 310г",
+          "price": 26.9,
+          "regPrice": 29.9,
+          "packSize": 310,
+          "packLabel": "310 г",
+          "url": "https://metro.zakaz.md/ru/products/pasta-de-rosii-vita-310g-moldova--04840022004244/",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "ReduMix",
+          "title": "Томатный соус / Кетчуп Heinz 460г (Rogob)",
+          "price": 36.9,
+          "regPrice": 59.9,
+          "packSize": 460,
+          "packLabel": "460 г",
+          "url": "https://redu.md/ru/preturi/rogob",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "beans_can",
+      "name": "Фасоль консервированная / белая",
+      "cat": "grocery",
+      "icon": "🥫",
+      "baseUnit": "г",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "Kaufland",
+          "title": "Фасоль белая Olympia 400г (акция -25%)",
+          "price": 19.95,
+          "regPrice": 26.9,
+          "packSize": 400,
+          "packLabel": "400 г",
+          "url": "https://www.kaufland.md/ru/predlozheniya/obzor-aktsiy.html",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Metro",
+          "title": "Фасоль Vis белая консервированная 410г",
+          "price": 26.99,
+          "regPrice": 26.99,
+          "packSize": 410,
+          "packLabel": "410 г",
+          "url": "https://metro.zakaz.md/ru/products/legume-fasole-vis-410g-moldova--04840019000914/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "peas_can",
+      "name": "Зелёный горошек консервированный",
+      "cat": "grocery",
+      "icon": "🥫",
+      "baseUnit": "г",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Зелёный горошек Vis консервированный 390г (акция)",
+          "price": 16.9,
+          "regPrice": 19.9,
+          "packSize": 390,
+          "packLabel": "390 г",
+          "url": "https://metro.zakaz.md/ru/products/legume-vis-670g-moldova--04840019000815/",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Metro",
+          "title": "Зелёный горошек Bonduelle 400г",
+          "price": 26.9,
+          "regPrice": 29.9,
+          "packSize": 400,
+          "packLabel": "400 г",
+          "url": "https://metro.zakaz.md/ru/products/legume-mazare-400g-ungaria--03083680047364/",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Kaufland",
+          "title": "Зелёный горошек Bucegi 420г",
+          "price": 28.95,
+          "regPrice": 41.9,
+          "packSize": 420,
+          "packLabel": "420 г",
+          "url": "https://www.kaufland.md/ru/predlozheniya/obzor-aktsiy.html",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "pickles",
+      "name": "Огурцы солёные / маринованные",
+      "cat": "grocery",
+      "icon": "🥒",
+      "baseUnit": "г",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Огурцы Gutarom маринованные 500г",
+          "price": 32.99,
+          "regPrice": 32.99,
+          "packSize": 500,
+          "packLabel": "500 г",
+          "url": "https://metro.zakaz.md/ru/products/null--04840401000157/",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Metro",
+          "title": "Огурцы Vis маринованные 670г",
+          "price": 40.99,
+          "regPrice": 40.99,
+          "packSize": 670,
+          "packLabel": "670 г",
+          "url": "https://metro.zakaz.md/ru/products/legume-vis-670g-moldova--04840019000815/",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Kaufland",
+          "title": "Огурцы маринованные K-Classic 1550г",
+          "price": 49.95,
+          "regPrice": 69.9,
+          "packSize": 1550,
+          "packLabel": "1.55 кг",
+          "url": "https://www.kaufland.md/ru/predlozheniya/obzor-aktsiy.html",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "mayo",
+      "name": "Майонез / Соус майонезный",
+      "cat": "grocery",
+      "icon": "🥫",
+      "baseUnit": "г",
+      "isPantry": true,
+      "offers": [
+        {
+          "store": "Linella",
+          "title": "Соус майонезный Astoria со сметаной 233г (Linella через Redu.md)",
+          "price": 18.99,
+          "regPrice": 34.5,
+          "packSize": 233,
+          "packLabel": "233 г",
+          "url": "https://redu.md/ru/preturi/linella",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "ReduMix",
+          "title": "Майонез Ряба Провансаль 67% 350г (сеть Local)",
+          "price": 19.99,
+          "regPrice": 41.99,
+          "packSize": 350,
+          "packLabel": "350 г",
+          "url": "https://redu.md/preturi/local",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Metro",
+          "title": "Соус майонезный Astoria 233г",
+          "price": 35.99,
+          "regPrice": 35.99,
+          "packSize": 233,
+          "packLabel": "233 г",
+          "url": "https://redu.md/ru/preturi/linella",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Kaufland",
+          "title": "Майонез Ряба Провансаль 350г",
+          "price": 37.95,
+          "regPrice": 43.9,
+          "packSize": 350,
+          "packLabel": "350 г",
+          "url": "https://www.kaufland.md/ru/predlozheniya/obzor-aktsiy.html",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "honey",
+      "name": "Мёд натуральный",
+      "cat": "grocery",
+      "icon": "🍯",
+      "baseUnit": "г",
+      "isPantry": true,
+      "offers": [
+        {
+          "store": "Kaufland",
+          "title": "Крем-мёд натуральный Honey House 250г",
+          "price": 49.95,
+          "regPrice": 64.9,
+          "packSize": 250,
+          "packLabel": "250 г",
+          "url": "https://www.kaufland.md/ru/predlozheniya/obzor-aktsiy.html",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Metro",
+          "title": "Крем-мёд / Медовый десерт 250г",
+          "price": 54.9,
+          "regPrice": 54.9,
+          "packSize": 250,
+          "packLabel": "250 г",
+          "url": "https://metro.zakaz.md/ru/products/cake-franzeluta-1000g-moldova--04840008009447/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "bread",
+      "name": "Хлеб пшеничный / ржаной",
+      "cat": "bakery",
+      "icon": "🍞",
+      "baseUnit": "г",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Хлеб Franzeluta Oraseneasca Plus 400г",
+          "price": 7.49,
+          "regPrice": 7.49,
+          "packSize": 400,
+          "packLabel": "400 г",
+          "url": "https://metro.zakaz.md/ru/products/bread-franzeluta-400g-moldova--04840008001489/",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Kaufland",
+          "title": "Калач Brutaria Bardar 240г (акция -33%)",
+          "price": 5.25,
+          "regPrice": 7.85,
+          "packSize": 240,
+          "packLabel": "240 г",
+          "url": "https://www.kaufland.md/ru/predlozheniya/obzor-aktsiy.html",
+          "updatedAt": "2026-11-08 11:25"
+        },
+        {
+          "store": "Metro",
+          "title": "Хлеб Franzeluta Бородинский нарезанный 600г",
+          "price": 13.49,
+          "regPrice": 13.49,
+          "packSize": 600,
+          "packLabel": "600 г",
+          "url": "https://metro.zakaz.md/ru/products/bread-franzeluta-600g-moldova--04840008030526/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "lavash",
+      "name": "Лаваш армянский тонкий",
+      "cat": "bakery",
+      "icon": "🫓",
+      "baseUnit": "г",
+      "isPantry": false,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Лаваш Katifia-Lux Армянский тонкий 250г",
+          "price": 20.49,
+          "regPrice": 20.49,
+          "packSize": 250,
+          "packLabel": "250 г",
+          "url": "https://metro.zakaz.md/ru/products/pita-katifia-lux-250g-moldova--04840834000267/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    },
+    {
+      "id": "vinegar",
+      "name": "Уксус столовый / Кислый квас (борш акру)",
+      "cat": "other",
+      "icon": "🫙",
+      "baseUnit": "мл",
+      "isPantry": true,
+      "offers": [
+        {
+          "store": "Metro",
+          "title": "Уксус столовый Nora 9% 1л (или яблочный 6% 1л)",
+          "price": 12.99,
+          "regPrice": 12.99,
+          "packSize": 1000,
+          "packLabel": "1 л",
+          "url": "https://metro.zakaz.md/ru/products/otet-d-r-foods-250ml-moldova--04840027001316/",
+          "updatedAt": "2026-11-08 11:25"
+        }
+      ]
+    }
+  ]
+}
