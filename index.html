@@ -13,232 +13,19 @@
 <script src="https://cdn.tailwindcss.com/3.4.17"></script>
 <style>
 :root {
-  --bg: #f2f2f7;
-  --card: #ffffff;
-  --card-2: #f9f9fb;
-  --text: #1c1c1e;
-  --muted: #8e8e93;
-  --line: #e5e5ea;
-  --tint: #007aff;
-  --tint-soft: rgba(0, 122, 255, 0.11);
-  --green: #34c759;
-  --green-soft: rgba(52, 199, 89, 0.12);
-  --orange: #ff9500;
-  --orange-soft: rgba(255, 149, 0, 0.12);
-  --red: #ff3b30;
-  --cyan: #00a2c7;
-  --cyan-soft: rgba(0, 162, 199, 0.11);
-}
-:root[data-theme="dark"] {
-  --bg: #000000;
-  --card: #1c1c1e;
-  --card-2: #2c2c2e;
-  --text: #f2f2f7;
-  --muted: #98989d;
-  --line: #38383a;
-  --tint: #0a84ff;
-  --tint-soft: rgba(10, 132, 255, 0.18);
-  --green: #30d158;
-  --green-soft: rgba(48, 209, 88, 0.18);
-  --orange: #ff9f0a;
-  --orange-soft: rgba(255, 159, 10, 0.18);
-  --red: #ff453a;
-  --cyan: #5ac8fa;
-  --cyan-soft: rgba(90, 200, 250, 0.18);
-}
-* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-html, body {
-  margin: 0; padding: 0; min-height: 100%;
-  background: var(--bg); color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
-  font-size: 15px; line-height: 1.38;
-  overflow-x: hidden;
-}
-.ios-shell {
-  max-width: 430px;
-  margin: 0 auto;
-  padding: 10px 12px 82px;
-}
-@media (min-width: 640px) {
-  .ios-shell { max-width: 580px; }
-}
-
-/* iOS Grouped List Card */
-.ios-group {
-  background: var(--card);
-  border-radius: 14px;
-  overflow: hidden;
-  margin-bottom: 12px;
-  border: 0.5px solid var(--line);
-}
-.ios-row {
-  display: flex; align-items: center; justify-content: space-between; gap: 10px;
-  padding: 11px 14px;
-  border-bottom: 0.5px solid var(--line);
-  background: var(--card);
-  transition: background 0.12s;
-}
-.ios-row:last-child { border-bottom: none; }
-.ios-row:active { background: var(--card-2); }
-
-/* Круглый чекбокс как в iOS Напоминаниях / AnyList */
-.ios-check {
-  width: 22px; height: 22px; border-radius: 999px;
-  border: 2px solid var(--muted);
-  display: inline-flex; align-items: center; justify-content: center;
-  flex-shrink: 0; cursor: pointer; transition: all 0.15s;
-  color: transparent; font-size: 12px; font-weight: 800;
-}
-.ios-check.checked {
-  background: var(--green); border-color: var(--green); color: #fff;
-}
-
-.ios-btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 5px;
-  padding: 8px 13px; border-radius: 10px; font-weight: 600; font-size: 13.5px;
-  border: none; cursor: pointer; transition: opacity 0.12s, transform 0.1s;
-  user-select: none; white-space: nowrap;
-}
-.ios-btn:active { transform: scale(0.97); opacity: 0.85; }
-.ios-btn-primary { background: var(--tint); color: #ffffff; }
-.ios-btn-green { background: var(--green); color: #ffffff; }
-.ios-btn-soft { background: var(--tint-soft); color: var(--tint); }
-.ios-btn-gray { background: var(--card-2); color: var(--text); border: 0.5px solid var(--line); }
-.ios-btn-sm { padding: 5px 10px; font-size: 12.5px; border-radius: 8px; }
-
-.ios-input-wrap {
-  position: relative;
-  background: var(--card);
-  border-radius: 12px;
-  border: 1px solid var(--line);
-  display: flex; align-items: center;
-  padding: 3px 6px 3px 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
-}
-.ios-input-wrap:focus-within { border-color: var(--tint); }
-.ios-input {
-  width: 100%; border: none; background: transparent; color: var(--text);
-  font-size: 15px; padding: 8px 4px; outline: none;
-}
-
-/* Выпадающие автоподсказки (как в AnyList / Купи Батон) */
-.suggest-box {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  margin-top: 6px;
-  overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-}
-
-/* Быстрые облачка (Чипсы) */
-.chip-bar {
-  display: flex; align-items: center; gap: 6px;
-  overflow-x: auto; scrollbar-width: none; padding: 2px 0;
-}
-.chip-bar::-webkit-scrollbar { display: none; }
-.ios-chip {
-  padding: 5px 11px; border-radius: 999px; font-size: 12.5px; font-weight: 600;
-  background: var(--card); color: var(--text); border: 0.5px solid var(--line);
-  white-space: nowrap; cursor: pointer; flex-shrink: 0;
-}
-.ios-chip.active {
-  background: var(--tint); color: #fff; border-color: var(--tint);
-}
-
-/* Сетка папок рецептов 2x4 (Paprika 4 / AnyList) */
-.folder-card {
-  background: var(--card);
-  border: 0.5px solid var(--line);
-  border-radius: 14px;
-  padding: 13px 12px;
-  display: flex; flex-direction: column; justify-content: space-between;
-  cursor: pointer; transition: transform 0.12s, background 0.12s;
-  min-height: 82px;
-}
-.folder-card:active { transform: scale(0.98); background: var(--card-2); }
-
-/* Нижняя панель из 3 вкладок (iOS Tab Bar) */
-.ios-tabbar {
-  position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-  border-top: 0.5px solid var(--line);
-  padding: 5px 12px calc(5px + env(safe-area-inset-bottom));
-}
-:root[data-theme="dark"] .ios-tabbar {
-  background: rgba(28, 28, 30, 0.9);
-}
-.ios-tabbar-inner {
-  max-width: 430px; margin: 0 auto;
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px;
-}
-.tab-item {
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding: 4px 0; border: none; background: transparent; cursor: pointer;
-  color: var(--muted); font-size: 11px; font-weight: 600; position: relative;
-}
-.tab-item .tab-ic { font-size: 20px; line-height: 1.1; margin-bottom: 2px; }
-.tab-item.active { color: var(--tint); font-weight: 700; }
-.tab-badge {
-  position: absolute; top: 1px; right: 26%;
-  background: var(--red); color: #fff; font-size: 10px; font-weight: 800;
-  padding: 0 5px; border-radius: 999px; min-width: 16px; height: 16px;
-  display: inline-flex; align-items: center; justify-content: center;
-}
-
-/* Модальная шторка снизу (iOS Bottom Sheet) */
-.sheet-backdrop {
-  position: fixed; inset: 0; z-index: 60;
-  background: rgba(0, 0, 0, 0.45); backdrop-filter: blur(2px);
-  display: none; align-items: flex-end; justify-content: center;
-}
-@media (min-width: 640px) {
-  .sheet-backdrop { align-items: center; padding: 16px; }
-}
-.sheet-backdrop.open { display: flex; }
-.sheet-box {
-  background: var(--bg); color: var(--text);
-  border-radius: 20px 20px 0 0;
-  max-width: 480px; width: 100%; max-height: 86vh; overflow-y: auto;
-  padding: 12px 14px calc(18px + env(safe-area-inset-bottom));
-  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.28);
-}
-@media (min-width: 640px) {
-  .sheet-box { border-radius: 18px; }
-}
-.sheet-handle {
-  width: 38px; height: 4.5px; border-radius: 999px;
-  background: var(--line); margin: 0 auto 10px;
-}
-
-.toast-pill {
-  position: fixed; top: 12px; left: 50%; transform: translateX(-50%);
-  z-index: 90; background: rgba(28, 28, 30, 0.92); color: #fff;
-  padding: 8px 16px; border-radius: 999px; font-size: 13px; font-weight: 600;
-  display: none; align-items: center; gap: 6px; white-space: nowrap;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-}
-.toast-pill.show { display: inline-flex; }
-</style>
-<style id="market-theme">
-/* «Свежий рынок» — мятный фон, базилик, томатные акценты.
-   Подключить ПОСЛЕ основного <style>: перекрывает его, JS не трогаем. */
-
-:root {
   --bg: #f3faf5;
   --card: #ffffff;
   --card-2: #eaf6ee;
   --text: #17331f;
   --muted: #6b8573;
   --line: #dcebe1;
-  --tint: #1f9d63;            /* базилик */
+  --tint: #1f9d63;
   --tint-soft: rgba(31, 157, 99, 0.12);
-  --green: #2bb673;           /* галочки, «куплено» */
+  --green: #2bb673;
   --green-soft: rgba(43, 182, 115, 0.14);
-  --orange: #ff9f1c;          /* лимон-апельсин */
+  --orange: #ff9f1c;
   --orange-soft: rgba(255, 159, 28, 0.15);
-  --red: #f0583a;             /* томат: бейджи, «очистить» */
+  --red: #f0583a;
   --cyan: #1c9bb5;
   --cyan-soft: rgba(28, 155, 181, 0.13);
   --shadow: 0 4px 16px rgba(31, 110, 70, 0.08);
@@ -261,61 +48,126 @@ html, body {
   --cyan-soft: rgba(82, 199, 223, 0.18);
   --shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
 }
-
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html, body {
-  font-family: 'Nunito', 'Inter', -apple-system, sans-serif;
+  margin: 0; padding: 0; min-height: 100%;
+  background: var(--bg); color: var(--text);
+  font-family: 'Nunito', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 16px; line-height: 1.4;
+  overflow-x: hidden;
 }
 h1, h3 { font-family: 'Nunito', sans-serif; font-weight: 900 !important; letter-spacing: -0.01em; }
-.ios-shell { padding-top: 14px; }
 
-/* Карточки и строки: мягче, выше, без рамок — только тень */
-.ios-group {
-  border: none; border-radius: 22px; box-shadow: var(--shadow); margin-bottom: 14px;
+/* Увеличенный нижний отступ (124px), чтобы последняя кнопка никогда не скрывалась под нижним меню */
+.ios-shell {
+  max-width: 430px;
+  margin: 0 auto;
+  padding: 14px 12px calc(114px + env(safe-area-inset-bottom, 0px));
 }
-.ios-row { min-height: 52px; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+@media (min-width: 640px) {
+  .ios-shell { max-width: 580px; }
+}
+
+/* Карточки и строки «Свежий рынок» */
+.ios-group {
+  background: var(--card);
+  border-radius: 22px;
+  overflow: hidden;
+  margin-bottom: 14px;
+  border: none;
+  box-shadow: var(--shadow);
+}
+.ios-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  min-height: 52px;
+  padding: 11px 15px;
+  border-bottom: 1px solid var(--line);
+  background: var(--card);
+  transition: background 0.12s;
+}
+.ios-row:last-child { border-bottom: none; }
 .ios-row:active { background: var(--tint-soft); }
 
-/* Кнопки: пилюли, увеличенная зона нажатия */
-.ios-btn {
-  border-radius: 999px; font-family: 'Nunito', sans-serif; font-weight: 800;
-  font-size: 14.5px; padding: 10px 18px; min-height: 42px;
-}
-.ios-btn-sm { min-height: 36px; padding: 6px 14px; font-size: 13.5px; border-radius: 999px; }
-.ios-btn-primary, .ios-btn-green { box-shadow: 0 4px 12px rgba(31, 157, 99, 0.28); color: #fff; }
-.ios-btn-primary { background: var(--tint); }
-.ios-btn-soft { background: var(--tint-soft); color: var(--tint); }
-.ios-btn-gray { background: var(--card); border: 1px solid var(--line); color: var(--text); }
-
-/* Поля ввода */
-.ios-input-wrap { border-radius: 18px; border: 2px solid var(--line); box-shadow: none; padding: 4px 8px 4px 14px; }
-.ios-input-wrap:focus-within { border-color: var(--tint); box-shadow: 0 0 0 4px var(--tint-soft); }
-.ios-input { font-size: 16px; font-family: inherit; }
-.suggest-box { border: none; border-radius: 18px; box-shadow: 0 10px 28px rgba(31, 110, 70, 0.16); }
-
-/* Галочка: крупнее, с «пружиной» */
+/* Круглая галочка */
 .ios-check {
-  width: 26px; height: 26px; border: 2px solid #b9d3c2; font-size: 14px;
+  width: 26px; height: 26px; border-radius: 999px;
+  border: 2px solid #b9d3c2;
+  display: inline-flex; align-items: center; justify-content: center;
+  flex-shrink: 0; cursor: pointer;
+  color: transparent; font-size: 14px; font-weight: 800;
   transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-.ios-check.checked { background: var(--green); border-color: var(--green); transform: scale(1.08); }
-
-/* Быстрые чипсы */
-.ios-chip {
-  padding: 8px 14px; font-size: 14px; font-weight: 700; border: 1.5px solid var(--line);
-  background: var(--card); box-shadow: 0 2px 6px rgba(31, 110, 70, 0.05);
+.ios-check.checked {
+  background: var(--green); border-color: var(--green); color: #fff; transform: scale(1.06);
 }
-.ios-chip.active { background: var(--tint); border-color: var(--tint); color: #fff; }
 
-/* Папки рецептов: пастельные плитки у каждой свой цвет */
+/* Кнопки-пилюли */
+.ios-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 5px;
+  border-radius: 999px; font-family: 'Nunito', sans-serif; font-weight: 800;
+  font-size: 14.5px; padding: 9px 16px; min-height: 40px;
+  border: none; cursor: pointer; transition: opacity 0.12s, transform 0.1s;
+  user-select: none; white-space: nowrap;
+}
+.ios-btn:active { transform: scale(0.97); opacity: 0.88; }
+.ios-btn-primary { background: var(--tint); color: #ffffff; box-shadow: 0 4px 12px rgba(31, 157, 99, 0.28); }
+.ios-btn-green { background: var(--green); color: #ffffff; box-shadow: 0 4px 12px rgba(31, 157, 99, 0.28); }
+.ios-btn-soft { background: var(--tint-soft); color: var(--tint); }
+.ios-btn-gray { background: var(--card); border: 1px solid var(--line); color: var(--text); }
+.ios-btn-sm { min-height: 34px; padding: 5px 12px; font-size: 13px; border-radius: 999px; }
+.ios-btn-icon { width: 34px; height: 34px; min-height: 34px; padding: 0; border-radius: 999px; }
+
+/* Поле ввода */
+.ios-input-wrap {
+  position: relative;
+  background: var(--card);
+  border-radius: 18px;
+  border: 2px solid var(--line);
+  display: flex; align-items: center;
+  padding: 4px 8px 4px 14px;
+}
+.ios-input-wrap:focus-within { border-color: var(--tint); box-shadow: 0 0 0 4px var(--tint-soft); }
+.ios-input {
+  width: 100%; border: none; background: transparent; color: var(--text);
+  font-size: 16px; font-family: inherit; padding: 7px 4px; outline: none;
+}
+
+.suggest-box {
+  background: var(--card);
+  border: none;
+  border-radius: 18px;
+  margin-top: 6px;
+  overflow: hidden;
+  box-shadow: 0 10px 28px rgba(31, 110, 70, 0.16);
+}
+
+/* Чипсы */
+.chip-bar {
+  display: flex; align-items: center; gap: 6px;
+  overflow-x: auto; scrollbar-width: none; padding: 2px 0;
+}
+.chip-bar::-webkit-scrollbar { display: none; }
+.ios-chip {
+  padding: 7px 13px; border-radius: 999px; font-size: 13.5px; font-weight: 700;
+  background: var(--card); color: var(--text); border: 1.5px solid var(--line);
+  white-space: nowrap; cursor: pointer; flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(31, 110, 70, 0.05);
+}
+.ios-chip.active {
+  background: var(--tint); color: #fff; border-color: var(--tint);
+}
+
+/* Папки рецептов */
 .folder-card {
   --fc: var(--tint);
   background: color-mix(in srgb, var(--fc) 16%, var(--card));
-  border: none; border-radius: 24px; min-height: 108px; padding: 16px 14px;
+  border: none; border-radius: 24px; min-height: 106px; padding: 15px 14px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  cursor: pointer; transition: transform 0.12s, background 0.12s;
   box-shadow: var(--shadow);
 }
-.folder-card:active { background: color-mix(in srgb, var(--fc) 26%, var(--card)); }
-.folder-card .text-2xl { font-size: 34px; line-height: 1; }
+.folder-card:active { transform: scale(0.98); background: color-mix(in srgb, var(--fc) 26%, var(--card)); }
+.folder-card .text-2xl { font-size: 32px; line-height: 1; }
 .folder-card .font-bold { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 16px; }
 .folder-card[data-folder="breakfast"] { --fc: #ffc83d; }
 .folder-card[data-folder="chicken"]   { --fc: #ff9f5a; }
@@ -326,52 +178,102 @@ h1, h3 { font-family: 'Nunito', sans-serif; font-weight: 900 !important; letter-
 .folder-card[data-folder="snack"]     { --fc: #3ccf8a; }
 .folder-card[data-folder="vacuum"]    { --fc: #1c9bb5; }
 
-/* Плашки дней ПН/ВТ… в плане */
-.open-rec-sheet > span.w-8 {
-  width: 42px !important; height: 42px !important; border-radius: 14px !important;
-  background: var(--tint-soft) !important; color: var(--tint) !important;
-  font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 13px !important;
+/* Плашка дня недели ПН/ВТ */
+.day-badge-pill {
+  width: 40px; height: 40px; border-radius: 13px;
+  background: var(--tint-soft); color: var(--tint);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 13px;
+  flex-shrink: 0;
 }
-
-/* Нижняя панель */
-.ios-tabbar {
-  background: rgba(255, 255, 255, 0.92); border-top: none;
-  box-shadow: 0 -6px 24px rgba(31, 110, 70, 0.08); padding-top: 8px;
-}
-:root[data-theme="dark"] .ios-tabbar { background: rgba(22, 33, 27, 0.92); }
-.tab-item { font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 800; }
-.tab-item .tab-ic { font-size: 24px; }
-.tab-item.active { color: var(--tint); }
-.tab-item.active .tab-ic { transform: translateY(-1px) scale(1.1); }
-.tab-badge { background: var(--red); }
-
-/* Шторки и тост */
-.sheet-box { border-radius: 28px 28px 0 0; background: var(--bg); }
-.sheet-handle { width: 44px; height: 5px; background: #c5dccd; }
-.toast-pill { background: rgba(23, 51, 31, 0.94); font-family: 'Nunito', sans-serif; font-weight: 800; }
-
-/* ===== Дополнения под market-patch.js ===== */
-.uppercase { text-transform: none !important; letter-spacing: 0 !important; font-size: 13px !important; font-weight: 800 !important; }
 
 /* Карточка «Сегодня на ужин» */
 .today-card {
   background: linear-gradient(135deg, #1f9d63 0%, #53c98a 100%);
-  color: #fff; border-radius: 26px; padding: 18px 18px 16px; margin-bottom: 14px;
-  box-shadow: 0 10px 24px rgba(31, 157, 99, 0.32); cursor: pointer;
+  color: #fff; border-radius: 24px; padding: 16px 16px 14px; margin-bottom: 12px;
+  box-shadow: 0 8px 22px rgba(31, 157, 99, 0.28); cursor: pointer;
 }
 .today-card:active { transform: scale(0.985); }
-.today-kicker { font-size: 12.5px; font-weight: 800; opacity: 0.9; margin-bottom: 4px; }
-.today-title { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 20px; line-height: 1.2; }
-.today-hint { margin-top: 8px; display: inline-block; font-size: 13px; font-weight: 700;
-  background: rgba(255, 255, 255, 0.22); padding: 4px 12px; border-radius: 999px; }
+.today-kicker { font-size: 12.5px; font-weight: 800; opacity: 0.92; margin-bottom: 3px; }
+.today-title { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 19px; line-height: 1.22; }
+.today-hint {
+  margin-top: 7px; display: inline-block; font-size: 12.5px; font-weight: 700;
+  background: rgba(255, 255, 255, 0.22); padding: 3px 11px; border-radius: 999px;
+}
 :root[data-theme="dark"] .today-card { background: linear-gradient(135deg, #1b7a4f 0%, #2f9e6a 100%); }
 
 /* Прогресс покупок */
-.progress-wrap { padding: 2px 6px 12px; }
-.progress-wrap .bar { height: 8px; border-radius: 999px; background: var(--card-2); margin-top: 6px; overflow: hidden; }
+.progress-wrap { padding: 2px 6px 10px; }
+.progress-wrap .bar { height: 8px; border-radius: 999px; background: var(--card-2); margin-top: 5px; overflow: hidden; }
 .progress-wrap .bar i { display: block; height: 100%; background: linear-gradient(90deg, #2bb673, #7ad9a5); border-radius: 999px; transition: width 0.3s; }
-.done-banner { background: var(--green-soft); text-align: center; padding: 16px; font-weight: 900; font-size: 17px; color: var(--tint); box-shadow: none; }
+.done-banner { background: var(--green-soft); text-align: center; padding: 15px; font-weight: 900; font-size: 16px; color: var(--tint); box-shadow: none; }
 
+/* ИСПРАВЛЕННАЯ НИЖНЯЯ ПАНЕЛЬ: иконки опущены ниже к нижней кромке, не «летают» в воздухе */
+.ios-tabbar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid var(--line);
+  box-shadow: 0 -4px 20px rgba(31, 110, 70, 0.07);
+  padding: 6px 12px 6px;
+}
+:root[data-theme="dark"] .ios-tabbar { background: rgba(22, 33, 27, 0.95); }
+.ios-tabbar-inner {
+  max-width: 430px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px;
+  align-items: end;
+}
+.tab-item {
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+  padding: 4px 0 2px; border: none; background: transparent; cursor: pointer;
+  color: var(--muted); font-family: 'Nunito', sans-serif; font-size: 11.5px; font-weight: 800;
+  position: relative;
+}
+.tab-item .tab-ic { font-size: 22px; line-height: 1.05; margin-bottom: 2px; transition: transform 0.15s; }
+.tab-item.active { color: var(--tint); }
+.tab-item.active .tab-ic { transform: scale(1.06); }
+.tab-badge {
+  position: absolute; top: 0px; right: 27%;
+  background: var(--red); color: #fff; font-size: 10px; font-weight: 800;
+  padding: 0 5px; border-radius: 999px; min-width: 16px; height: 16px;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+
+/* Шторка снизу */
+.sheet-backdrop {
+  position: fixed; inset: 0; z-index: 60;
+  background: rgba(0, 0, 0, 0.45); backdrop-filter: blur(2px);
+  display: none; align-items: flex-end; justify-content: center;
+}
+@media (min-width: 640px) {
+  .sheet-backdrop { align-items: center; padding: 16px; }
+}
+.sheet-backdrop.open { display: flex; }
+.sheet-box {
+  background: var(--bg); color: var(--text);
+  border-radius: 28px 28px 0 0;
+  max-width: 480px; width: 100%; max-height: 86vh; overflow-y: auto;
+  padding: 12px 14px calc(20px + env(safe-area-inset-bottom, 0px));
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.28);
+}
+@media (min-width: 640px) {
+  .sheet-box { border-radius: 22px; }
+}
+.sheet-handle {
+  width: 44px; height: 5px; border-radius: 999px;
+  background: #c5dccd; margin: 0 auto 10px;
+}
+
+.toast-pill {
+  position: fixed; top: 12px; left: 50%; transform: translateX(-50%);
+  z-index: 90; background: rgba(23, 51, 31, 0.94); color: #fff;
+  padding: 8px 16px; border-radius: 999px; font-family: 'Nunito', sans-serif;
+  font-size: 13.5px; font-weight: 800;
+  display: none; align-items: center; gap: 6px; white-space: nowrap;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+.toast-pill.show { display: inline-flex; }
+.section-label { font-size: 13px; font-weight: 800; color: var(--muted); padding: 0 6px; margin: 8px 0 5px; }
 </style>
 </head>
 <body>
@@ -382,89 +284,87 @@ h1, h3 { font-family: 'Nunito', sans-serif; font-weight: 900 !important; letter-
 
 <div class="ios-shell">
 
-  <!-- ==================== ВКЛАДКА 1: 🛒 СПИСОК (КАК В ANYLIST / КУПИ БАТОН) ==================== -->
+  <!-- ==================== ВКЛАДКА 1: 🛒 СПИСОК ==================== -->
   <section id="view-list" class="tab-page hidden">
-    <!-- Шапка вкладки Список -->
     <div class="flex items-center justify-between mb-2.5 px-1">
       <h1 class="text-xl font-extrabold tracking-tight m-0">Список покупок</h1>
       <div class="flex items-center gap-1.5">
         <button id="btnOpenCatalogSheet" class="ios-btn ios-btn-soft ios-btn-sm">🧺 Каталог</button>
-        <button id="btnListSharePdf" class="ios-btn ios-btn-gray ios-btn-sm" title="Скачать PDF">📄 PDF</button>
-        <button id="btnListCopyTxt" class="ios-btn ios-btn-gray ios-btn-sm" title="Скопировать текст">📋</button>
-        <button id="btnTheme1" class="ios-btn ios-btn-gray ios-btn-sm theme-toggle-btn">🌙</button>
+        <button id="btnShareListNative" class="ios-btn ios-btn-gray ios-btn-sm" title="Отправить в Telegram / WhatsApp">📤</button>
+        <button id="btnListMore" class="ios-btn ios-btn-gray ios-btn-sm" aria-label="Ещё">⋯</button>
       </div>
     </div>
 
-    <!-- ЕДИНАЯ СТРОКА УМНОГО ВВОДА (1 ПОЛЕ КАК В ANYLIST) -->
+    <!-- ЕДИНАЯ СТРОКА УМНОГО ВВОДА -->
     <div class="mb-2">
       <div class="ios-input-wrap">
         <span class="text-base mr-1.5" style="color: var(--muted);">➕</span>
         <input id="smartAddInput" type="text" class="ios-input" placeholder="Добавить (напр: пергамент, крылышки 1 кг)..." autocomplete="off">
         <button id="btnSmartAddSubmit" class="ios-btn ios-btn-primary ios-btn-sm">Ввод</button>
       </div>
-      <!-- Выпадающие подсказки при вводе -->
       <div id="smartSuggestions" class="suggest-box hidden"></div>
     </div>
 
-    <!-- Быстрые облачка самых частых товаров (в 1 касание) -->
-    <div class="chip-bar mb-3" id="quickAddChips"></div>
+    <!-- Быстрые облачка -->
+    <div class="chip-bar mb-2.5" id="quickAddChips"></div>
 
-    <!-- Контейнер сгруппированного по отделам списка -->
+    <!-- Контейнер списка с прогрессом -->
     <div id="shoppingListGroups"></div>
   </section>
 
-  <!-- ==================== ВКЛАДКА 2: 📅 ПЛАН НА НЕДЕЛЮ (7 ЧИСТЫХ СТРОК НА 1 ЭКРАН) ==================== -->
+  <!-- ==================== ВКЛАДКА 2: 📅 ПЛАН НА НЕДЕЛЮ ==================== -->
   <section id="view-plan" class="tab-page">
-    <!-- Шапка вкладки План -->
     <div class="flex items-center justify-between mb-2.5 px-1">
       <div>
-        <h1 class="text-xl font-extrabold tracking-tight m-0">План на неделю</h1>
-        <p class="text-xs m-0" style="color: var(--muted);">Будни: Ужин • Выходные: Завтрак, Перекус, Ужин</p>
+        <h1 class="text-xl font-extrabold tracking-tight m-0">Что готовим на этой неделе</h1>
+        <p class="text-xs m-0" style="color: var(--muted);">Будни — ужин, выходные — завтрак, перекус и ужин</p>
       </div>
       <div class="flex items-center gap-1.5">
-        <button id="btnPlanPdf" class="ios-btn ios-btn-gray ios-btn-sm">📄 PDF</button>
-        <button id="btnTheme2" class="ios-btn ios-btn-gray ios-btn-sm theme-toggle-btn">🌙</button>
+        <button id="btnSwapDaysOpen" class="ios-btn ios-btn-gray ios-btn-sm" title="Поменять два дня местами">⇄ Дни</button>
+        <button id="btnPlanMore" class="ios-btn ios-btn-gray ios-btn-sm" aria-label="Ещё">⋯</button>
       </div>
     </div>
 
-    <!-- Компактная панель настроек (1 тонкая карточка) -->
+    <!-- Компактная панель настроек -->
     <div class="ios-group" style="margin-bottom: 10px;">
-      <div class="ios-row" style="padding: 8px 12px;">
+      <div class="ios-row" style="padding: 8px 14px; min-height: 46px;">
         <div class="flex items-center gap-2">
           <span class="text-xs font-bold" style="color: var(--muted);">Порции:</span>
-          <button id="btnPeopleMinus" class="ios-btn ios-btn-gray ios-btn-sm" style="padding: 2px 8px;">−</button>
+          <button id="btnPeopleMinus" class="ios-btn ios-btn-gray ios-btn-sm" style="padding: 2px 10px; min-height: 30px;">−</button>
           <span id="peopleVal" class="font-bold text-sm">2 чел</span>
-          <button id="btnPeoplePlus" class="ios-btn ios-btn-gray ios-btn-sm" style="padding: 2px 8px;">+</button>
+          <button id="btnPeoplePlus" class="ios-btn ios-btn-gray ios-btn-sm" style="padding: 2px 10px; min-height: 30px;">+</button>
         </div>
-        <label class="flex items-center gap-1.5 cursor-pointer text-xs font-semibold">
-          <input id="chkBatchDinners" type="checkbox" class="w-4 h-4 accent-blue-600">
+        <label class="flex items-center gap-1.5 cursor-pointer text-xs font-bold">
+          <input id="chkBatchDinners" type="checkbox" class="w-4 h-4 accent-emerald-600">
           <span>Ужин на 2 дня (Пн=Вт, Ср=Чт)</span>
         </label>
       </div>
     </div>
 
-    <!-- 2 главные кнопки действия (как в Mealime / AnyList) -->
-    <div class="grid grid-cols-2 gap-2 mb-2.5">
+    <!-- 2 главные кнопки действия -->
+    <div class="grid grid-cols-2 gap-2 mb-3">
       <button id="btnAutoFillWeek" class="ios-btn ios-btn-soft w-full">🎲 Заполнить неделю</button>
       <button id="btnOpenGroceriesModal" class="ios-btn ios-btn-green w-full">🛒 В список покупок</button>
     </div>
 
-    <!-- 7 ДНЕЙ НЕДЕЛИ (ЧИСТЫЙ СПИСОК БЕЗ ВИЗУАЛЬНОГО ШУМА) -->
-    <div id="weekDaysList" class="ios-group" style="margin-bottom: 10px;"></div>
+    <!-- Карточка «Сегодня на ужин» -->
+    <div id="todayCard"></div>
 
-    <!-- Кнопка просмотра плана вакуумации на выходные -->
-    <button id="btnOpenVacuumSheet" class="ios-btn ios-btn-gray w-full flex items-center justify-between" style="padding: 10px 14px; border-radius: 12px;">
-      <span class="flex items-center gap-2 font-bold text-xs" style="color: var(--cyan);">
+    <!-- 7 ДНЕЙ НЕДЕЛИ (с замочками 🔒) -->
+    <div id="weekDaysList" class="ios-group" style="margin-bottom: 12px;"></div>
+
+    <!-- Кнопка просмотра плана вакуумации + Морозилка (с достаточным отступом снизу!) -->
+    <button id="btnOpenVacuumSheet" class="ios-btn ios-btn-gray w-full flex items-center justify-between" style="padding: 12px 16px; border-radius: 20px; margin-bottom: 8px;">
+      <span class="flex items-center gap-2 font-extrabold text-xs" style="color: var(--cyan);">
         <span>🧊</span>
-        <span>План заготовок в вакууматор на неделю</span>
+        <span>Вакууматор и запасы в морозилке</span>
       </span>
       <span id="vacPlanCountLabel" class="text-xs font-bold" style="color: var(--muted);">Открыть ›</span>
     </button>
   </section>
 
-  <!-- ==================== ВКЛАДКА 3: 📖 РЕЦЕПТЫ (8 ПАПОК КАК В PAPRIKA 4) ==================== -->
+  <!-- ==================== ВКЛАДКА 3: 📖 РЕЦЕПТЫ ==================== -->
   <section id="view-recipes" class="tab-page hidden">
-    <!-- Шапка вкладки Рецепты -->
     <div class="flex items-center justify-between mb-2.5 px-1">
       <div class="flex items-center gap-2">
         <button id="btnBackToFolders" class="ios-btn ios-btn-gray ios-btn-sm hidden">‹ Папки</button>
@@ -473,23 +373,19 @@ h1, h3 { font-family: 'Nunito', sans-serif; font-weight: 900 !important; letter-
       <button id="btnNewCustomRecipe" class="ios-btn ios-btn-soft ios-btn-sm">+ Свой рецепт</button>
     </div>
 
-    <!-- Поиск по всем 120 рецептам -->
     <div class="ios-input-wrap mb-3">
       <span class="text-sm mr-1.5" style="color: var(--muted);">🔍</span>
       <input id="globalRecipeSearch" type="text" class="ios-input" placeholder="Найти: сырники, блины, крылышки, котлеты...">
       <button id="btnClearRecSearch" class="ios-btn ios-btn-gray ios-btn-sm hidden">✕</button>
     </div>
 
-    <!-- ЭКРАН А: 8 КРУПНЫХ ПАПОК (2x4 НА ОДИН ЭКРАН IPHONE 15) -->
     <div id="recipeFoldersGrid" class="grid grid-cols-2 gap-2.5"></div>
-
-    <!-- ЭКРАН Б: СПИСОК БЛЮД ВНУТРИ ВЫБРАННОЙ ПАПКИ ИЛИ ПОИСКА -->
     <div id="recipeCategoryList" class="ios-group hidden"></div>
   </section>
 
 </div>
 
-<!-- НИЖНЯЯ НАВИГАЦИЯ (3 ВКЛАДКИ ПО СТАНДАРТУ ANYLIST) -->
+<!-- НИЖНЯЯ НАВИГАЦИЯ (ОПУЩЕНА НИЖЕ К КРОМКЕ ЭКРАНА) -->
 <nav class="ios-tabbar" aria-label="Основная навигация">
   <div class="ios-tabbar-inner">
     <button class="tab-item" data-tab="list">
@@ -516,7 +412,7 @@ h1, h3 { font-family: 'Nunito', sans-serif; font-weight: 900 !important; letter-
   </div>
 </div>
 
-<!-- ШТОРКА 2: ВЫБОР / ЗАМЕНА БЛЮДА НА ДЕНЬ -->
+<!-- ШТОРКА 2: ВЫБОР / ЗАМЕНА БЛЮДА -->
 <div id="pickerSheet" class="sheet-backdrop" role="dialog" aria-modal="true">
   <div class="sheet-box">
     <div class="sheet-handle"></div>
@@ -524,7 +420,7 @@ h1, h3 { font-family: 'Nunito', sans-serif; font-weight: 900 !important; letter-
   </div>
 </div>
 
-<!-- ШТОРКА 3: СБОР ПРОДУКТОВ ИЗ МЕНЮ В СПИСОК ПОКУПОК (КАК В MEALIME) -->
+<!-- ШТОРКА 3: СБОР ПРОДУКТОВ В СПИСОК ПОКУПОК -->
 <div id="groceriesReviewSheet" class="sheet-backdrop" role="dialog" aria-modal="true">
   <div class="sheet-box">
     <div class="sheet-handle"></div>
@@ -532,7 +428,7 @@ h1, h3 { font-family: 'Nunito', sans-serif; font-weight: 900 !important; letter-
   </div>
 </div>
 
-<!-- ШТОРКА 4: КАТАЛОГ ЧАСТЫХ ТОВАРОВ И ХИМИИ / ВАКУУМ-ПЛАН -->
+<!-- ШТОРКА 4: КАТАЛОГ / ВАКУУМАТОР И МОРОЗИЛКА / РЕДАКТИРОВАНИЕ / МЕНЮ ЕЩЁ -->
 <div id="utilitySheet" class="sheet-backdrop" role="dialog" aria-modal="true">
   <div class="sheet-box">
     <div class="sheet-handle"></div>
@@ -542,7 +438,7 @@ h1, h3 { font-family: 'Nunito', sans-serif; font-weight: 900 !important; letter-
 
 <script>
 /* =========================================================================
-   1. КАТЕГОРИИ МАГАЗИНА И ЧАСТЫЕ ТОВАРЫ (С БЫТОВОЙ ХИМИЕЙ И ВАКУУМОМ)
+   1. КАТЕГОРИИ МАГАЗИНА И ЧАСТЫЕ ТОВАРЫ
    ========================================================================= */
 const CATEGORIES = [
   { id: 'meat',      name: '🍗 Курица, мясо, фарш',         order: 1 },
@@ -658,23 +554,23 @@ const DEFAULT_CATALOG = [
 ];
 
 /* =========================================================================
-   2. 8 ПАПОК РЕЦЕПТОВ (ДЛЯ СЕТКИ 2x4 НА ВКЛАДКЕ РЕЦЕПТЫ)
+   2. 8 ПАПОК РЕЦЕПТОВ (120 БЛЮД)
    ========================================================================= */
 const RECIPE_FOLDERS = [
-  { id: 'breakfast', icon: '🥞', title: 'Завтраки', sub: 'Сырники, блины, вафли, яйца', color: 'var(--orange)' },
-  { id: 'chicken',   icon: '🍗', title: 'Курица', sub: 'Крылышки, бёдра, голени, филе', color: 'var(--tint)' },
-  { id: 'mince',     icon: '🧆', title: 'Фарш и котлеты', sub: 'Котлеты, тефтели, болоньезе', color: 'var(--red)' },
-  { id: 'meat',      icon: '🥩', title: 'Свинина и говядина', sub: 'Отбивные, жаркое, гуляш', color: 'var(--orange)' },
-  { id: 'fish',      icon: '🐟', title: 'Дорада и форель', sub: 'Красная рыба, стейки, духовка', color: 'var(--cyan)' },
-  { id: 'quick',     icon: '🍝', title: 'Паста и картофель', sub: 'Карбонара, драники, супы', color: 'var(--green)' },
-  { id: 'snack',     icon: '🥗', title: 'Салаты и перекусы', sub: 'Греческий, Цезарь, брускетты', color: 'var(--green)' },
-  { id: 'vacuum',    icon: '🧊', title: 'Для вакууматора', sub: 'Заготовки в морозилку на неделю', color: 'var(--cyan)' }
+  { id: 'breakfast', icon: '🥞', title: 'Завтраки', sub: 'Сырники, блины, вафли, яйца' },
+  { id: 'chicken',   icon: '🍗', title: 'Курица', sub: 'Крылышки, бёдра, голени, филе' },
+  { id: 'mince',     icon: '🧆', title: 'Фарш и котлеты', sub: 'Котлеты, тефтели, болоньезе' },
+  { id: 'meat',      icon: '🥩', title: 'Свинина и говядина', sub: 'Отбивные, жаркое, гуляш' },
+  { id: 'fish',      icon: '🐟', title: 'Дорада и форель', sub: 'Красная рыба, стейки, духовка' },
+  { id: 'quick',     icon: '🍝', title: 'Паста и картофель', sub: 'Карбонара, драники, супы' },
+  { id: 'snack',     icon: '🥗', title: 'Салаты и перекусы', sub: 'Греческий, Цезарь, брускетты' },
+  { id: 'vacuum',    icon: '🧊', title: 'Для вакууматора', sub: 'Заготовки в морозилку на неделю' }
 ];
 
 const BUILTIN_RECIPES = [{"id":"b01","name":"Классические сырники из творога на сковороде","type":"Завтрак","subcat":"breakfast","difficulty":"Простая","timeMin":20,"baseServings":2,"kcal":380,"p":24,"f":16,"c":34,"emoji":"🥞","isVacuumPrep":true,"prepNote":"Можно слепить сырники впрок, подморозить на доске и запаять в вакуумный пакет.","sourceUrl":"https://1000.menu/cooking/17890-syrniki-klassicheskie-iz-tvoroga-na-skovorode","sourceName":"1000.menu","ingredients":[{"id":"curd","label":"Творог 5–9%","qty":350,"unit":"г"},{"id":"eggs","label":"Яйцо куриное","qty":1,"unit":"шт"},{"id":"flour","label":"Мука пшеничная","qty":45,"unit":"г"},{"id":"sugar","label":"Сахар","qty":20,"unit":"г"},{"id":"butter","label":"Масло сливочное","qty":15,"unit":"г"}],"steps":["Разомните творог с яйцом и сахаром вилкой.","Добавьте муку, сформируйте шайбочки.","Обжарьте на сливочном масле по 4–5 мин с каждой стороны."]},{"id":"b02","name":"Сырники в духовке пышные со сметаной","type":"Завтрак","subcat":"breakfast","difficulty":"Простая","timeMin":25,"baseServings":2,"kcal":340,"p":25,"f":13,"c":30,"emoji":"🥞","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/21450-syrniki-v-duxovke","sourceName":"1000.menu","ingredients":[{"id":"curd","label":"Творог 5–9%","qty":350,"unit":"г"},{"id":"eggs","label":"Яйцо куриное","qty":1,"unit":"шт"},{"id":"semolina","label":"Манная крупа","qty":35,"unit":"г"},{"id":"sugar","label":"Сахар","qty":20,"unit":"г"},{"id":"sour_cream","label":"Сметана","qty":50,"unit":"г"}],"steps":["Смешайте творог, яйцо, сахар и манку, оставьте на 10 мин.","Выложите в формочки или на пергамент.","Выпекайте при 190 °C 20 минут."]},{"id":"b03","name":"Сырники с бананом без сахара","type":"Завтрак","subcat":"breakfast","difficulty":"Простая","timeMin":20,"baseServings":2,"kcal":360,"p":23,"f":14,"c":36,"emoji":"🍌","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/17890-syrniki-klassicheskie-iz-tvoroga-na-skovorode","sourceName":"1000.menu","ingredients":[{"id":"curd","label":"Творог 5–9%","qty":300,"unit":"г"},{"id":"banana","label":"Банан спелый","qty":120,"unit":"г"},{"id":"eggs","label":"Яйцо куриное","qty":1,"unit":"шт"},{"id":"flour","label":"Мука пшеничная","qty":45,"unit":"г"},{"id":"butter","label":"Масло сливочное","qty":15,"unit":"г"}],"steps":["Разомните банан в пюре и смешайте с творогом и яйцом.","Всыпьте муку, слепите сырники.","Обжарьте под крышкой по 4 минуты с двух сторон."]},{"id":"b04","name":"Тонкие классические блинчики на молоке","type":"Завтрак","subcat":"breakfast","difficulty":"Простая","timeMin":25,"baseServings":2,"kcal":360,"p":12,"f":14,"c":46,"emoji":"🥞","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/1831-tonkie-bliny-na-moloke","sourceName":"1000.menu","ingredients":[{"id":"milk","label":"Молоко","qty":350,"unit":"мл"},{"id":"eggs","label":"Яйца куриные","qty":2,"unit":"шт"},{"id":"flour","label":"Мука пшеничная","qty":130,"unit":"г"},{"id":"sugar","label":"Сахар","qty":20,"unit":"г"},{"id":"butter","label":"Масло сливочное","qty":20,"unit":"г"}],"steps":["Взбейте яйца с сахаром и солью, влейте половину молока.","Всыпьте муку, размешайте без комочков, влейте остаток молока и растопленное масло.","Выпекайте тонкие блинчики на горячей сковороде по 1 мин с каждой стороны."]},{"id":"b05","name":"Блинчики с творожной начинкой","type":"Завтрак","subcat":"breakfast","difficulty":"Простая","timeMin":30,"baseServings":2,"kcal":420,"p":20,"f":16,"c":48,"emoji":"🥞","isVacuumPrep":true,"prepNote":"Готовые фаршированные блинчики отлично вакуумируются по 4 шт в пакет для быстрого разогрева на сливочном масле.","sourceUrl":"https://1000.menu/cooking/1831-tonkie-bliny-na-moloke","sourceName":"1000.menu","ingredients":[{"id":"milk","label":"Молоко","qty":250,"unit":"мл"},{"id":"eggs","label":"Яйца куриные","qty":2,"unit":"шт"},{"id":"flour","label":"Мука пшеничная","qty":100,"unit":"г"},{"id":"curd","label":"Творог для начинки","qty":200,"unit":"г"},{"id":"sugar","label":"Сахар","qty":25,"unit":"г"},{"id":"butter","label":"Масло сливочное","qty":20,"unit":"г"}],"steps":["Испеките тонкие блинчики на молоке.","Творог разотрите с сахаром.","Заверните начинку конвертиками и подрумяньте на сливочном масле."]},{"id":"b06","name":"Блинчики с ветчиной и расплавленным сыром","type":"Завтрак","subcat":"breakfast","difficulty":"Простая","timeMin":25,"baseServings":2,"kcal":440,"p":22,"f":20,"c":42,"emoji":"🥞","isVacuumPrep":true,"prepNote":"Завёрнутые блинчики с ветчиной и сыром можно завакуумировать и хранить в морозилке.","sourceUrl":"https://1000.menu/cooking/24100-bliny-s-vetchinoi-i-syrom","sourceName":"1000.menu","ingredients":[{"id":"milk","label":"Молоко","qty":250,"unit":"мл"},{"id":"eggs","label":"Яйцо куриное","qty":2,"unit":"шт"},{"id":"flour","label":"Мука пшеничная","qty":100,"unit":"г"},{"id":"ham","label":"Ветчина","qty":120,"unit":"г"},{"id":"cheese","label":"Сыр твёрдый","qty":100,"unit":"г"},{"id":"butter","label":"Масло сливочное","qty":15,"unit":"г"}],"steps":["Приготовьте тонкие блинчики.","На каждый выложите ломтики ветчины и тёртый сыр, сверните конвертом.","Прогрейте на сковороде со сливочным маслом 2 минуты до расплавления сыра."]},{"id":"b07","name":"Пышные оладьи на кефире","type":"Завтрак","subcat":"breakfast","difficulty":"Простая","timeMin":20,"baseServings":2,"kcal":350,"p":10,"f":12,"c":50,"emoji":"🥞","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/1840-pyshnye-oladi-na-kefire","sourceName":"1000.menu","ingredients":[{"id":"kefir","label":"Кефир тёплый","qty":250,"unit":"мл"},{"id":"flour","label":"Мука пшеничная","qty":180,"unit":"г"},{"id":"eggs","label":"Яйцо куриное","qty":1,"unit":"шт"},{"id":"sugar","label":"Сахар","qty":20,"unit":"г"},{"id":"oil","label":"Масло растительное","qty":25,"unit":"мл"}],"steps":["Смешайте тёплый кефир, яйцо, сахар и щепотку соли.","Всыпьте муку и 0.5 ч.л. соды, перемешайте густое тесто и не мешайте повторно.","Жарьте ложкой на разогретом масле под крышкой по 3 минуты."]},{"id":"b08","name":"Американские панкейки на молоке","type":"Завтрак","subcat":"breakfast","difficulty":"Простая","timeMin":20,"baseServings":2,"kcal":370,"p":12,"f":11,"c":54,"emoji":"🥞","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/24101-pankeiki-na-moloke","sourceName":"1000.menu","ingredients":[{"id":"milk","label":"Молоко","qty":200,"unit":"мл"},{"id":"flour","label":"Мука пшеничная","qty":140,"unit":"г"},{"id":"eggs","label":"Яйцо куриное","qty":1,"unit":"шт"},{"id":"butter","label":"Масло сливочное","qty":25,"unit":"г"},{"id":"sugar","label":"Сахар и разрыхлитель","qty":25,"unit":"г"}],"steps":["Взбейте яйцо с сахаром и молоком, влейте растопленное масло.","Добавьте муку с 1 ч.л. разрыхлителя.","Выпекайте на сухой сковороде до пузырьков, затем переверните на 1 минуту."]},{"id":"b09","name":"Бельгийские / венские мягкие вафли","type":"Завтрак","subcat":"breakfast","difficulty":"Простая","timeMin":20,"baseServings":2,"kcal":410,"p":11,"f":20,"c":46,"emoji":"🧇","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/24102-venskie-vafli","sourceName":"1000.menu","ingredients":[{"id":"butter","label":"Масло сливочное мягкое","qty":80,"unit":"г"},{"id":"eggs","label":"Яйца куриные","qty":2,"unit":"шт"},{"id":"milk","label":"Молоко","qty":120,"unit":"мл"},{"id":"flour","label":"Мука пшеничная","qty":150,"unit":"г"},{"id":"sugar","label":"Сахар и разрыхлитель","qty":40,"unit":"г"}],"steps":["Взбейте мягкое масло с сахаром и яйцами.","Влейте молоко, всыпьте муку с разрыхлителем.","Выпекайте в вафельнице (или духовке) 4–5 минут до золотистого цвета."]},{"id":"b10","name":"Сырные вафли с зеленью (несладкие)","type":"Завтрак","subcat":"breakfast","difficulty":"Простая","timeMin":15,"baseServings":2,"kcal":380,"p":19,"f":21,"c":28,"emoji":"🧇","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/24103-syrnye-vafli","sourceName":"1000.menu","ingredients":[{"id":"cheese","label":"Сыр твёрдый тёртый","qty":120,"unit":"г"},{"id":"eggs","label":"Яйца куриные","qty":2,"unit":"шт"},{"id":"milk","label":"Молоко или кефир","qty":100,"unit":"мл"},{"id":"flour","label":"Мука пшеничная","qty":90,"unit":"г"},{"id":"greens","label":"Укроп свежий","qty":10,"unit":"г"}],"steps":["Смешайте яйца, молоко, тёртый сыр и рубленый укроп.","Всыпьте муку с щепоткой разрыхлителя.","Выпекайте в вафельнице или на сковороде как оладьи по 4 минуты."]},{"id":"b11","name":"Глазунья из 4 яиц с хрустящими тостами и помидорами","type":"Завтрак","subcat":"breakfast","difficulty":"Простая","timeMin":10,"baseServings":2,"kcal":310,"p":18,"f":18,"c":20,"emoji":"🍳","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/38075-yaichnica-glazunya-na-skovorode","sourceName":"1000.menu","ingredients":[{"id":"eggs","label":"Яйца куриные","qty":4,"unit":"шт"},{"id":"bread","label":"Хлеб тостовый","qty":80,"unit":"г"},{"id":"tomato","label":"Помидоры свежие","qty":150,"unit":"г"},{"id":"butter","label":"Масло сливочное","qty":15,"unit":"г"}],"steps":["Растопите сливочное масло, аккуратно вылейте яйца.","Жарьте 3–4 минуты, посолив белок.","Подавайте с подсушенными тостами и дольками помидоров."]},{"id":"b12","name":"Яичница с хрустящим беконом и тостами","type":"Завтрак","subcat":"breakfast","difficulty":"Простая","timeMin":12,"baseServings":2,"kcal":430,"p":22,"f":30,"c":18,"emoji":"🥓","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/38075-yaichnica-glazunya-na-skovorode","sourceName":"1000.menu","ingredients":[{"id":"eggs","label":"Яйца куриные","qty":4,"unit":"шт"},{"id":"bacon","label":"Бекон ломтиками","qty":100,"unit":"г"},{"id":"bread","label":"Хлеб тостовый","qty":80,"unit":"г"},{"id":"tomato","label":"Помидоры черри","qty":100,"unit":"г"}],"steps":["Обжарьте полоски бекона на сухой сковороде до румяного хруста.","Туда же разбейте яйца и жарьте 3 минуты.","Подавайте с тостами и свежими томатами."]},{"id":"b13","name":"Классический омлет с ветчиной, сыром и помидорами","type":"Завтрак","subcat":"breakfast","difficulty":"Простая","timeMin":15,"baseServings":2,"kcal":390,"p":25,"f":28,"c":8,"emoji":"🍳","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/57273-omlet-s-pomidorami-i-syrom-na-skovorode","sourceName":"1000.menu","ingredients":[{"id":"eggs","label":"Яйца куриные","qty":4,"unit":"шт"},{"id":"milk","label":"Молоко","qty":80,"unit":"мл"},{"id":"ham","label":"Ветчина","qty":80,"unit":"г"},{"id":"cheese","label":"Сыр твёрдый","qty":60,"unit":"г"},{"id":"tomato","label":"Помидоры","qty":120,"unit":"г"},{"id":"butter","label":"Масло сливочное","qty":15,"unit":"г"}],"steps":["Обжарьте кубики ветчины и помидоров на сливочном масле 2 минуты.","Залейте взбитыми с молоком яйцами.","Посыпьте тёртым сыром и готовьте под крышкой 5 минут."]},{"id":"b14","name":"Пышный омлет в духовке «как в детском саду»","type":"Завтрак","subcat":"breakfast","difficulty":"Простая","timeMin":30,"baseServings":2,"kcal":270,"p":17,"f":19,"c":6,"emoji":"🍳","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/3067-omlet-v-duxovke-kak-v-detskom-sadu","sourceName":"1000.menu","ingredients":[{"id":"eggs","label":"Яйца куриные","qty":4,"unit":"шт"},{"id":"milk","label":"Молоко","qty":200,"unit":"мл"},{"id":"butter","label":"Масло сливочное","qty":15,"unit":"г"},{"id":"salt","label":"Соль","qty":2,"unit":"г"}],"steps":["Перемешайте яйца с молоком и солью вилкой без пены.","Вылейте в небольшую высокую форму, смазанную сливочным маслом.","Запекайте при 190 °C 25 минут."]},{"id":"b15","name":"Нежный скрэмбл (яичница-болтунья) на сливочном масле","type":"Завтрак","subcat":"breakfast","difficulty":"Простая","timeMin":10,"baseServings":2,"kcal":310,"p":18,"f":23,"c":16,"emoji":"🍳","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/34680-skrembl-iz-yaic-na-skovorode","sourceName":"1000.menu","ingredients":[{"id":"eggs","label":"Яйца куриные","qty":4,"unit":"шт"},{"id":"butter","label":"Масло сливочное","qty":25,"unit":"г"},{"id":"bread","label":"Хлеб тостовый","qty":70,"unit":"г"},{"id":"greens","label":"Зелёный лук","qty":10,"unit":"г"}],"steps":["Разбейте яйца в миску и слегка размешайте вилкой.","Вылейте на сковороду с растопленным сливочным маслом на слабом огне.","Постоянно двигайте лопаткой 2–3 минуты до кремовой текстуры, подавайте на тосте."]},{"id":"b16","name":"Шакшука (яйца в пряном томатном соусе с перцем)","type":"Завтрак","subcat":"breakfast","difficulty":"Простая","timeMin":20,"baseServings":2,"kcal":280,"p":14,"f":18,"c":14,"emoji":"🍳","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/33494-shakshuka-klassicheskaya","sourceName":"1000.menu","ingredients":[{"id":"eggs","label":"Яйца куриные","qty":4,"unit":"шт"},{"id":"tomato","label":"Помидоры спелые","qty":250,"unit":"г"},{"id":"pepper","label":"Перец сладкий","qty":100,"unit":"г"},{"id":"onion","label":"Лук репчатый","qty":50,"unit":"г"},{"id":"oil","label":"Масло растительное","qty":20,"unit":"мл"},{"id":"greens","label":"Петрушка","qty":10,"unit":"г"}],"steps":["Обжарьте мелко нарезанный лук и перец 4 минуты.","Добавьте кубики помидоров и тушите 5 минут до густого соуса.","Сделайте лунки, вбейте яйца и готовьте под крышкой 4 минуты."]},{"id":"b17","name":"Французские гренки (тосты в яйце и молоке)","type":"Завтрак","subcat":"breakfast","difficulty":"Простая","timeMin":12,"baseServings":2,"kcal":340,"p":14,"f":15,"c":38,"emoji":"🍞","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/2733-grenki-s-syrom-i-yaicom","sourceName":"1000.menu","ingredients":[{"id":"bread","label":"Хлеб тостовый или батон","qty":120,"unit":"г"},{"id":"eggs","label":"Яйца куриные","qty":2,"unit":"шт"},{"id":"milk","label":"Молоко","qty":70,"unit":"мл"},{"id":"butter","label":"Масло сливочное","qty":20,"unit":"г"},{"id":"sugar","label":"Сахар или мёд","qty":15,"unit":"г"}],"steps":["Взбейте яйца с молоком и щепоткой сахара.","Окуните ломтики хлеба с двух сторон.","Обжарьте на сливочном масле по 2 минуты до румяной корочки."]},{"id":"b18","name":"Горячие сэндвичи с ветчиной и расплавленным сыром","type":"Завтрак","subcat":"breakfast","difficulty":"Простая","timeMin":10,"baseServings":2,"kcal":390,"p":20,"f":19,"c":34,"emoji":"🥪","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/3004-goryachie-buterbrody-s-syrom-i-pomidorami","sourceName":"1000.menu","ingredients":[{"id":"bread","label":"Хлеб тостовый","qty":120,"unit":"г"},{"id":"ham","label":"Ветчина или буженина","qty":100,"unit":"г"},{"id":"cheese","label":"Сыр твёрдый","qty":80,"unit":"г"},{"id":"butter","label":"Масло сливочное","qty":15,"unit":"г"}],"steps":["Соберите сэндвичи: между ломтиками хлеба положите сыр и ветчину.","Снаружи слегка смажьте сливочным маслом.","Обжарьте на сковороде под прессом или запеките в духовке 6 минут."]},{"id":"b19","name":"Тосты с творожным сыром и слабосолёной красной рыбой","type":"Завтрак","subcat":"breakfast","difficulty":"Простая","timeMin":8,"baseServings":2,"kcal":340,"p":21,"f":16,"c":26,"emoji":"🥑","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/24104-tosty-s-krasnoi-ryboi","sourceName":"1000.menu","ingredients":[{"id":"bread","label":"Хлеб тостовый или чиабатта","qty":100,"unit":"г"},{"id":"cream_cheese","label":"Творожный сыр","qty":80,"unit":"г"},{"id":"salmon_salted","label":"Форель / сёмга слабосолёная","qty":100,"unit":"г"},{"id":"cucumber","label":"Огурец свежий","qty":80,"unit":"г"}],"steps":["Подсушите хлеб в тостере или на сухой сковороде.","Намажьте творожным сыром.","Сверху выложите тонкие слайсы огурца и ломтики красной рыбы."]},{"id":"b20","name":"Конвертики с яйцом, ветчиной и сыром на сковороде","type":"Завтрак","subcat":"breakfast","difficulty":"Простая","timeMin":12,"baseServings":2,"kcal":370,"p":22,"f":19,"c":26,"emoji":"🥪","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/24105-yaichnyi-konvertik","sourceName":"1000.menu","ingredients":[{"id":"eggs","label":"Яйца куриные","qty":3,"unit":"шт"},{"id":"ham","label":"Ветчина","qty":80,"unit":"г"},{"id":"cheese","label":"Сыр твёрдый","qty":60,"unit":"г"},{"id":"bread","label":"Тостовый хлеб","qty":60,"unit":"г"},{"id":"butter","label":"Масло сливочное","qty":15,"unit":"г"}],"steps":["Вылейте взбитые яйца на сковороду блинчиком.","В центр положите сыр и ветчину, сложите края яичного блина конвертом.","Подрумяньте с двух сторон по 1 минуте."]},{"id":"b21","name":"Овсяноблин с творожным сыром и помидорами","type":"Завтрак","subcat":"breakfast","difficulty":"Простая","timeMin":10,"baseServings":2,"kcal":290,"p":17,"f":14,"c":24,"emoji":"🥞","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/34584-ovsyanoblin-s-syrom-i-pomidorami","sourceName":"1000.menu","ingredients":[{"id":"oats","label":"Овсяные хлопья","qty":60,"unit":"г"},{"id":"eggs","label":"Яйца куриные","qty":3,"unit":"шт"},{"id":"milk","label":"Молоко","qty":50,"unit":"мл"},{"id":"cheese","label":"Сыр твёрдый или творожный","qty":60,"unit":"г"},{"id":"tomato","label":"Помидоры","qty":100,"unit":"г"}],"steps":["Смешайте овсяные хлопья с яйцами, молоком и щепоткой соли.","Вылейте на разогретую сковороду, жарьте под крышкой 3 минуты.","Переверните, выложите на половину сыр и томаты, сложите пополам."]},{"id":"b22","name":"Овсяная каша на молоке с бананом и мёдом","type":"Завтрак","subcat":"breakfast","difficulty":"Простая","timeMin":12,"baseServings":2,"kcal":320,"p":10,"f":9,"c":50,"emoji":"🥣","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/24853-ovsyanaya-kasha-s-bananom-na-moloke","sourceName":"1000.menu","ingredients":[{"id":"oats","label":"Овсяные хлопья","qty":90,"unit":"г"},{"id":"milk","label":"Молоко","qty":380,"unit":"мл"},{"id":"banana","label":"Банан спелый","qty":150,"unit":"г"},{"id":"butter","label":"Масло сливочное","qty":15,"unit":"г"},{"id":"honey","label":"Мёд","qty":20,"unit":"г"}],"steps":["В кипящее молоко всыпьте овсяные хлопья, варите 7 минут.","Добавьте сливочное масло, кружочки банана и мёд."]},{"id":"b23","name":"Овсяная каша с яблоком и корицей","type":"Завтрак","subcat":"breakfast","difficulty":"Простая","timeMin":15,"baseServings":2,"kcal":295,"p":9,"f":8,"c":46,"emoji":"🥣","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://www.iamcook.ru/showrecipe/1200","sourceName":"1000.menu","ingredients":[{"id":"oats","label":"Овсяные хлопья","qty":90,"unit":"г"},{"id":"milk","label":"Молоко","qty":380,"unit":"мл"},{"id":"apple","label":"Яблоко сладкое","qty":150,"unit":"г"},{"id":"butter","label":"Масло сливочное","qty":15,"unit":"г"},{"id":"sugar","label":"Сахар и корица","qty":15,"unit":"г"}],"steps":["Сварите овсянку на молоке до кремовости.","Добавьте мелко нарезанное яблоко, масло и щепотку корицы."]},{"id":"b24","name":"Сливочная рисовая каша на молоке","type":"Завтрак","subcat":"breakfast","difficulty":"Простая","timeMin":25,"baseServings":2,"kcal":330,"p":8,"f":10,"c":52,"emoji":"🥣","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/1838-risovaya-kasha-na-moloke","sourceName":"1000.menu","ingredients":[{"id":"rice","label":"Рис круглозёрный","qty":100,"unit":"г"},{"id":"milk","label":"Молоко","qty":400,"unit":"мл"},{"id":"butter","label":"Масло сливочное","qty":20,"unit":"г"},{"id":"sugar","label":"Сахар","qty":20,"unit":"г"}],"steps":["Отварите промытый рис в 150 мл воды 7 минут.","Влейте горячее молоко, добавьте сахар и томите на слабом огне 15 минут.","Заправьте сливочным маслом."]},{"id":"b25","name":"Манная каша без комочков со сливочным маслом","type":"Завтрак","subcat":"breakfast","difficulty":"Простая","timeMin":10,"baseServings":2,"kcal":310,"p":9,"f":10,"c":46,"emoji":"🥣","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/1841-mannaya-kasha-na-moloke","sourceName":"1000.menu","ingredients":[{"id":"semolina","label":"Крупа манная","qty":50,"unit":"г"},{"id":"milk","label":"Молоко","qty":450,"unit":"мл"},{"id":"butter","label":"Масло сливочное","qty":20,"unit":"г"},{"id":"sugar","label":"Сахар","qty":20,"unit":"г"}],"steps":["Доведите молоко с сахаром и щепоткой соли до кипения.","Тонкой струйкой всыпьте манку, активно размешивая венчиком.","Варите 3 минуты и заправьте маслом."]},{"id":"b26","name":"Пышная творожная запеканка с манкой в духовке","type":"Завтрак","subcat":"breakfast","difficulty":"Простая","timeMin":40,"baseServings":2,"kcal":330,"p":22,"f":15,"c":26,"emoji":"🥧","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/50176-pyshnaya-tvorojnaya-zapekanka-v-duxovke","sourceName":"1000.menu","ingredients":[{"id":"curd","label":"Творог 5–9%","qty":400,"unit":"г"},{"id":"eggs","label":"Яйца куриные","qty":2,"unit":"шт"},{"id":"sour_cream","label":"Сметана","qty":60,"unit":"г"},{"id":"semolina","label":"Крупа манная","qty":40,"unit":"г"},{"id":"sugar","label":"Сахар и ванилин","qty":35,"unit":"г"},{"id":"butter","label":"Масло сливочное","qty":10,"unit":"г"}],"steps":["Смешайте творог, яйца, сметану, сахар и манку, оставьте на 15 мин.","Выложите в смазанную маслом форму.","Запекайте при 180 °C 30–35 минут до золотистого верха."]},{"id":"b27","name":"Ленивые вареники из творога со сметаной","type":"Завтрак","subcat":"breakfast","difficulty":"Простая","timeMin":15,"baseServings":2,"kcal":310,"p":23,"f":13,"c":25,"emoji":"🥟","isVacuumPrep":true,"prepNote":"Нарезанные творожные подушечки отлично замораживаются и хранятся в вакуумном пакете — утром варятся за 2 минуты!","sourceUrl":"https://1000.menu/cooking/51015-klassicheskie-lenivye-vareniki-iz-tvoroga","sourceName":"1000.menu","ingredients":[{"id":"curd","label":"Творог 5–9%","qty":350,"unit":"г"},{"id":"eggs","label":"Яйцо куриное","qty":1,"unit":"шт"},{"id":"flour","label":"Мука пшеничная","qty":60,"unit":"г"},{"id":"sugar","label":"Сахар","qty":25,"unit":"г"},{"id":"butter","label":"Масло сливочное","qty":20,"unit":"г"}],"steps":["Смешайте творог, яйцо, сахар и муку.","Скатайте колбаску, нарежьте кусочками.","Отварите в кипящей воде 2 минуты после всплытия."]},{"id":"b28","name":"Гренки с яйцом пашот / глазуньей и сыром","type":"Завтрак","subcat":"breakfast","difficulty":"Простая","timeMin":12,"baseServings":2,"kcal":350,"p":19,"f":20,"c":24,"emoji":"🥪","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/2733-grenki-s-syrom-i-yaicom","sourceName":"1000.menu","ingredients":[{"id":"bread","label":"Хлеб тостовый","qty":90,"unit":"г"},{"id":"eggs","label":"Яйца куриные","qty":3,"unit":"шт"},{"id":"cheese","label":"Сыр твёрдый","qty":60,"unit":"г"},{"id":"butter","label":"Масло сливочное","qty":15,"unit":"г"}],"steps":["Поджарьте хлеб на сливочном масле, посыпьте сыром.","Сверху выложите яйцо с жидким желтком."]},{"id":"c01","name":"Куриные крылышки в соево-медовом маринаде в духовке","type":"Ужин","subcat":"chicken","difficulty":"Простая","timeMin":30,"baseServings":2,"kcal":440,"p":36,"f":26,"c":14,"emoji":"🍗","isVacuumPrep":true,"prepNote":"Вакуум: положите крылышки в пакет с соевым соусом, мёдом, чесноком и паприкой. Запаяйте и в морозилку.","sourceUrl":"https://1000.menu/cooking/24110-kurinye-krylyshki-v-soevom-souse-i-mede","sourceName":"1000.menu","ingredients":[{"id":"chicken_wings","label":"Куриные крылышки","qty":600,"unit":"г"},{"id":"soy_sauce","label":"Соевый соус","qty":40,"unit":"мл"},{"id":"honey","label":"Мёд","qty":25,"unit":"г"},{"id":"garlic","label":"Чеснок","qty":8,"unit":"г"},{"id":"salt","label":"Паприка и перец","qty":4,"unit":"г"}],"steps":["Разрежьте крылышки по суставам, замаринуйте в соевом соусе, мёде и чесноке.","Выложите на противень с пергаментом в один слой.","Запекайте при 200 °C 25–28 минут до карамельной корочки."]},{"id":"c02","name":"Хрустящие куриные крылышки BBQ с паприкой","type":"Ужин","subcat":"chicken","difficulty":"Простая","timeMin":30,"baseServings":2,"kcal":430,"p":35,"f":27,"c":10,"emoji":"🍗","isVacuumPrep":true,"prepNote":"Вакуум: крылышки + копчёная паприка, сухой чеснок, томатный соус и ложка масла.","sourceUrl":"https://1000.menu/cooking/24111-krylyshki-bbq-v-duxovke","sourceName":"1000.menu","ingredients":[{"id":"chicken_wings","label":"Куриные крылышки","qty":600,"unit":"г"},{"id":"tomato_paste","label":"Томатный соус / кетчуп","qty":40,"unit":"г"},{"id":"garlic","label":"Чеснок","qty":8,"unit":"г"},{"id":"oil","label":"Масло растительное","qty":15,"unit":"мл"},{"id":"salt","label":"Копчёная паприка, соль","qty":5,"unit":"г"}],"steps":["Обваляйте крылышки в соусе со специями и чесноком.","Запекайте в духовке или аэрогриле при 200 °C 25 минут."]},{"id":"c03","name":"Куриные крылышки с картофелем на одном противне","type":"Ужин","subcat":"chicken","difficulty":"Простая","timeMin":40,"baseServings":2,"kcal":520,"p":36,"f":26,"c":38,"emoji":"🍗","isVacuumPrep":true,"prepNote":"Вакуум: замаринуйте крылышки с чесноком и паприкой заранее. Вечером останется только нарезать картошку!","sourceUrl":"https://1000.menu/cooking/24112-krylyshki-s-kartoshkoi-v-duxovke","sourceName":"1000.menu","ingredients":[{"id":"chicken_wings","label":"Куриные крылышки","qty":550,"unit":"г"},{"id":"potato","label":"Картофель","qty":450,"unit":"г"},{"id":"garlic","label":"Чеснок","qty":10,"unit":"г"},{"id":"oil","label":"Масло растительное","qty":25,"unit":"мл"},{"id":"salt","label":"Паприка, соль, травы","qty":5,"unit":"г"}],"steps":["Крылышки и дольки картофеля смешайте с маслом, давленым чесноком, солью и паприкой.","Разложите на противне и запекайте при 200 °C 35–40 минут."]},{"id":"c04","name":"Куриные бёдрышки с хрустящей корочкой в духовке","type":"Ужин","subcat":"chicken","difficulty":"Простая","timeMin":35,"baseServings":2,"kcal":470,"p":38,"f":31,"c":4,"emoji":"🍗","isVacuumPrep":true,"prepNote":"Вакуум: бёдрышки натрите чесноком, паприкой, солью и маслом, запаяйте в пакет.","sourceUrl":"https://1000.menu/cooking/18995-kurinye-bedra-v-aerogrile","sourceName":"1000.menu","ingredients":[{"id":"chicken_thigh","label":"Куриные бёдрышки","qty":550,"unit":"г"},{"id":"garlic","label":"Чеснок","qty":8,"unit":"г"},{"id":"oil","label":"Масло растительное","qty":15,"unit":"мл"},{"id":"salt","label":"Соль, паприка, карри","qty":5,"unit":"г"}],"steps":["Натрите бёдрышки специями, давленым чесноком и маслом.","Запекайте при 200 °C 30–35 минут до золотистой хрустящей кожицы."]},{"id":"c05","name":"Куриные бёдрышки в сметанно-чесночном соусе на сковороде","type":"Ужин","subcat":"chicken","difficulty":"Простая","timeMin":35,"baseServings":2,"kcal":480,"p":37,"f":32,"c":8,"emoji":"🍗","isVacuumPrep":true,"prepNote":"Вакуум: бёдрышки без кости можно сразу завакуумировать со специями и чесноком.","sourceUrl":"https://1000.menu/cooking/18988-kurica-v-smetanno-chesnochnom-souse","sourceName":"1000.menu","ingredients":[{"id":"chicken_thigh","label":"Куриные бёдрышки","qty":500,"unit":"г"},{"id":"sour_cream","label":"Сметана 20%","qty":100,"unit":"г"},{"id":"garlic","label":"Чеснок","qty":10,"unit":"г"},{"id":"oil","label":"Масло для жарки","qty":15,"unit":"мл"},{"id":"greens","label":"Укроп и петрушка","qty":10,"unit":"г"}],"steps":["Обжарьте бёдрышки на сковороде по 6 минут с каждой стороны до румяности.","Залейте сметаной, смешанной с 70 мл воды, чесноком и солью.","Тушите под крышкой на тихом огне 15–18 минут."]},{"id":"c06","name":"Куриные голени с румяной картошкой в духовке","type":"Ужин","subcat":"chicken","difficulty":"Простая","timeMin":40,"baseServings":2,"kcal":490,"p":36,"f":22,"c":38,"emoji":"🍗","isVacuumPrep":true,"prepNote":"Вакуум: голени замариновать в горчице, чесноке и паприке в вакуум-пакете.","sourceUrl":"https://1000.menu/cooking/19450-kurinye-goleni-s-kartoshkoi-v-duxovke","sourceName":"1000.menu","ingredients":[{"id":"chicken_leg","label":"Куриные голени","qty":500,"unit":"г"},{"id":"potato","label":"Картофель","qty":450,"unit":"г"},{"id":"mustard","label":"Горчица","qty":15,"unit":"г"},{"id":"garlic","label":"Чеснок","qty":8,"unit":"г"},{"id":"oil","label":"Масло растительное","qty":20,"unit":"мл"}],"steps":["Смешайте голени и нарезанный дольками картофель с горчицей, маслом, чесноком и солью.","Выложите в форму и запекайте 35–40 минут при 195 °C."]},{"id":"c07","name":"Куриные голени в медово-горчичном маринаде на сковороде","type":"Ужин","subcat":"chicken","difficulty":"Простая","timeMin":30,"baseServings":2,"kcal":430,"p":38,"f":24,"c":12,"emoji":"🍗","isVacuumPrep":true,"prepNote":"Вакуум: голени + горчица + мёд + соевый соус в вакуумный пакет.","sourceUrl":"https://1000.menu/cooking/24113-kurinye-goleni-na-skovorode","sourceName":"1000.menu","ingredients":[{"id":"chicken_leg","label":"Куриные голени","qty":550,"unit":"г"},{"id":"mustard","label":"Горчица","qty":20,"unit":"г"},{"id":"honey","label":"Мёд","qty":15,"unit":"г"},{"id":"soy_sauce","label":"Соевый соус","qty":25,"unit":"мл"},{"id":"oil","label":"Масло растительное","qty":15,"unit":"мл"}],"steps":["Замаринуйте голени в смеси горчицы, мёда и соевого соуса.","Обжарьте на сковороде под крышкой на среднем огне по 12–14 минут с каждой стороны."]},{"id":"c08","name":"Куриное филе в сливочно-чесночном соусе на сковороде","type":"Ужин","subcat":"chicken","difficulty":"Простая","timeMin":20,"baseServings":2,"kcal":390,"p":42,"f":20,"c":8,"emoji":"🍗","isVacuumPrep":true,"prepNote":"Вакуум: нарезанное филе со специями и чесноком запаять в пакет.","sourceUrl":"https://1000.menu/cooking/34112-pasta-s-kuricei-v-slivochnom-souse","sourceName":"1000.menu","ingredients":[{"id":"chicken_fillet","label":"Куриное филе (грудка)","qty":450,"unit":"г"},{"id":"cream","label":"Сливки 20%","qty":150,"unit":"мл"},{"id":"garlic","label":"Чеснок","qty":8,"unit":"г"},{"id":"butter","label":"Масло сливочное","qty":20,"unit":"г"},{"id":"greens","label":"Петрушка","qty":10,"unit":"г"}],"steps":["Нарежьте куриное филе кусочками и обжарьте на сливочном масле 6–7 минут.","Добавьте чеснок, влейте сливки, посолите и томите 5 минут до загустения соуса."]},{"id":"c09","name":"Сочные куриные отбивные в яичном кляре на сковороде","type":"Ужин","subcat":"chicken","difficulty":"Простая","timeMin":20,"baseServings":2,"kcal":410,"p":44,"f":18,"c":16,"emoji":"🍗","isVacuumPrep":true,"prepNote":"Вакуум: отбитое и посоленное филе запаять порционно в пакет.","sourceUrl":"https://1000.menu/cooking/24114-otbivnye-iz-kurinogo-file","sourceName":"1000.menu","ingredients":[{"id":"chicken_fillet","label":"Куриное филе","qty":450,"unit":"г"},{"id":"eggs","label":"Яйцо куриное","qty":2,"unit":"шт"},{"id":"flour","label":"Мука пшеничная","qty":40,"unit":"г"},{"id":"oil","label":"Масло для жарки","qty":20,"unit":"мл"},{"id":"salt","label":"Соль и перец","qty":4,"unit":"г"}],"steps":["Разрежьте филе вдоль на пластины, слегка отбейте, посолите и поперчите.","Обваляйте в муке, затем окуните во взбитое яйцо.","Жарьте на среднем огне по 3–4 минуты с каждой стороны."]},{"id":"c10","name":"Куриные отбивные под помидором и сырной шапочкой в духовке","type":"Ужин","subcat":"chicken","difficulty":"Простая","timeMin":25,"baseServings":2,"kcal":430,"p":45,"f":22,"c":8,"emoji":"🍗","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/24115-kurinoe-file-s-pomidorami-i-syrom","sourceName":"1000.menu","ingredients":[{"id":"chicken_fillet","label":"Куриное филе","qty":450,"unit":"г"},{"id":"tomato","label":"Помидоры свежие","qty":150,"unit":"г"},{"id":"cheese","label":"Сыр твёрдый","qty":90,"unit":"г"},{"id":"sour_cream","label":"Сметана","qty":40,"unit":"г"},{"id":"salt","label":"Соль и специи","qty":4,"unit":"г"}],"steps":["Выложите пластины филе на противень, посолите и смажьте сметаной.","Сверху положите кружочки помидоров и посыпьте тёртым сыром.","Запекайте при 190 °C 20 минут."]},{"id":"c11","name":"Куриное филе с овощами (кабачок, перец, томаты) в духовке","type":"Ужин","subcat":"chicken","difficulty":"Простая","timeMin":25,"baseServings":2,"kcal":340,"p":38,"f":12,"c":18,"emoji":"🍗","isVacuumPrep":true,"prepNote":"Вакуум: замариновать кубики куриного филе в оливковом масле с травами.","sourceUrl":"https://1000.menu/cooking/21438-kurinoe-file-s-ovoshchami-v-duxovke","sourceName":"1000.menu","ingredients":[{"id":"chicken_fillet","label":"Куриное филе","qty":400,"unit":"г"},{"id":"zucchini","label":"Кабачки молодые","qty":250,"unit":"г"},{"id":"pepper","label":"Перец сладкий","qty":120,"unit":"г"},{"id":"tomato","label":"Помидоры","qty":150,"unit":"г"},{"id":"oil_olive","label":"Масло оливковое","qty":15,"unit":"мл"}],"steps":["Нарежьте филе и овощи крупными кубиками, смешайте с маслом, солью и травами.","Выложите в форму и запекайте при 200 °C 22 минуты."]},{"id":"c12","name":"Курица терияки с кунжутом и рисом на сковороде","type":"Ужин","subcat":"chicken","difficulty":"Простая","timeMin":25,"baseServings":2,"kcal":480,"p":39,"f":14,"c":52,"emoji":"🍗","isVacuumPrep":true,"prepNote":"Вакуум: кусочки филе или бедра в соусе терияки/соевом с чесноком.","sourceUrl":"https://1000.menu/cooking/18993-kurinoe-file-v-soevom-souse-na-skovorode","sourceName":"1000.menu","ingredients":[{"id":"chicken_fillet","label":"Куриное филе или бедро","qty":400,"unit":"г"},{"id":"rice","label":"Рис длиннозёрный","qty":130,"unit":"г"},{"id":"soy_sauce","label":"Соевый соус / терияки","qty":40,"unit":"мл"},{"id":"honey","label":"Мёд","qty":15,"unit":"г"},{"id":"garlic","label":"Чеснок","qty":6,"unit":"г"}],"steps":["Отварите рассыпчатый рис.","Обжарьте кусочки курицы на сильном огне 6 минут, влейте соевый соус с мёдом и чесноком, карамелизуйте 3 минуты."]},{"id":"c13","name":"Рассыпчатый домашний плов с курицей в сотейнике","type":"Ужин","subcat":"chicken","difficulty":"Простая","timeMin":45,"baseServings":2,"kcal":530,"p":33,"f":20,"c":54,"emoji":"🥘","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/52349-rassypchatyi-plov-s-kuricei-na-skovorode","sourceName":"1000.menu","ingredients":[{"id":"chicken_thigh","label":"Куриное филе бедра","qty":380,"unit":"г"},{"id":"rice","label":"Рис длиннозёрный","qty":150,"unit":"г"},{"id":"carrot","label":"Морковь","qty":100,"unit":"г"},{"id":"onion","label":"Лук репчатый","qty":80,"unit":"г"},{"id":"garlic","label":"Чеснок","qty":10,"unit":"г"},{"id":"oil","label":"Масло растительное","qty":25,"unit":"мл"}],"steps":["Обжарьте кусочки курицы с луком и морковью, добавьте зиру и соль.","Засыпьте промытый рис, залейте кипятком на 1.5 см выше риса.","Томите под плотной крышкой на минимальном огне 22 минуты."]},{"id":"c14","name":"Гречка по-купечески с куриным филе и морковью","type":"Ужин","subcat":"chicken","difficulty":"Простая","timeMin":30,"baseServings":2,"kcal":470,"p":35,"f":15,"c":48,"emoji":"🥣","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/20102-grechka-po-kupecheski-s-kuricei","sourceName":"1000.menu","ingredients":[{"id":"buckwheat","label":"Крупа гречневая","qty":140,"unit":"г"},{"id":"chicken_fillet","label":"Куриное филе","qty":350,"unit":"г"},{"id":"onion","label":"Лук репчатый","qty":60,"unit":"г"},{"id":"carrot","label":"Морковь","qty":60,"unit":"г"},{"id":"tomato_paste","label":"Томатная паста","qty":15,"unit":"г"},{"id":"oil","label":"Масло растительное","qty":15,"unit":"мл"}],"steps":["Обжарьте кубики курицы с луком, морковью и томатной пастой 7 минут.","Всыпьте гречку, залейте 280 мл горячей воды, посолите.","Томите под крышкой 18 минут."]},{"id":"c15","name":"Жульен с курицей и шампиньонами в сливочном соусе","type":"Ужин","subcat":"chicken","difficulty":"Простая","timeMin":25,"baseServings":2,"kcal":440,"p":36,"f":28,"c":9,"emoji":"🍄","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/24116-julen-s-kuricei-i-gribami-na-skovorode","sourceName":"1000.menu","ingredients":[{"id":"chicken_fillet","label":"Куриное филе","qty":350,"unit":"г"},{"id":"mushrooms","label":"Шампиньоны свежие","qty":250,"unit":"г"},{"id":"onion","label":"Лук репчатый","qty":60,"unit":"г"},{"id":"cream","label":"Сливки 20% или сметана","qty":120,"unit":"мл"},{"id":"cheese","label":"Сыр твёрдый","qty":80,"unit":"г"},{"id":"butter","label":"Масло сливочное","qty":20,"unit":"г"}],"steps":["Обжарьте нарезанное куриное филе с шампиньонами и луком на сливочном масле 10 минут.","Влейте сливки, посолите, посыпьте толстым слоем тёртого сыра.","Накройте крышкой (или поставьте в духовку) на 5 минут до расплавления сыра."]},{"id":"c16","name":"Куриные стрипсы в сырной панировке в духовке","type":"Ужин","subcat":"chicken","difficulty":"Простая","timeMin":25,"baseServings":2,"kcal":420,"p":43,"f":18,"c":20,"emoji":"🍗","isVacuumPrep":true,"prepNote":"Вакуум: замариновать полоски куриного филе со специями.","sourceUrl":"https://1000.menu/cooking/24090-kurinoe-file-v-panirovke-v-duxovke","sourceName":"1000.menu","ingredients":[{"id":"chicken_fillet","label":"Куриное филе","qty":400,"unit":"г"},{"id":"cheese","label":"Сыр твёрдый мелко натёртый","qty":60,"unit":"г"},{"id":"flour","label":"Панировочные сухари / мука","qty":40,"unit":"г"},{"id":"eggs","label":"Яйцо куриное","qty":1,"unit":"шт"},{"id":"salt","label":"Паприка, сухой чеснок, соль","qty":4,"unit":"г"}],"steps":["Нарежьте филе длинными полосками, окуните во взбитое яйцо.","Обваляйте в смеси сухарей, сыра и паприки.","Запекайте на пергаменте при 200 °C 16–18 минут."]},{"id":"c17","name":"Тушёная курица с картофелем в кастрюле / сотейнике","type":"Ужин","subcat":"chicken","difficulty":"Простая","timeMin":40,"baseServings":2,"kcal":480,"p":34,"f":18,"c":42,"emoji":"🍲","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/24117-tushenaya-kartoshka-s-kuricei","sourceName":"1000.menu","ingredients":[{"id":"chicken_thigh","label":"Куриные бёдра или голени","qty":450,"unit":"г"},{"id":"potato","label":"Картофель","qty":450,"unit":"г"},{"id":"onion","label":"Лук репчатый","qty":70,"unit":"г"},{"id":"carrot","label":"Морковь","qty":60,"unit":"г"},{"id":"oil","label":"Масло растительное","qty":15,"unit":"мл"},{"id":"greens","label":"Укроп и лавровый лист","qty":10,"unit":"г"}],"steps":["В глубоком сотейнике обжарьте курицу с луком и морковью 8 минут.","Добавьте крупно нарезанный картофель, посолите, влейте 150 мл горячей воды.","Тушите под крышкой 25–30 минут до мягкости."]},{"id":"c18","name":"Чахохбили из курицы в ароматном томатном соусе","type":"Ужин","subcat":"chicken","difficulty":"Простая","timeMin":35,"baseServings":2,"kcal":410,"p":36,"f":22,"c":14,"emoji":"🥘","isVacuumPrep":true,"prepNote":"Вакуум: кусочки курицы с аджикой/хмели-сунели и чесноком.","sourceUrl":"https://1000.menu/cooking/24118-chaxoxbili-iz-kuricy","sourceName":"1000.menu","ingredients":[{"id":"chicken_thigh","label":"Куриные бёдрышки","qty":500,"unit":"г"},{"id":"tomato","label":"Помидоры свежие (или в собств. соку)","qty":300,"unit":"г"},{"id":"onion","label":"Лук репчатый","qty":120,"unit":"г"},{"id":"garlic","label":"Чеснок","qty":10,"unit":"г"},{"id":"greens","label":"Кинза или петрушка","qty":15,"unit":"г"}],"steps":["Обжарьте курицу на сковороде до румяной корочки, добавьте много лука.","Влейте тёртые помидоры, посолите и тушите под крышкой 20 минут.","В конце добавьте давленый чеснок и свежую зелень."]},{"id":"c19","name":"Куриное филе со сладким перцем и соевым соусом на сковороде","type":"Ужин","subcat":"chicken","difficulty":"Простая","timeMin":20,"baseServings":2,"kcal":350,"p":40,"f":12,"c":16,"emoji":"🍗","isVacuumPrep":true,"prepNote":"Вакуум: нарезанное филе + соломка болгарского перца + соевый соус.","sourceUrl":"https://1000.menu/cooking/24119-kurica-s-bolgarskim-percem","sourceName":"1000.menu","ingredients":[{"id":"chicken_fillet","label":"Куриное филе","qty":400,"unit":"г"},{"id":"pepper","label":"Перец сладкий болгарский","qty":180,"unit":"г"},{"id":"soy_sauce","label":"Соевый соус","qty":30,"unit":"мл"},{"id":"garlic","label":"Чеснок","qty":6,"unit":"г"},{"id":"oil","label":"Масло растительное","qty":15,"unit":"мл"}],"steps":["Быстро обжарьте полоски куриного филе на сильном огне 5 минут.","Добавьте соломку сладкого перца и чеснок, влейте соевый соус и готовьте ещё 5 минут."]},{"id":"c20","name":"Куриные сердечки / филе бедра в сметане с луком","type":"Ужин","subcat":"chicken","difficulty":"Простая","timeMin":30,"baseServings":2,"kcal":420,"p":36,"f":26,"c":8,"emoji":"🥘","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/18988-kurica-v-smetanno-chesnochnom-souse","sourceName":"1000.menu","ingredients":[{"id":"chicken_thigh","label":"Филе куриного бедра","qty":450,"unit":"г"},{"id":"onion","label":"Лук репчатый","qty":90,"unit":"г"},{"id":"sour_cream","label":"Сметана 20%","qty":100,"unit":"г"},{"id":"oil","label":"Масло для жарки","qty":15,"unit":"мл"},{"id":"salt","label":"Соль и чёрный перец","qty":4,"unit":"г"}],"steps":["Нарежьте филе бедра кусочками, обжарьте с луком 10 минут.","Добавьте сметану, соль и перец, тушите под крышкой 12–15 минут."]},{"id":"m01","name":"Домашние сочные котлеты (свино-говяжьи) с пюре","type":"Ужин","subcat":"mince","difficulty":"Простая","timeMin":35,"baseServings":2,"kcal":540,"p":35,"f":28,"c":38,"emoji":"🧆","isVacuumPrep":true,"prepNote":"Вакуум: налепите котлеты впрок, подморозьте на доске 2 часа и запаяйте в вакуумные пакеты по 4 шт.","sourceUrl":"https://1000.menu/cooking/24120-domashnie-kotlety-iz-farsha","sourceName":"1000.menu","ingredients":[{"id":"mince","label":"Фарш домашний (свинина + говядина)","qty":400,"unit":"г"},{"id":"onion","label":"Лук репчатый","qty":80,"unit":"г"},{"id":"eggs","label":"Яйцо куриное","qty":1,"unit":"шт"},{"id":"potato","label":"Картофель для пюре","qty":400,"unit":"г"},{"id":"milk","label":"Молоко и сливочное масло","qty":100,"unit":"мл"}],"steps":["Смешайте фарш с тёртым луком, яйцом, солью и перцем, хорошо вымесите.","Сформируйте котлеты и обжарьте по 5–6 минут с каждой стороны.","Подавайте с горячим картофельным пюре."]},{"id":"m02","name":"Нежные куриные котлеты на сковороде или в духовке","type":"Ужин","subcat":"mince","difficulty":"Простая","timeMin":30,"baseServings":2,"kcal":420,"p":38,"f":20,"c":18,"emoji":"🧆","isVacuumPrep":true,"prepNote":"Вакуум: сформированные куриные котлеты заморозить на доске и завакуумировать.","sourceUrl":"https://1000.menu/cooking/1832-kotlety-kurinye-rublenye","sourceName":"1000.menu","ingredients":[{"id":"chicken_mince","label":"Куриный фарш (или рубленое филе)","qty":450,"unit":"г"},{"id":"onion","label":"Лук репчатый","qty":70,"unit":"г"},{"id":"eggs","label":"Яйцо куриное","qty":1,"unit":"шт"},{"id":"sour_cream","label":"Сметана в фарш для сочности","qty":30,"unit":"г"},{"id":"oil","label":"Масло растительное","qty":15,"unit":"мл"}],"steps":["Соедините куриный фарш, мелко тёртый лук, яйцо и ложку сметаны.","Обжарьте котлеты на сковороде по 5 минут с двух сторон или запеките при 190 °C 20 минут."]},{"id":"m03","name":"Рубленые куриные котлеты с сыром и зеленью","type":"Ужин","subcat":"mince","difficulty":"Простая","timeMin":25,"baseServings":2,"kcal":450,"p":40,"f":24,"c":12,"emoji":"🧆","isVacuumPrep":true,"prepNote":"Вакуум: отлично хранятся в морозилке после быстрой заморозки.","sourceUrl":"https://1000.menu/cooking/1832-kotlety-kurinye-rublenye","sourceName":"1000.menu","ingredients":[{"id":"chicken_fillet","label":"Куриное филе","qty":400,"unit":"г"},{"id":"cheese","label":"Сыр твёрдый","qty":70,"unit":"г"},{"id":"eggs","label":"Яйцо куриное","qty":1,"unit":"шт"},{"id":"sour_cream","label":"Сметана","qty":40,"unit":"г"},{"id":"flour","label":"Мука пшеничная","qty":30,"unit":"г"},{"id":"greens","label":"Укроп","qty":10,"unit":"г"}],"steps":["Мелко нарежьте филе кубиками 5х5 мм, смешайте с тёртым сыром, яйцом, сметаной, зеленью и мукой.","Выкладывайте ложкой на сковороду и жарьте по 4 минуты с каждой стороны."]},{"id":"m04","name":"Котлеты с сырной начинкой внутри в духовке","type":"Ужин","subcat":"mince","difficulty":"Простая","timeMin":35,"baseServings":2,"kcal":490,"p":36,"f":29,"c":14,"emoji":"🧆","isVacuumPrep":true,"prepNote":"Вакуум: заготовить сырые котлеты с кубиком сыра внутри и заморозить.","sourceUrl":"https://1000.menu/cooking/24120-domashnie-kotlety-iz-farsha","sourceName":"1000.menu","ingredients":[{"id":"mince","label":"Фарш мясной","qty":450,"unit":"г"},{"id":"cheese","label":"Сыр твёрдый или моцарелла","qty":80,"unit":"г"},{"id":"onion","label":"Лук репчатый","qty":60,"unit":"г"},{"id":"eggs","label":"Яйцо куриное","qty":1,"unit":"шт"},{"id":"salt","label":"Соль и специи","qty":4,"unit":"г"}],"steps":["Замесите фарш с луком, яйцом и солью.","Внутрь каждой котлеты вложите брусочек сыра.","Запекайте в духовке при 190 °C 25 минут."]},{"id":"m05","name":"Тефтели («ёжики») с рисом в томатно-сметанной подливке","type":"Ужин","subcat":"mince","difficulty":"Простая","timeMin":40,"baseServings":2,"kcal":490,"p":32,"f":24,"c":34,"emoji":"🧆","isVacuumPrep":true,"prepNote":"Вакуум: скатанные сырые тефтели заморозить и запаять в пакет — вечером остаётся только залить соусом.","sourceUrl":"https://1000.menu/cooking/3002-tefteli-s-podlivkoi-v-duxovke","sourceName":"1000.menu","ingredients":[{"id":"mince","label":"Фарш мясной","qty":400,"unit":"г"},{"id":"rice","label":"Рис отварной","qty":70,"unit":"г"},{"id":"onion","label":"Лук репчатый","qty":60,"unit":"г"},{"id":"tomato_paste","label":"Томатная паста","qty":25,"unit":"г"},{"id":"sour_cream","label":"Сметана","qty":50,"unit":"г"}],"steps":["Смешайте фарш с рисом, луком и солью, сформируйте шарики.","Выложите в сотейник, залейте смесью сметаны, томатной пасты и 200 мл воды.","Тушите под крышкой на тихом огне 25–30 минут."]},{"id":"m06","name":"Фрикадельки в сливочно-сырном соусе на сковороде","type":"Ужин","subcat":"mince","difficulty":"Простая","timeMin":25,"baseServings":2,"kcal":480,"p":35,"f":29,"c":12,"emoji":"🧆","isVacuumPrep":true,"prepNote":"Вакуум: заморозьте пакет мелких фрикаделек — готовятся за 12 минут прямо из морозилки!","sourceUrl":"https://1000.menu/cooking/24121-frikadelki-v-slivochnom-souse","sourceName":"1000.menu","ingredients":[{"id":"mince","label":"Фарш говяжий или куриный","qty":400,"unit":"г"},{"id":"cream","label":"Сливки 20%","qty":150,"unit":"мл"},{"id":"cheese","label":"Сыр твёрдый","qty":60,"unit":"г"},{"id":"garlic","label":"Чеснок","qty":6,"unit":"г"},{"id":"butter","label":"Масло сливочное","qty":15,"unit":"г"}],"steps":["Скатайте небольшие фрикадельки и обжарьте на сливочном масле 7 минут.","Влейте сливки, добавьте чеснок и тёртый сыр, тушите под крышкой ещё 7 минут."]},{"id":"m07","name":"Макароны по-флотски с сочным фаршем и луком","type":"Ужин","subcat":"mince","difficulty":"Простая","timeMin":25,"baseServings":2,"kcal":520,"p":31,"f":22,"c":49,"emoji":"🍝","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/2135-makarony-po-flotski-s-farshem","sourceName":"1000.menu","ingredients":[{"id":"pasta","label":"Макароны","qty":170,"unit":"г"},{"id":"mince","label":"Фарш мясной","qty":350,"unit":"г"},{"id":"onion","label":"Лук репчатый","qty":90,"unit":"г"},{"id":"butter","label":"Масло сливочное","qty":20,"unit":"г"},{"id":"oil","label":"Масло растительное","qty":10,"unit":"мл"}],"steps":["Отварите макароны в подсоленной воде.","Обжарьте нарезанный лук до золотистости, добавьте фарш и жарьте 10 минут, разбивая комочки.","Соедините макароны с фаршем и сливочным маслом, прогрейте 2 минуты."]},{"id":"m08","name":"Спагетти Болоньезе с мясным томатным соусом","type":"Ужин","subcat":"mince","difficulty":"Простая","timeMin":25,"baseServings":2,"kcal":530,"p":34,"f":20,"c":52,"emoji":"🍝","isVacuumPrep":true,"prepNote":"Вакуум: готовый густой соус Болоньезе можно завакуумировать порционно — вечером остаётся только сварить спагетти.","sourceUrl":"https://1000.menu/cooking/24122-spagetti-boloneze","sourceName":"1000.menu","ingredients":[{"id":"pasta","label":"Спагетти","qty":160,"unit":"г"},{"id":"beef_mince","label":"Фарш говяжий или домашний","qty":350,"unit":"г"},{"id":"onion","label":"Лук репчатый","qty":60,"unit":"г"},{"id":"tomato","label":"Помидоры протёртые / томатная паста","qty":150,"unit":"г"},{"id":"cheese","label":"Сыр твёрдый","qty":40,"unit":"г"},{"id":"garlic","label":"Чеснок и базилик","qty":6,"unit":"г"}],"steps":["Обжарьте фарш с луком и чесноком 8 минут.","Влейте протёртые томаты, посолите, добавьте базилик и тушите 10 минут.","Подавайте со спагетти под тёртым сыром."]},{"id":"m09","name":"Картофельная запеканка с мясным фаршем в духовке","type":"Ужин","subcat":"mince","difficulty":"Простая","timeMin":45,"baseServings":2,"kcal":510,"p":30,"f":24,"c":42,"emoji":"🥧","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/1834-kartofelnaya-zapekanka-s-farshem-v-duxovke","sourceName":"1000.menu","ingredients":[{"id":"potato","label":"Картофель (для пюре)","qty":500,"unit":"г"},{"id":"mince","label":"Фарш мясной","qty":350,"unit":"г"},{"id":"onion","label":"Лук репчатый","qty":70,"unit":"г"},{"id":"cheese","label":"Сыр твёрдый","qty":60,"unit":"г"},{"id":"butter","label":"Масло сливочное","qty":25,"unit":"г"}],"steps":["Сварите картофель и разомните со сливочным маслом в пюре.","Обжарьте фарш с луком на сковороде 8 минут.","Выложите в форму слой пюре, затем фарш, сверху пюре и сыр. Запекайте 25 мин при 190 °C."]},{"id":"m10","name":"Гнёзда из пасты с фаршем и сыром на сковороде","type":"Ужин","subcat":"mince","difficulty":"Простая","timeMin":30,"baseServings":2,"kcal":520,"p":33,"f":23,"c":46,"emoji":"🍝","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/24123-gnezda-iz-makaron-s-farshem","sourceName":"1000.menu","ingredients":[{"id":"pasta","label":"Макаронные гнёзда (тальолини)","qty":160,"unit":"г"},{"id":"mince","label":"Фарш мясной","qty":300,"unit":"г"},{"id":"onion","label":"Лук репчатый","qty":60,"unit":"г"},{"id":"sour_cream","label":"Сметана","qty":50,"unit":"г"},{"id":"cheese","label":"Сыр твёрдый","qty":60,"unit":"г"}],"steps":["Уложите сухие гнёзда в глубокую сковороду, в центр каждого выложите заправленный фарш.","Влейте горячую подсоленную воду со сметаной до середины гнёзд.","Тушите под крышкой 20 минут, в конце посыпьте сыром."]},{"id":"m11","name":"Домашние бургеры / бифштексы с сыром на сковороде","type":"Ужин","subcat":"mince","difficulty":"Простая","timeMin":20,"baseServings":2,"kcal":560,"p":38,"f":32,"c":30,"emoji":"🍔","isVacuumPrep":true,"prepNote":"Вакуум: сформированные плоские котлеты для бургеров через пергамент завакуумировать в морозилку.","sourceUrl":"https://1000.menu/cooking/24124-bifshteks-iz-farsha","sourceName":"1000.menu","ingredients":[{"id":"beef_mince","label":"Фарш говяжий","qty":400,"unit":"г"},{"id":"cheese","label":"Сыр чеддер / твёрдый","qty":60,"unit":"г"},{"id":"bread","label":"Булочки или тосты","qty":100,"unit":"г"},{"id":"tomato","label":"Помидоры и огурец","qty":120,"unit":"г"},{"id":"salt","label":"Соль и чёрный перец","qty":4,"unit":"г"}],"steps":["Сформируйте 2–4 широкие плоские котлеты из говяжьего фарша, посолите и поперчите.","Обжарьте на раскалённой сковороде по 3–4 минуты, сверху положите ломтик сыра.","Подавайте с подрумяненным хлебом и свежими овощами."]},{"id":"m12","name":"Кабачки «лодочки», запечённые с фаршем и сыром","type":"Ужин","subcat":"mince","difficulty":"Простая","timeMin":35,"baseServings":2,"kcal":390,"p":31,"f":20,"c":18,"emoji":"🥒","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/24125-lodochki-iz-kabachkov-s-farshem","sourceName":"1000.menu","ingredients":[{"id":"zucchini","label":"Кабачки молодые","qty":450,"unit":"г"},{"id":"mince","label":"Фарш куриный или домашний","qty":350,"unit":"г"},{"id":"tomato","label":"Помидоры","qty":100,"unit":"г"},{"id":"cheese","label":"Сыр твёрдый","qty":70,"unit":"г"},{"id":"garlic","label":"Чеснок","qty":6,"unit":"г"}],"steps":["Разрежьте кабачки вдоль пополам, ложкой выберите часть мякоти.","Мелко порубите мякоть, смешайте с фаршем, чесноком и солью, наполните лодочки.","Сверху положите ломтики томатов и сыр, запекайте 30 минут при 190 °C."]},{"id":"m13","name":"Бризоль из фарша в яичном блинчике с сыром","type":"Ужин","subcat":"mince","difficulty":"Простая","timeMin":20,"baseServings":2,"kcal":440,"p":36,"f":28,"c":8,"emoji":"🍳","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/2871-brizol-iz-kurinogo-farsha","sourceName":"1000.menu","ingredients":[{"id":"mince","label":"Фарш куриный или свино-говяжий","qty":300,"unit":"г"},{"id":"eggs","label":"Яйца куриные","qty":3,"unit":"шт"},{"id":"cheese","label":"Сыр твёрдый","qty":60,"unit":"г"},{"id":"sour_cream","label":"Сметана с чесноком","qty":40,"unit":"г"}],"steps":["Тонко раскатайте порцию фарша, окуните во взбитое яйцо и выложите на сковороду.","Жарьте по 3 минуты с двух сторон, смажьте соусом, посыпьте сыром и сверните пополам."]},{"id":"m14","name":"Мясные стожки с сырной шапочкой в духовке","type":"Ужин","subcat":"mince","difficulty":"Простая","timeMin":35,"baseServings":2,"kcal":480,"p":35,"f":28,"c":16,"emoji":"🧆","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/24126-stojki-iz-farsha-v-duxovke","sourceName":"1000.menu","ingredients":[{"id":"mince","label":"Фарш мясной","qty":400,"unit":"г"},{"id":"potato","label":"Картофель тёртый сырой","qty":150,"unit":"г"},{"id":"onion","label":"Лук репчатый","qty":60,"unit":"г"},{"id":"cheese","label":"Сыр твёрдый","qty":80,"unit":"г"},{"id":"sour_cream","label":"Сметана","qty":40,"unit":"г"}],"steps":["Из фарша с солью сформируйте круглые котлеты-основы на противне.","Сверху выложите обжаренный лук, немного тёртого картофеля, сметану и сыр.","Запекайте 30 минут при 190 °C."]},{"id":"m15","name":"Быстрая лазанья на сковороде с фаршем и сыром","type":"Ужин","subcat":"mince","difficulty":"Простая","timeMin":30,"baseServings":2,"kcal":520,"p":34,"f":24,"c":42,"emoji":"🍝","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/24127-lenivaya-lazanya-na-skovorode","sourceName":"1000.menu","ingredients":[{"id":"mince","label":"Фарш мясной","qty":350,"unit":"г"},{"id":"pasta","label":"Широкая паста / листы лазаньи","qty":140,"unit":"г"},{"id":"tomato_paste","label":"Томатный соус","qty":80,"unit":"г"},{"id":"cheese","label":"Сыр моцарелла / твёрдый","qty":90,"unit":"г"},{"id":"onion","label":"Лук и чеснок","qty":60,"unit":"г"}],"steps":["Обжарьте фарш с луком, влейте томатный соус и 200 мл воды.","Разломайте листы лазаньи (или широкую пасту) прямо в соус, готовьте под крышкой 15 минут.","Посыпьте сыром и дайте расплавиться 2 минуты."]},{"id":"p01","name":"Сочные свиные отбивные на сковороде","type":"Ужин","subcat":"meat","difficulty":"Простая","timeMin":20,"baseServings":2,"kcal":490,"p":40,"f":32,"c":10,"emoji":"🥩","isVacuumPrep":true,"prepNote":"Вакуум: отбитые ломтики свиной корейки со специями и луком запаять в пакет.","sourceUrl":"https://1000.menu/cooking/1827-otbivnye-iz-svininy-na-skovorode","sourceName":"1000.menu","ingredients":[{"id":"pork","label":"Свиная корейка или шея","qty":450,"unit":"г"},{"id":"eggs","label":"Яйцо куриное","qty":1,"unit":"шт"},{"id":"flour","label":"Мука пшеничная","qty":30,"unit":"г"},{"id":"oil","label":"Масло для жарки","qty":20,"unit":"мл"},{"id":"salt","label":"Соль и чёрный перец","qty":4,"unit":"г"}],"steps":["Нарежьте свинину поперёк волокон, отбейте молотком, посолите.","Обмакните в муку и взбитое яйцо.","Жарьте на среднем огне по 4 минуты с каждой стороны."]},{"id":"p02","name":"Свинина по-французски с помидорами и сыром в духовке","type":"Ужин","subcat":"meat","difficulty":"Простая","timeMin":35,"baseServings":2,"kcal":540,"p":38,"f":36,"c":8,"emoji":"🥩","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/24130-myaso-po-francuzski-iz-svininy","sourceName":"1000.menu","ingredients":[{"id":"pork","label":"Свиная корейка / мякоть","qty":450,"unit":"г"},{"id":"onion","label":"Лук репчатый","qty":70,"unit":"г"},{"id":"tomato","label":"Помидоры","qty":150,"unit":"г"},{"id":"cheese","label":"Сыр твёрдый","qty":90,"unit":"г"},{"id":"sour_cream","label":"Сметана","qty":40,"unit":"г"}],"steps":["Отбейте ломтики свинины, выложите на противень, посолите.","Сверху разложите кольца лука, кружочки помидоров, сетку сметаны и тёртый сыр.","Запекайте при 190 °C 25–30 минут."]},{"id":"p03","name":"Домашнее жаркое из свинины с картофелем в кастрюле","type":"Ужин","subcat":"meat","difficulty":"Простая","timeMin":45,"baseServings":2,"kcal":510,"p":32,"f":26,"c":38,"emoji":"🍲","isVacuumPrep":true,"prepNote":"Вакуум: нарезанная кубиками свинина с чесноком и специями.","sourceUrl":"https://1000.menu/cooking/27071-jarkoe-iz-svininy-s-kartofelem-po-domashnemu","sourceName":"1000.menu","ingredients":[{"id":"pork","label":"Свинина мякоть / лопатка","qty":400,"unit":"г"},{"id":"potato","label":"Картофель","qty":450,"unit":"г"},{"id":"onion","label":"Лук репчатый","qty":70,"unit":"г"},{"id":"carrot","label":"Морковь","qty":60,"unit":"г"},{"id":"garlic","label":"Чеснок и лавровый лист","qty":8,"unit":"г"}],"steps":["В глубоком сотейнике обжарьте кубики свинины до золотистой корочки (8 минут).","Добавьте лук и морковь, затем крупно нарезанный картофель и 150 мл кипятка.","Тушите под крышкой на тихом огне 30 минут."]},{"id":"p04","name":"Поджарка из свинины с луком и томатной подливкой","type":"Ужин","subcat":"meat","difficulty":"Простая","timeMin":30,"baseServings":2,"kcal":480,"p":36,"f":30,"c":12,"emoji":"🥘","isVacuumPrep":true,"prepNote":"Вакуум: брусочки свинины завакуумировать со специями.","sourceUrl":"https://1000.menu/cooking/24131-podjarka-iz-svininy","sourceName":"1000.menu","ingredients":[{"id":"pork","label":"Свинина мякоть","qty":450,"unit":"г"},{"id":"onion","label":"Лук репчатый","qty":90,"unit":"г"},{"id":"tomato_paste","label":"Томатная паста","qty":25,"unit":"г"},{"id":"flour","label":"Мука пшеничная","qty":15,"unit":"г"},{"id":"garlic","label":"Чеснок","qty":6,"unit":"г"}],"steps":["Нарежьте свинину брусочками и обжарьте на сильном огне 10 минут.","Добавьте лук, муку, томатную пасту и 150 мл горячей воды.","Тушите под крышкой 15 минут до мягкости мяса."]},{"id":"p05","name":"Свиные стейки (шея / корейка) в горчично-чесночном маринаде","type":"Ужин","subcat":"meat","difficulty":"Простая","timeMin":25,"baseServings":2,"kcal":510,"p":42,"f":34,"c":4,"emoji":"🥩","isVacuumPrep":true,"prepNote":"Вакуум: стейки свинины смазать горчицей, чесноком и маслом, запаять в пакет.","sourceUrl":"https://1000.menu/cooking/18994-steik-iz-svininy-v-duxovke","sourceName":"1000.menu","ingredients":[{"id":"pork","label":"Свиные стейки","qty":450,"unit":"г"},{"id":"mustard","label":"Горчица","qty":20,"unit":"г"},{"id":"garlic","label":"Чеснок","qty":8,"unit":"г"},{"id":"oil","label":"Масло растительное","qty":15,"unit":"мл"},{"id":"salt","label":"Соль и розмарин","qty":4,"unit":"г"}],"steps":["Достаньте замаринованные стейки, обжарьте на сковороде по 4 минуты с каждой стороны.","Накройте крышкой на слабом огне ещё на 5 минут для полной прожарки."]},{"id":"p06","name":"Свиные рёбрышки в медово-соевой глазури в духовке","type":"Ужин","subcat":"meat","difficulty":"Простая","timeMin":55,"baseServings":2,"kcal":560,"p":35,"f":38,"c":16,"emoji":"🍖","isVacuumPrep":true,"prepNote":"Вакуум: рёбрышки в маринаде из соевого соуса, мёда, паприки и чеснока идеально маринуются в вакуумном пакете.","sourceUrl":"https://1000.menu/cooking/24132-svinye-rebryshki-v-duxovke","sourceName":"1000.menu","ingredients":[{"id":"pork_ribs","label":"Свиные рёбрышки мясные","qty":600,"unit":"г"},{"id":"soy_sauce","label":"Соевый соус","qty":40,"unit":"мл"},{"id":"honey","label":"Мёд","qty":25,"unit":"г"},{"id":"tomato_paste","label":"Томатный соус","qty":30,"unit":"г"},{"id":"garlic","label":"Чеснок и паприка","qty":8,"unit":"г"}],"steps":["Заверните замаринованные рёбрышки в фольгу и запекайте при 190 °C 40 минут.","Раскройте фольгу и подрумяньте ещё 10–12 минут до карамельной корочки."]},{"id":"p07","name":"Запечённая свиная шея гармошкой с сыром и помидорами","type":"Ужин","subcat":"meat","difficulty":"Простая","timeMin":50,"baseServings":2,"kcal":550,"p":42,"f":36,"c":6,"emoji":"🥩","isVacuumPrep":true,"prepNote":"Вакуум: подготовленный кусок свинины со специями и чесноком.","sourceUrl":"https://1000.menu/cooking/24133-svinina-garmoshka-v-duxovke","sourceName":"1000.menu","ingredients":[{"id":"pork","label":"Свиная корейка / шея куском","qty":500,"unit":"г"},{"id":"cheese","label":"Сыр твёрдый","qty":80,"unit":"г"},{"id":"tomato","label":"Помидоры","qty":120,"unit":"г"},{"id":"garlic","label":"Чеснок","qty":8,"unit":"г"},{"id":"salt","label":"Соль, горчица, перец","qty":5,"unit":"г"}],"steps":["Сделайте глубокие поперечные надрезы в куске мяса, не прорезая до конца.","В каждый кармашек вложите ломтик сыра, кружочек помидора и пластинку чеснока.","Заверните в фольгу и запекайте при 190 °C 45 минут."]},{"id":"p08","name":"Свинина со сладким перцем в кисло-сладком соусе на сковороде","type":"Ужин","subcat":"meat","difficulty":"Простая","timeMin":25,"baseServings":2,"kcal":460,"p":36,"f":24,"c":22,"emoji":"🥘","isVacuumPrep":true,"prepNote":"Вакуум: тонкие полоски свинины в соевом соусе.","sourceUrl":"https://1000.menu/cooking/24134-svinina-s-bolgarskim-percem","sourceName":"1000.menu","ingredients":[{"id":"pork","label":"Свинина нежирная","qty":400,"unit":"г"},{"id":"pepper","label":"Перец сладкий","qty":180,"unit":"г"},{"id":"soy_sauce","label":"Соевый соус","qty":30,"unit":"мл"},{"id":"tomato_paste","label":"Томатный соус","qty":25,"unit":"г"},{"id":"honey","label":"Мёд или сахар","qty":15,"unit":"г"}],"steps":["Обжарьте полоски свинины на раскалённой сковороде 7 минут.","Добавьте перец, соевый и томатный соус с мёдом, тушите на сильном огне 5 минут."]},{"id":"p09","name":"Бефстроганов из говядины со сметанным соусом","type":"Ужин","subcat":"meat","difficulty":"Простая","timeMin":35,"baseServings":2,"kcal":480,"p":40,"f":26,"c":12,"emoji":"🥩","isVacuumPrep":true,"prepNote":"Вакуум: заранее нарезанная тонкой соломкой говядина.","sourceUrl":"https://1000.menu/cooking/1825-befstroganov-iz-govyadiny-so-smetanoi","sourceName":"1000.menu","ingredients":[{"id":"beef","label":"Говядина вырезка / мякоть","qty":400,"unit":"г"},{"id":"onion","label":"Лук репчатый","qty":80,"unit":"г"},{"id":"sour_cream","label":"Сметана 20% или сливки","qty":100,"unit":"г"},{"id":"flour","label":"Мука пшеничная","qty":15,"unit":"г"},{"id":"butter","label":"Масло сливочное","qty":20,"unit":"г"}],"steps":["Быстро обжарьте тонкую соломку говядины с луком на сливочном масле.","Посыпьте мукой, влейте сметану и 80 мл горячей воды.","Томите под крышкой на слабом огне 15–20 минут."]},{"id":"p10","name":"Гуляш из говядины с густой подливкой и гречкой","type":"Ужин","subcat":"meat","difficulty":"Простая","timeMin":60,"baseServings":2,"kcal":520,"p":42,"f":20,"c":44,"emoji":"🥩","isVacuumPrep":true,"prepNote":"Вакуум: кубики говядины со специями в пакет.","sourceUrl":"https://1000.menu/cooking/1826-gulyash-iz-govyadiny-s-podlivkoi","sourceName":"1000.menu","ingredients":[{"id":"beef","label":"Говядина мякоть","qty":400,"unit":"г"},{"id":"onion","label":"Лук репчатый","qty":70,"unit":"г"},{"id":"carrot","label":"Морковь","qty":60,"unit":"г"},{"id":"tomato_paste","label":"Томатная паста","qty":25,"unit":"г"},{"id":"buckwheat","label":"Крупа гречневая","qty":130,"unit":"г"}],"steps":["Обжарьте кубики говядины с луком и морковью, добавьте томатную пасту и 300 мл горячей воды.","Тушите под крышкой на медленном огне 45–50 минут до мягкости.","Подавайте с отварной гречкой."]},{"id":"p11","name":"Стейк из говядины на сковороде с чесночным маслом","type":"Ужин","subcat":"meat","difficulty":"Простая","timeMin":15,"baseServings":2,"kcal":490,"p":45,"f":32,"c":0,"emoji":"🥩","isVacuumPrep":true,"prepNote":"Вакуум: стейки говядины с веточкой розмарина и каплей оливкового масла.","sourceUrl":"https://1000.menu/cooking/18996-steik-iz-govyadiny-na-skovorode","sourceName":"1000.menu","ingredients":[{"id":"beef_steak","label":"Стейк говяжий","qty":450,"unit":"г"},{"id":"butter","label":"Масло сливочное","qty":25,"unit":"г"},{"id":"garlic","label":"Чеснок","qty":8,"unit":"г"},{"id":"salt","label":"Крупная соль, перец, розмарин","qty":4,"unit":"г"}],"steps":["Обсушите стейки салфеткой, посолите.","Жарьте на раскалённой сковороде по 3 минуты с каждой стороны, поливая растопленным сливочным маслом с чесноком.","Дайте отдохнуть 5 минут на доске."]},{"id":"p12","name":"Говядина, тушённая с черносливом или луком в сотейнике","type":"Ужин","subcat":"meat","difficulty":"Простая","timeMin":60,"baseServings":2,"kcal":460,"p":40,"f":22,"c":18,"emoji":"🥩","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/1826-gulyash-iz-govyadiny-s-podlivkoi","sourceName":"1000.menu","ingredients":[{"id":"beef","label":"Говядина мякоть","qty":400,"unit":"г"},{"id":"onion","label":"Лук репчатый","qty":120,"unit":"г"},{"id":"butter","label":"Масло сливочное","qty":20,"unit":"г"},{"id":"salt","label":"Соль, лавровый лист, перец","qty":4,"unit":"г"}],"steps":["В сотейнике выложите слоями кусочки говядины и много нарезанного полукольцами лука.","Добавьте сливочное масло и 100 мл воды, томите под крышкой на самом слабом огне 50 минут."]},{"id":"p13","name":"Жаркое по-домашнему с говядиной и картофелем","type":"Ужин","subcat":"meat","difficulty":"Простая","timeMin":55,"baseServings":2,"kcal":490,"p":36,"f":20,"c":40,"emoji":"🍲","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/27071-jarkoe-iz-svininy-s-kartofelem-po-domashnemu","sourceName":"1000.menu","ingredients":[{"id":"beef","label":"Говядина мякоть","qty":380,"unit":"г"},{"id":"potato","label":"Картофель","qty":450,"unit":"г"},{"id":"carrot","label":"Морковь","qty":60,"unit":"г"},{"id":"onion","label":"Лук репчатый","qty":70,"unit":"г"},{"id":"oil","label":"Масло растительное","qty":15,"unit":"мл"}],"steps":["Обжарьте говядину, залейте кипятком и протушите 25 минут.","Добавьте картофель, лук и морковь, тушите ещё 25 минут до мягкости."]},{"id":"p14","name":"Картошка, жаренная со свининой и луком на сковороде","type":"Ужин","subcat":"meat","difficulty":"Простая","timeMin":30,"baseServings":2,"kcal":550,"p":30,"f":30,"c":42,"emoji":"🥔","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/24135-jarenaya-kartoshka-s-myasom","sourceName":"1000.menu","ingredients":[{"id":"pork","label":"Свинина шея или грудинка","qty":350,"unit":"г"},{"id":"potato","label":"Картофель","qty":450,"unit":"г"},{"id":"onion","label":"Лук репчатый","qty":80,"unit":"г"},{"id":"garlic","label":"Чеснок и укроп","qty":8,"unit":"г"},{"id":"oil","label":"Масло растительное","qty":20,"unit":"мл"}],"steps":["Обжарьте брусочки свинины на сковороде 8 минут до румяности.","Добавьте нарезанный соломкой картофель и жарьте 15–18 минут, в конце добавьте лук и чеснок."]},{"id":"p15","name":"Плов со свининой рассыпчатый в казане / сотейнике","type":"Ужин","subcat":"meat","difficulty":"Простая","timeMin":50,"baseServings":2,"kcal":580,"p":32,"f":28,"c":52,"emoji":"🥘","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/52349-rassypchatyi-plov-s-kuricei-na-skovorode","sourceName":"1000.menu","ingredients":[{"id":"pork","label":"Свинина мякоть","qty":400,"unit":"г"},{"id":"rice","label":"Рис пропаренный","qty":150,"unit":"г"},{"id":"carrot","label":"Морковь","qty":100,"unit":"г"},{"id":"onion","label":"Лук репчатый","qty":80,"unit":"г"},{"id":"garlic","label":"Чеснок и зира","qty":10,"unit":"г"}],"steps":["Обжарьте свинину с луком и морковью, добавьте специи.","Всыпьте рис, залейте кипятком и томите под крышкой 25 минут."]},{"id":"p16","name":"Мясо с грибами в сливочном соусе на сковороде","type":"Ужин","subcat":"meat","difficulty":"Простая","timeMin":30,"baseServings":2,"kcal":490,"p":36,"f":30,"c":10,"emoji":"🍄","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/24116-julen-s-kuricei-i-gribami-na-skovorode","sourceName":"1000.menu","ingredients":[{"id":"pork","label":"Свинина нежирная","qty":400,"unit":"г"},{"id":"mushrooms","label":"Шампиньоны","qty":200,"unit":"г"},{"id":"onion","label":"Лук репчатый","qty":60,"unit":"г"},{"id":"cream","label":"Сливки 20% или сметана","qty":120,"unit":"мл"},{"id":"oil","label":"Масло для жарки","qty":15,"unit":"мл"}],"steps":["Обжарьте кусочки свинины до золотистости, добавьте грибы и лук.","Через 8 минут влейте сливки, посолите и тушите под крышкой 10 минут."]},{"id":"f01","name":"Дорада целиком в духовке с лимоном и розмарином","type":"Ужин","subcat":"fish","difficulty":"Простая","timeMin":25,"baseServings":2,"kcal":310,"p":36,"f":14,"c":2,"emoji":"🐟","isVacuumPrep":true,"prepNote":"Вакуум: очищенную дораду натереть морской солью, вложить в брюшко лимон, чеснок и розмарин, запаять в пакет.","sourceUrl":"https://1000.menu/cooking/24095-dorada-v-duxovke","sourceName":"1000.menu","ingredients":[{"id":"dorada","label":"Дорада свежая выпотрошенная","qty":600,"unit":"г"},{"id":"lemon","label":"Лимон","qty":40,"unit":"г"},{"id":"garlic","label":"Чеснок","qty":8,"unit":"г"},{"id":"oil_olive","label":"Оливковое масло","qty":15,"unit":"мл"},{"id":"salt","label":"Морская соль и розмарин","qty":4,"unit":"г"}],"steps":["Сделайте надрезы на боках рыбы, смажьте оливковым маслом со специями.","Запекайте на пергаменте при 200 °C 20–22 минуты."]},{"id":"f02","name":"Дорада на подушке из картофеля и томатов в духовке","type":"Ужин","subcat":"fish","difficulty":"Простая","timeMin":35,"baseServings":2,"kcal":420,"p":38,"f":16,"c":32,"emoji":"🐟","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/24095-dorada-v-duxovke","sourceName":"1000.menu","ingredients":[{"id":"dorada","label":"Дорада свежая","qty":600,"unit":"г"},{"id":"potato","label":"Картофель тонкими кружочками","qty":350,"unit":"г"},{"id":"tomato","label":"Помидоры черри","qty":150,"unit":"г"},{"id":"oil_olive","label":"Оливковое масло","qty":20,"unit":"мл"},{"id":"lemon","label":"Лимон","qty":30,"unit":"г"}],"steps":["Выложите тонкие кружочки картофеля на противень, сбрызните маслом и запекайте 12 минут.","Сверху положите подготовленную дораду и черри, запекайте ещё 20 минут при 200 °C."]},{"id":"f03","name":"Филе дорады на сковороде с хрустящей корочкой","type":"Ужин","subcat":"fish","difficulty":"Простая","timeMin":15,"baseServings":2,"kcal":320,"p":36,"f":16,"c":2,"emoji":"🐟","isVacuumPrep":true,"prepNote":"Вакуум: филе дорады на коже с оливковым маслом и тимьяном.","sourceUrl":"https://1000.menu/cooking/24095-dorada-v-duxovke","sourceName":"1000.menu","ingredients":[{"id":"dorada","label":"Дорада (филе на коже)","qty":400,"unit":"г"},{"id":"butter","label":"Масло сливочное","qty":15,"unit":"г"},{"id":"oil_olive","label":"Масло оливковое","qty":10,"unit":"мл"},{"id":"lemon","label":"Лимон","qty":30,"unit":"г"}],"steps":["Обжарьте филе дорады кожей вниз на хорошо разогретой сковороде 4 минуты, прижимая лопаткой.","Переверните, добавьте кусочек сливочного масла и жарьте ещё 2 минуты."]},{"id":"f04","name":"Стейки форели в лимонно-укропном маринаде в духовке","type":"Ужин","subcat":"fish","difficulty":"Простая","timeMin":20,"baseServings":2,"kcal":360,"p":38,"f":18,"c":3,"emoji":"🐟","isVacuumPrep":true,"prepNote":"Вакуум: стейки форели + оливковое масло + укроп + дольки лимона в пакет.","sourceUrl":"https://1000.menu/cooking/18991-forel-v-duxovke","sourceName":"1000.menu","ingredients":[{"id":"trout","label":"Форель (стейки или филе)","qty":400,"unit":"г"},{"id":"lemon","label":"Лимон","qty":40,"unit":"г"},{"id":"greens","label":"Укроп свежий","qty":10,"unit":"г"},{"id":"oil_olive","label":"Оливковое масло","qty":15,"unit":"мл"},{"id":"salt","label":"Морская соль","qty":3,"unit":"г"}],"steps":["Выложите замаринованные стейки форели в форму.","Запекайте при 190 °C 16–18 минут."]},{"id":"f05","name":"Форель в сливочно-чесночном соусе в духовке","type":"Ужин","subcat":"fish","difficulty":"Простая","timeMin":20,"baseServings":2,"kcal":410,"p":37,"f":24,"c":4,"emoji":"🐟","isVacuumPrep":true,"prepNote":"Вакуум: стейки форели запаять со сливками и чесноком.","sourceUrl":"https://1000.menu/cooking/18991-forel-v-duxovke","sourceName":"1000.menu","ingredients":[{"id":"trout","label":"Форель свежая","qty":400,"unit":"г"},{"id":"cream","label":"Сливки 20%","qty":100,"unit":"мл"},{"id":"garlic","label":"Чеснок","qty":6,"unit":"г"},{"id":"cheese","label":"Сыр твёрдый (по желанию)","qty":30,"unit":"г"},{"id":"greens","label":"Укроп","qty":10,"unit":"г"}],"steps":["Положите форель в форму, залейте сливками с чесноком, солью и укропом.","Запекайте 18 минут при 190 °C."]},{"id":"f06","name":"Радужная форель целиком в фольге с травами","type":"Ужин","subcat":"fish","difficulty":"Простая","timeMin":25,"baseServings":2,"kcal":340,"p":38,"f":16,"c":2,"emoji":"🐟","isVacuumPrep":true,"prepNote":"Вакуум: целая тушка форели с лимоном и петрушкой.","sourceUrl":"https://1000.menu/cooking/18991-forel-v-duxovke","sourceName":"1000.menu","ingredients":[{"id":"trout","label":"Форель радужная потрошёная","qty":550,"unit":"г"},{"id":"lemon","label":"Лимон","qty":40,"unit":"г"},{"id":"butter","label":"Масло сливочное","qty":20,"unit":"г"},{"id":"greens","label":"Петрушка и укроп","qty":15,"unit":"г"}],"steps":["Натрите форель солью, в брюшко вложите зелень, кружочки лимона и кусочки сливочного масла.","Заверните в фольгу и запекайте 22 минуты при 195 °C."]},{"id":"f07","name":"Стейк из лосося (сёмги) на сковороде","type":"Ужин","subcat":"fish","difficulty":"Простая","timeMin":15,"baseServings":2,"kcal":420,"p":40,"f":26,"c":2,"emoji":"🐟","isVacuumPrep":true,"prepNote":"Вакуум: стейки лосося с морской солью, перцем и каплей масла.","sourceUrl":"https://1000.menu/cooking/18992-steik-iz-lososya-na-skovorode","sourceName":"1000.menu","ingredients":[{"id":"salmon","label":"Стейк лосося / сёмги","qty":400,"unit":"г"},{"id":"lemon","label":"Лимон","qty":30,"unit":"г"},{"id":"oil_olive","label":"Оливковое масло","qty":10,"unit":"мл"},{"id":"salt","label":"Соль и дроблёный перец","qty":3,"unit":"г"}],"steps":["Выложите обсушенные стейки на горячую сковороду.","Жарьте по 3.5–4 минуты с каждой стороны до румяной корочки, сбрызните лимоном."]},{"id":"f08","name":"Лосось в медово-соевой глазури (терияки) с рисом","type":"Ужин","subcat":"fish","difficulty":"Простая","timeMin":20,"baseServings":2,"kcal":490,"p":38,"f":20,"c":44,"emoji":"🐟","isVacuumPrep":true,"prepNote":"Вакуум: филе лосося в маринаде из соевого соуса и мёда.","sourceUrl":"https://1000.menu/cooking/18992-steik-iz-lososya-na-skovorode","sourceName":"1000.menu","ingredients":[{"id":"salmon","label":"Филе лосося или форели","qty":380,"unit":"г"},{"id":"rice","label":"Рис на гарнир","qty":120,"unit":"г"},{"id":"soy_sauce","label":"Соевый соус","qty":30,"unit":"мл"},{"id":"honey","label":"Мёд","qty":15,"unit":"г"},{"id":"garlic","label":"Чеснок","qty":5,"unit":"г"}],"steps":["Отварите рис.","Обжарьте лосось на сковороде по 3 минуты, влейте соевый соус с мёдом и прогрейте 1 минуту до глазури."]},{"id":"f09","name":"Красная рыба, запечённая с кабачками и черри","type":"Ужин","subcat":"fish","difficulty":"Простая","timeMin":25,"baseServings":2,"kcal":380,"p":36,"f":19,"c":12,"emoji":"🐟","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/18991-forel-v-duxovke","sourceName":"1000.menu","ingredients":[{"id":"salmon","label":"Форель или лосось (филе)","qty":380,"unit":"г"},{"id":"zucchini","label":"Кабачки молодые","qty":250,"unit":"г"},{"id":"tomato","label":"Помидоры черри","qty":150,"unit":"г"},{"id":"oil_olive","label":"Оливковое масло","qty":15,"unit":"мл"}],"steps":["Нарежьте кабачки полукружьями, выложите в форму вместе с черри и порционными кусками рыбы.","Полейте оливковым маслом, посолите и запекайте 20 минут при 195 °C."]},{"id":"f10","name":"Сливочный суп (уха по-фински) с красной рыбой и картофелем","type":"Ужин","subcat":"fish","difficulty":"Простая","timeMin":30,"baseServings":2,"kcal":390,"p":28,"f":20,"c":24,"emoji":"🍲","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/24140-uxa-po-finski-so-slivkami","sourceName":"1000.menu","ingredients":[{"id":"salmon","label":"Форель или сёмга (филе)","qty":300,"unit":"г"},{"id":"potato","label":"Картофель","qty":250,"unit":"г"},{"id":"carrot","label":"Морковь и лук","qty":100,"unit":"г"},{"id":"cream","label":"Сливки 20%","qty":120,"unit":"мл"},{"id":"greens","label":"Укроп свежий","qty":10,"unit":"г"}],"steps":["В 700 мл воды отварите кубики картофеля, моркови и лука до мягкости (15 минут).","Добавьте кубики красной рыбы, влейте сливки, посолите.","Варите на тихом огне ровно 5–6 минут и посыпьте укропом."]},{"id":"f11","name":"Паста в сливочном соусе с лососем / форелью","type":"Ужин","subcat":"fish","difficulty":"Простая","timeMin":20,"baseServings":2,"kcal":540,"p":32,"f":22,"c":52,"emoji":"🍝","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/18997-pasta-s-semgoi-v-slivochnom-souse","sourceName":"1000.menu","ingredients":[{"id":"pasta","label":"Паста (феттуччине / спагетти)","qty":160,"unit":"г"},{"id":"salmon","label":"Форель или лосось","qty":250,"unit":"г"},{"id":"cream","label":"Сливки 20%","qty":120,"unit":"мл"},{"id":"cheese","label":"Сыр пармезан","qty":40,"unit":"г"},{"id":"butter","label":"Масло сливочное","qty":15,"unit":"г"}],"steps":["Отварите пасту аль денте.","Обжарьте кубики красной рыбы на сливочном масле 3 минуты, влейте сливки.","Соедините с пастой и тёртым сыром."]},{"id":"f12","name":"Нежный рис с кусочками форели и зелёным луком","type":"Ужин","subcat":"fish","difficulty":"Простая","timeMin":25,"baseServings":2,"kcal":450,"p":31,"f":16,"c":46,"emoji":"🍚","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/18998-ris-s-lososem","sourceName":"1000.menu","ingredients":[{"id":"trout","label":"Форель свежая","qty":280,"unit":"г"},{"id":"rice","label":"Рис длиннозёрный","qty":130,"unit":"г"},{"id":"butter","label":"Масло сливочное","qty":20,"unit":"г"},{"id":"greens","label":"Зелёный лук и укроп","qty":15,"unit":"г"}],"steps":["Отварите рассыпчатый рис.","Кубики форели обжарьте на сливочном масле 4 минуты, смешайте с горячим рисом и зеленью."]},{"id":"q01","name":"Классическая паста Карбонара с беконом и сыром","type":"Ужин","subcat":"quick","difficulty":"Простая","timeMin":20,"baseServings":2,"kcal":550,"p":24,"f":25,"c":56,"emoji":"🍝","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/1833-pasta-karbonara-klassicheskaya","sourceName":"1000.menu","ingredients":[{"id":"pasta","label":"Спагетти","qty":170,"unit":"г"},{"id":"bacon","label":"Бекон сырокопчёный","qty":120,"unit":"г"},{"id":"eggs","label":"Желтки яичные","qty":3,"unit":"шт"},{"id":"cheese","label":"Сыр пармезан","qty":50,"unit":"г"},{"id":"garlic","label":"Чеснок и чёрный перец","qty":5,"unit":"г"}],"steps":["Отварите спагетти.","Обжарьте полоски бекона до хруста.","Смешайте горячую пасту с беконом, снимите с огня и быстро вмешайте желтки, взбитые с тёртым сыром и 3 ложками воды от пасты."]},{"id":"q02","name":"Паста Альфредо с куриным филе и пармезаном","type":"Ужин","subcat":"quick","difficulty":"Простая","timeMin":20,"baseServings":2,"kcal":520,"p":35,"f":21,"c":48,"emoji":"🍝","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/34112-pasta-s-kuricei-v-slivochnom-souse","sourceName":"1000.menu","ingredients":[{"id":"pasta","label":"Паста феттуччине / пенне","qty":160,"unit":"г"},{"id":"chicken_fillet","label":"Куриное филе","qty":280,"unit":"г"},{"id":"cream","label":"Сливки 20%","qty":120,"unit":"мл"},{"id":"cheese","label":"Сыр твёрдый","qty":50,"unit":"г"},{"id":"garlic","label":"Чеснок и сливочное масло","qty":15,"unit":"г"}],"steps":["Отварите пасту.","Обжарьте куриное филе с чесноком на сливочном масле 6 минут, влейте сливки и тёртый сыр.","Перемешайте пасту с густым сырным соусом."]},{"id":"q03","name":"Паста с курицей и шампиньонами в сметанном соусе","type":"Ужин","subcat":"quick","difficulty":"Простая","timeMin":25,"baseServings":2,"kcal":490,"p":33,"f":18,"c":49,"emoji":"🍝","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/34112-pasta-s-kuricei-v-slivochnom-souse","sourceName":"1000.menu","ingredients":[{"id":"pasta","label":"Макароны / паста","qty":160,"unit":"г"},{"id":"chicken_fillet","label":"Куриное филе","qty":250,"unit":"г"},{"id":"mushrooms","label":"Шампиньоны","qty":180,"unit":"г"},{"id":"sour_cream","label":"Сметана или сливки","qty":100,"unit":"г"},{"id":"onion","label":"Лук репчатый","qty":50,"unit":"г"}],"steps":["Обжарьте кусочки курицы с грибами и луком 8 минут.","Добавьте сметану и немного воды от варки макарон, соедините с отварной пастой."]},{"id":"q04","name":"Паста с ветчиной и сыром за 15 минут","type":"Ужин","subcat":"quick","difficulty":"Простая","timeMin":15,"baseServings":2,"kcal":480,"p":22,"f":20,"c":52,"emoji":"🍝","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/24141-pasta-s-vetchinoi-i-syrom","sourceName":"1000.menu","ingredients":[{"id":"pasta","label":"Макароны / спагетти","qty":160,"unit":"г"},{"id":"ham","label":"Ветчина","qty":140,"unit":"г"},{"id":"cream","label":"Сливки или сметана","qty":100,"unit":"мл"},{"id":"cheese","label":"Сыр твёрдый","qty":60,"unit":"г"},{"id":"butter","label":"Масло сливочное","qty":15,"unit":"г"}],"steps":["Сварите пасту.","На сливочном масле слегка обжарьте соломку ветчины, влейте сливки и тёртый сыр.","Смешайте с горячими макаронами."]},{"id":"q05","name":"Картофель по-деревенски дольками с паприкой в духовке","type":"Ужин","subcat":"quick","difficulty":"Простая","timeMin":35,"baseServings":2,"kcal":340,"p":7,"f":14,"c":48,"emoji":"🥔","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/1835-kartofel-po-derevenski-v-duxovke","sourceName":"1000.menu","ingredients":[{"id":"potato","label":"Картофель свежий","qty":550,"unit":"г"},{"id":"oil","label":"Масло растительное","qty":25,"unit":"мл"},{"id":"garlic","label":"Чеснок","qty":10,"unit":"г"},{"id":"salt","label":"Сладкая паприка, соль, травы","qty":5,"unit":"г"}],"steps":["Нарежьте вымытый картофель крупными дольками в кожуре.","Перемешайте с маслом, паприкой, солью и чесноком.","Запекайте при 200 °C 30 минут до румяной корочки."]},{"id":"q06","name":"Молодой картофель со сливочным маслом, чесноком и укропом","type":"Ужин","subcat":"quick","difficulty":"Простая","timeMin":25,"baseServings":2,"kcal":320,"p":6,"f":12,"c":48,"emoji":"🥔","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/24142-molodaya-kartoshka-s-ukropom","sourceName":"1000.menu","ingredients":[{"id":"potato","label":"Картофель","qty":550,"unit":"г"},{"id":"butter","label":"Масло сливочное","qty":35,"unit":"г"},{"id":"garlic","label":"Чеснок","qty":8,"unit":"г"},{"id":"greens","label":"Свежий укроп","qty":20,"unit":"г"}],"steps":["Отварите картофель в подсоленной воде до готовности, слейте воду.","Добавьте в кастрюлю сливочное масло, рубленый укроп и чеснок, накройте крышкой и встряхните."]},{"id":"q07","name":"Золотистые драники из картофеля со сметаной","type":"Ужин","subcat":"quick","difficulty":"Простая","timeMin":25,"baseServings":2,"kcal":380,"p":8,"f":18,"c":46,"emoji":"🥞","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/24143-draniki-kartofelnye","sourceName":"1000.menu","ingredients":[{"id":"potato","label":"Картофель","qty":500,"unit":"г"},{"id":"onion","label":"Лук репчатый","qty":60,"unit":"г"},{"id":"eggs","label":"Яйцо куриное","qty":1,"unit":"шт"},{"id":"flour","label":"Мука пшеничная","qty":35,"unit":"г"},{"id":"sour_cream","label":"Сметана для подачи","qty":60,"unit":"г"},{"id":"oil","label":"Масло для жарки","qty":25,"unit":"мл"}],"steps":["Натрите картофель и лук на тёрке, отожмите лишний сок.","Добавьте яйцо, муку и соль.","Жарьте тонкие оладьи на разогретом масле по 3–4 минуты с каждой стороны."]},{"id":"q08","name":"Жареный картофель с шампиньонами и луком на сковороде","type":"Ужин","subcat":"quick","difficulty":"Простая","timeMin":30,"baseServings":2,"kcal":390,"p":9,"f":17,"c":50,"emoji":"🍄","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/24144-jarenaya-kartoshka-s-gribami","sourceName":"1000.menu","ingredients":[{"id":"potato","label":"Картофель","qty":450,"unit":"г"},{"id":"mushrooms","label":"Шампиньоны свежие","qty":250,"unit":"г"},{"id":"onion","label":"Лук репчатый","qty":70,"unit":"г"},{"id":"oil","label":"Масло растительное","qty":25,"unit":"мл"},{"id":"greens","label":"Укроп","qty":10,"unit":"г"}],"steps":["Обжарьте ломтики шампиньонов с луком 7 минут и переложите на тарелку.","На той же сковороде поджарьте брусочки картофеля до золотистой корочки.","Верните грибы к картошке, посолите и прогрейте 3 минуты."]},{"id":"q09","name":"Пельмени домашние / покупные, запечённые в сметане под сыром","type":"Ужин","subcat":"quick","difficulty":"Простая","timeMin":25,"baseServings":2,"kcal":520,"p":26,"f":26,"c":44,"emoji":"🥟","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/24145-pelmeni-v-duxovke-s-syrom","sourceName":"1000.menu","ingredients":[{"id":"dumplings","label":"Пельмени замороженные","qty":400,"unit":"г"},{"id":"sour_cream","label":"Сметана","qty":100,"unit":"г"},{"id":"cheese","label":"Сыр твёрдый","qty":70,"unit":"г"},{"id":"garlic","label":"Чеснок и зелень","qty":6,"unit":"г"}],"steps":["Выложите замороженные пельмени в форму для запекания.","Залейте сметаной, смешанной с 100 мл воды, солью и чесноком, посыпьте сыром.","Запекайте при 190 °C 22–25 минут."]},{"id":"q10","name":"Ленивые вареники с картофелем и жареным луком","type":"Ужин","subcat":"quick","difficulty":"Простая","timeMin":25,"baseServings":2,"kcal":390,"p":9,"f":11,"c":64,"emoji":"🥟","isVacuumPrep":true,"prepNote":"Вакуум: заготовленные клецки заморозить и запаять в пакет.","sourceUrl":"https://1000.menu/cooking/2139-lenivye-vareniki-s-kartoshkoi","sourceName":"1000.menu","ingredients":[{"id":"potato","label":"Картофель (пюре)","qty":350,"unit":"г"},{"id":"flour","label":"Мука пшеничная","qty":90,"unit":"г"},{"id":"eggs","label":"Яйцо куриное","qty":1,"unit":"шт"},{"id":"onion","label":"Лук репчатый","qty":80,"unit":"г"},{"id":"butter","label":"Масло сливочное","qty":20,"unit":"г"}],"steps":["Смешайте картофельное пюре с яйцом и мукой, скатайте жгутики и нарежьте.","Отварите в кипящей воде 2 минуты после всплытия, заправьте жареным на масле лучком."]},{"id":"q11","name":"Лёгкий куриный суп с вермишелью и зеленью","type":"Ужин","subcat":"quick","difficulty":"Простая","timeMin":35,"baseServings":2,"kcal":240,"p":22,"f":8,"c":22,"emoji":"🍲","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/29298-kurinyi-sup-s-vermishelu-i-kartoshkoi","sourceName":"1000.menu","ingredients":[{"id":"chicken_fillet","label":"Куриное филе или бедро","qty":250,"unit":"г"},{"id":"potato","label":"Картофель","qty":200,"unit":"г"},{"id":"pasta","label":"Вермишель мелкая","qty":50,"unit":"г"},{"id":"carrot","label":"Морковь и лук","qty":80,"unit":"г"},{"id":"greens","label":"Укроп свежий","qty":10,"unit":"г"}],"steps":["Сварите куриный бульон с кусочками мяса (20 минут).","Добавьте кубики картофеля, моркови и лука, варите 12 минут.","Всыпьте вермишель и зелень, через 3 минуты снимите с плиты."]},{"id":"q12","name":"Сырный крем-суп с курицей и хрустящими сухариками","type":"Ужин","subcat":"quick","difficulty":"Простая","timeMin":30,"baseServings":2,"kcal":360,"p":26,"f":18,"c":24,"emoji":"🍲","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/24146-syrnyi-sup-s-kuricei","sourceName":"1000.menu","ingredients":[{"id":"chicken_fillet","label":"Куриное филе","qty":250,"unit":"г"},{"id":"potato","label":"Картофель","qty":250,"unit":"г"},{"id":"cream_cheese","label":"Плавленый или сливочный сыр","qty":120,"unit":"г"},{"id":"carrot","label":"Морковь и лук","qty":80,"unit":"г"},{"id":"bread","label":"Хлеб для сухариков","qty":60,"unit":"г"}],"steps":["Отварите курицу с картофелем и морковью.","Добавьте сливочный сыр, размешайте до растворения.","Подавайте с подсушенными в духовке кубиками хлеба."]},{"id":"q13","name":"Овощное рагу с куриным филе, кабачками и картофелем","type":"Ужин","subcat":"quick","difficulty":"Простая","timeMin":35,"baseServings":2,"kcal":380,"p":31,"f":14,"c":34,"emoji":"🥘","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/2869-ovoshchnoe-ragu-s-kuricei","sourceName":"1000.menu","ingredients":[{"id":"chicken_fillet","label":"Куриное филе","qty":300,"unit":"г"},{"id":"potato","label":"Картофель","qty":250,"unit":"г"},{"id":"zucchini","label":"Кабачки молодые","qty":200,"unit":"г"},{"id":"tomato","label":"Помидоры","qty":150,"unit":"г"},{"id":"onion","label":"Лук и морковь","qty":90,"unit":"г"},{"id":"oil","label":"Масло растительное","qty":15,"unit":"мл"}],"steps":["Обжарьте кусочки курицы с луком и морковью 6 минут.","Добавьте кубики картофеля, кабачков и помидоров, тушите под крышкой 25 минут."]},{"id":"s01","name":"Греческий салат с сыром фета и оливковым маслом","type":"Перекус","subcat":"snack","difficulty":"Простая","timeMin":10,"baseServings":2,"kcal":210,"p":8,"f":17,"c":7,"emoji":"🥗","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/2407-grecheskii-salat-klassicheskii","sourceName":"1000.menu","ingredients":[{"id":"tomato","label":"Помидоры свежие","qty":200,"unit":"г"},{"id":"cucumber","label":"Огурцы свежие","qty":160,"unit":"г"},{"id":"pepper","label":"Перец сладкий","qty":100,"unit":"г"},{"id":"cheese","label":"Сыр фета / брынза","qty":90,"unit":"г"},{"id":"oil_olive","label":"Оливковое масло","qty":20,"unit":"мл"}],"steps":["Нарежьте овощи крупными кубиками.","Выложите кубики сыра фета, полейте оливковым маслом с орегано."]},{"id":"s02","name":"Салат «Цезарь» домашний с куриным филе и сухариками","type":"Перекус","subcat":"snack","difficulty":"Простая","timeMin":20,"baseServings":2,"kcal":340,"p":28,"f":18,"c":16,"emoji":"🥗","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/24150-salat-cezar-klassicheskii-s-kuricei","sourceName":"1000.menu","ingredients":[{"id":"chicken_fillet","label":"Куриное филе","qty":200,"unit":"г"},{"id":"cabbage","label":"Пекинская капуста / салат айсберг","qty":150,"unit":"г"},{"id":"tomato","label":"Помидоры черри","qty":100,"unit":"г"},{"id":"cheese","label":"Сыр пармезан","qty":40,"unit":"г"},{"id":"bread","label":"Хлеб белый (сухарики)","qty":50,"unit":"г"},{"id":"sour_cream","label":"Соус (сметана/майонез + чеснок)","qty":40,"unit":"г"}],"steps":["Обжарьте кусочки куриного филе и кубики хлеба до румяности.","Порвите листья салата, добавьте половинки черри, курицу, заправьте соусом и посыпьте пармезаном."]},{"id":"s03","name":"Свежий салат из огурцов и помидоров со сметаной","type":"Перекус","subcat":"snack","difficulty":"Простая","timeMin":10,"baseServings":2,"kcal":115,"p":3,"f":7,"c":8,"emoji":"🥗","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/3705-salat-iz-pomidorov-i-ogurcov-so-smetanoi","sourceName":"1000.menu","ingredients":[{"id":"tomato","label":"Помидоры свежие","qty":220,"unit":"г"},{"id":"cucumber","label":"Огурцы свежие","qty":180,"unit":"г"},{"id":"greens","label":"Зелёный лук и укроп","qty":20,"unit":"г"},{"id":"sour_cream","label":"Сметана 20%","qty":45,"unit":"г"}],"steps":["Нарежьте огурцы и помидоры, добавьте рубленую зелень и заправьте сметаной со щепоткой соли."]},{"id":"s04","name":"Салат из свежей капусты с огурцом и зеленью","type":"Перекус","subcat":"snack","difficulty":"Простая","timeMin":10,"baseServings":2,"kcal":105,"p":2,"f":7,"c":8,"emoji":"🥗","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/1945-salat-iz-kapusty-so-svejimi-ogurcami","sourceName":"1000.menu","ingredients":[{"id":"cabbage","label":"Молодая капуста","qty":250,"unit":"г"},{"id":"cucumber","label":"Огурцы свежие","qty":150,"unit":"г"},{"id":"greens","label":"Укроп свежий","qty":15,"unit":"г"},{"id":"oil","label":"Масло растительное","qty":15,"unit":"мл"}],"steps":["Тонко нашинкуйте капусту и слегка помните с солью.","Добавьте соломку огурца, укроп и заправьте маслом."]},{"id":"s05","name":"Кабачковые оладьи нежные со сметаной и чесноком","type":"Перекус","subcat":"snack","difficulty":"Простая","timeMin":20,"baseServings":2,"kcal":210,"p":7,"f":12,"c":19,"emoji":"🥞","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/41421-kabachkovye-oladi-iz-kabachkov-na-skovorode","sourceName":"1000.menu","ingredients":[{"id":"zucchini","label":"Кабачки молодые","qty":350,"unit":"г"},{"id":"eggs","label":"Яйцо куриное","qty":1,"unit":"шт"},{"id":"flour","label":"Мука пшеничная","qty":40,"unit":"г"},{"id":"sour_cream","label":"Сметана","qty":50,"unit":"г"},{"id":"oil","label":"Масло для жарки","qty":15,"unit":"мл"}],"steps":["Натрите кабачки, отожмите сок.","Смешайте с яйцом, мукой и солью, обжарьте оладьи по 3 минуты с двух сторон."]},{"id":"s06","name":"Запечённые кружочки кабачков с помидорами и сыром","type":"Перекус","subcat":"snack","difficulty":"Простая","timeMin":20,"baseServings":2,"kcal":190,"p":11,"f":13,"c":9,"emoji":"🥒","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/18999-kabachki-zapechennye-v-duxovke-s-syrom","sourceName":"1000.menu","ingredients":[{"id":"zucchini","label":"Кабачки молодые","qty":350,"unit":"г"},{"id":"tomato","label":"Помидоры","qty":150,"unit":"г"},{"id":"cheese","label":"Сыр твёрдый","qty":70,"unit":"г"},{"id":"garlic","label":"Чеснок и сметана","qty":30,"unit":"г"}],"steps":["Выложите кружочки кабачков на противень, смажьте сметаной с чесноком.","Сверху положите кружочек помидора и сыр, запекайте 18 минут при 195 °C."]},{"id":"s07","name":"Итальянские брускетты с томатами, чесноком и сыром","type":"Перекус","subcat":"snack","difficulty":"Простая","timeMin":12,"baseServings":2,"kcal":240,"p":9,"f":10,"c":28,"emoji":"🥖","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/24151-brusketta-s-pomidorami","sourceName":"1000.menu","ingredients":[{"id":"bread","label":"Багет или чиабатта","qty":100,"unit":"г"},{"id":"tomato","label":"Помидоры спелые","qty":180,"unit":"г"},{"id":"cheese","label":"Сыр моцарелла / творожный","qty":60,"unit":"г"},{"id":"garlic","label":"Чеснок и базилик","qty":6,"unit":"г"},{"id":"oil_olive","label":"Оливковое масло","qty":10,"unit":"мл"}],"steps":["Подсушите ломтики багета в духовке и натрите зубчиком чеснока.","Выложите сверху мелко нарезанные томаты с зеленью, сыром и оливковым маслом."]},{"id":"s08","name":"Салат «Капрезе» с помидорами и моцареллой","type":"Перекус","subcat":"snack","difficulty":"Простая","timeMin":8,"baseServings":2,"kcal":250,"p":14,"f":19,"c":6,"emoji":"🍅","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/24152-salat-kapreze","sourceName":"1000.menu","ingredients":[{"id":"tomato","label":"Помидоры спелые","qty":220,"unit":"г"},{"id":"cheese","label":"Сыр моцарелла","qty":125,"unit":"г"},{"id":"oil_olive","label":"Оливковое масло","qty":15,"unit":"мл"},{"id":"greens","label":"Базилик или руккола","qty":10,"unit":"г"}],"steps":["Нарежьте помидоры и моцареллу кружочками, выложите внахлёст, полейте оливковым маслом."]},{"id":"s09","name":"Тёплый салат с куриными стрипсами и свежими овощами","type":"Перекус","subcat":"snack","difficulty":"Простая","timeMin":15,"baseServings":2,"kcal":290,"p":26,"f":15,"c":10,"emoji":"🥗","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/24150-salat-cezar-klassicheskii-s-kuricei","sourceName":"1000.menu","ingredients":[{"id":"chicken_fillet","label":"Куриное филе","qty":200,"unit":"г"},{"id":"cucumber","label":"Огурец свежий","qty":120,"unit":"г"},{"id":"tomato","label":"Помидоры","qty":120,"unit":"г"},{"id":"oil_olive","label":"Оливковое масло и соевый соус","qty":20,"unit":"мл"}],"steps":["Быстро обжарьте полоски куриного филе в соевом соусе (5 минут).","Выложите горячую курицу поверх свежих нарезанных огурцов и помидоров."]},{"id":"s10","name":"Клубный сэндвич с запечённой курицей, сыром и томатом","type":"Перекус","subcat":"snack","difficulty":"Простая","timeMin":15,"baseServings":2,"kcal":380,"p":26,"f":17,"c":30,"emoji":"🥪","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/24153-klab-sendvich-s-kuricei","sourceName":"1000.menu","ingredients":[{"id":"bread","label":"Хлеб тостовый","qty":100,"unit":"г"},{"id":"chicken_fillet","label":"Куриное филе (обжаренное)","qty":150,"unit":"г"},{"id":"cheese","label":"Сыр твёрдый","qty":50,"unit":"г"},{"id":"tomato","label":"Помидор и огурец","qty":100,"unit":"г"},{"id":"sour_cream","label":"Соус (сметана + горчица)","qty":30,"unit":"г"}],"steps":["Подрумяньте тосты, смажьте соусом, соберите сэндвич со слайсами курицы, сыром и овощами."]},{"id":"s11","name":"Салат с тунцом (или красной рыбой), яйцом и свежим огурцом","type":"Перекус","subcat":"snack","difficulty":"Простая","timeMin":12,"baseServings":2,"kcal":240,"p":22,"f":13,"c":6,"emoji":"🥗","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/24154-salat-s-tuncom-i-yaicom","sourceName":"1000.menu","ingredients":[{"id":"salmon_salted","label":"Красная рыба или тунец в с/с","qty":150,"unit":"г"},{"id":"eggs","label":"Яйца варёные","qty":2,"unit":"шт"},{"id":"cucumber","label":"Огурец свежий","qty":150,"unit":"г"},{"id":"greens","label":"Листья салата и укроп","qty":30,"unit":"г"},{"id":"oil_olive","label":"Оливковое масло","qty":15,"unit":"мл"}],"steps":["Нарежьте варёные яйца и огурцы, добавьте кусочки рыбы и зелень, сбрызните маслом."]},{"id":"s12","name":"Фаршированные шампиньоны с сыром и чесноком в духовке","type":"Перекус","subcat":"snack","difficulty":"Простая","timeMin":25,"baseServings":2,"kcal":220,"p":14,"f":16,"c":6,"emoji":"🍄","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/24155-farshirovannye-shampinony-s-syrom","sourceName":"1000.menu","ingredients":[{"id":"mushrooms","label":"Шампиньоны крупные","qty":300,"unit":"г"},{"id":"cheese","label":"Сыр твёрдый","qty":80,"unit":"г"},{"id":"sour_cream","label":"Сметана","qty":30,"unit":"г"},{"id":"garlic","label":"Чеснок и зелень","qty":8,"unit":"г"}],"steps":["Выньте ножки у шампиньонов, мелко их порубите и смешайте с тёртым сыром, сметаной и чесноком.","Начините шляпки грибов и запекайте 18–20 минут при 190 °C."]},{"id":"s13","name":"Яйца, фаршированные твёрдым сыром и чесноком","type":"Перекус","subcat":"snack","difficulty":"Простая","timeMin":15,"baseServings":2,"kcal":230,"p":16,"f":17,"c":3,"emoji":"🥚","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/24156-farshirovannye-yaica-s-syrom","sourceName":"1000.menu","ingredients":[{"id":"eggs","label":"Яйца куриные отварные","qty":4,"unit":"шт"},{"id":"cheese","label":"Сыр твёрдый мелкий","qty":50,"unit":"г"},{"id":"sour_cream","label":"Сметана или майонез","qty":30,"unit":"г"},{"id":"garlic","label":"Чеснок и укроп","qty":5,"unit":"г"}],"steps":["Разрежьте варёные яйца вдоль пополам, желтки разомните с тёртым сыром, чесноком и сметаной.","Наполните белки сырной начинкой."]},{"id":"s14","name":"Запечённые яблоки с творогом, мёдом и корицей","type":"Перекус","subcat":"snack","difficulty":"Простая","timeMin":30,"baseServings":2,"kcal":230,"p":11,"f":8,"c":28,"emoji":"🍎","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/43971-zapechennye-yabloki-s-tvorogom-v-duxovke","sourceName":"1000.menu","ingredients":[{"id":"apple","label":"Яблоки крупные","qty":300,"unit":"г"},{"id":"curd","label":"Творог 5–9%","qty":120,"unit":"г"},{"id":"honey","label":"Мёд натуральный","qty":25,"unit":"г"},{"id":"sour_cream","label":"Сметана","qty":20,"unit":"г"}],"steps":["Аккуратно удалите сердцевину у яблок, наполните творогом с мёдом.","Запекайте в духовке при 180 °C 25 минут."]},{"id":"s15","name":"Салат из помидоров с моцареллой / брынзой и красным луком","type":"Перекус","subcat":"snack","difficulty":"Простая","timeMin":8,"baseServings":2,"kcal":210,"p":10,"f":15,"c":8,"emoji":"🥗","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/2407-grecheskii-salat-klassicheskii","sourceName":"1000.menu","ingredients":[{"id":"tomato","label":"Помидоры сладкие","qty":250,"unit":"г"},{"id":"cheese","label":"Сыр моцарелла / фета","qty":80,"unit":"г"},{"id":"onion","label":"Лук красный","qty":40,"unit":"г"},{"id":"oil_olive","label":"Оливковое масло","qty":15,"unit":"мл"}],"steps":["Нарежьте помидоры крупными дольками, посыпьте полукольцами лука и кубиками сыра, полейте маслом."]},{"id":"s16","name":"Творожно-банановый крем-десерт в стаканчиках за 5 минут","type":"Перекус","subcat":"snack","difficulty":"Простая","timeMin":5,"baseServings":2,"kcal":280,"p":18,"f":9,"c":32,"emoji":"🍌","isVacuumPrep":false,"prepNote":"","sourceUrl":"https://1000.menu/cooking/2873-desert-iz-tvoroga-s-bananom","sourceName":"1000.menu","ingredients":[{"id":"curd","label":"Творог мягкий 5%","qty":250,"unit":"г"},{"id":"banana","label":"Банан спелый","qty":150,"unit":"г"},{"id":"sour_cream","label":"Сметана или йогурт","qty":50,"unit":"г"},{"id":"honey","label":"Мёд","qty":20,"unit":"г"}],"steps":["Взбейте блендером творог, банан, сметану и мёд до воздушного крема."]}];
 
 /* =========================================================================
-   3. СОСТОЯНИЕ
+   3. СОСТОЯНИЕ И ХРАНИЛИЩЕ
    ========================================================================= */
 const STORAGE_KEY = 'moldova_anylist_ios_v5';
 
@@ -693,7 +589,9 @@ let state = {
   activeTab: 'plan',
   people: 2,
   batchDinners: true,
-  activeFolder: null, // null = показываем 8 папок, иначе список блюд папки
+  activeFolder: null,
+  lockedDays: {}, // { 0: true, 4: true } — замочек 🔒 на днях при автогенерации
+  freezerStock: {}, // { recipeId: count } — сколько пакетов заготовок сейчас лежит в морозилке
   shoppingList: [
     { id: 's1', name: 'Куриные крылышки', note: '1 кг', cat: 'meat', done: false },
     { id: 's2', name: 'Творог 5–9% (на сырники)', note: '500 г', cat: 'dairy', done: false },
@@ -709,8 +607,26 @@ let state = {
 function loadState() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) state = Object.assign({}, state, JSON.parse(raw));
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      state = Object.assign({}, state, parsed);
+      if (!state.lockedDays) state.lockedDays = {};
+      if (!state.freezerStock) state.freezerStock = {};
+    }
   } catch (e) {}
+
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const shared = params.get('list');
+    if (shared) {
+      const decoded = JSON.parse(decodeURIComponent(escape(atob(shared))));
+      if (Array.isArray(decoded) && decoded.length > 0) {
+        state.shoppingList = decoded;
+        state.activeTab = 'list';
+      }
+    }
+  } catch (e) {}
+
   if (!Array.isArray(state.weeklyMenu) || state.weeklyMenu.length !== 7) {
     generateWeeklyMenu(false);
   }
@@ -737,14 +653,11 @@ function showToast(msg) {
   txt.textContent = msg;
   box.classList.add('show');
   if (toastTimer) clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => box.classList.remove('show'), 2100);
+  toastTimer = setTimeout(() => box.classList.remove('show'), 2200);
 }
 
 function applyTheme() {
   document.documentElement.setAttribute('data-theme', state.theme);
-  document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
-    btn.textContent = state.theme === 'dark' ? '☀️' : '🌙';
-  });
 }
 
 function escapeHtml(str) {
@@ -775,7 +688,7 @@ function updateTabBadge() {
 }
 
 /* =========================================================================
-   4. ВКЛАДКА 1: 🛒 СПИСОК ПОКУПОК (УМНЫЙ ВВОД ОДНОЙ СТРОКОЙ КАК В ANYLIST)
+   4. ВКЛАДКА 1: 🛒 СПИСОК ПОКУПОК (РЕДАКТИРОВАНИЕ + НАТИВНЫЙ SHARE + ПРОГРЕСС)
    ========================================================================= */
 function guessCategoryByName(name) {
   const n = name.toLowerCase();
@@ -791,13 +704,10 @@ function guessCategoryByName(name) {
   return 'other';
 }
 
-// Автоматическое отделение количества из одной строки, например: "Крылышки 1.5 кг" -> name: "Крылышки", note: "1.5 кг"
 function parseSmartInputString(raw) {
   const str = (raw || '').trim();
   const match = str.match(/^(.+?)\s+(\d+(?:[.,]\d+)?\s*(?:кг|г|гр|мл|л|шт|уп|упак|пач|бут|рул|бан).*)$/i);
-  if (match) {
-    return { name: match[1].trim(), note: match[2].trim() };
-  }
+  if (match) return { name: match[1].trim(), note: match[2].trim() };
   return { name: str, note: '' };
 }
 
@@ -862,21 +772,15 @@ function renderSmartSuggestions(query) {
   const box = document.getElementById('smartSuggestions');
   if (!box) return;
   const q = (query || '').trim().toLowerCase();
-  if (!q) {
-    box.classList.add('hidden');
-    return;
-  }
+  if (!q) { box.classList.add('hidden'); return; }
 
   const matches = getAllCatalog().filter(c => c.name.toLowerCase().includes(q)).slice(0, 5);
-  if (matches.length === 0) {
-    box.classList.add('hidden');
-    return;
-  }
+  if (matches.length === 0) { box.classList.add('hidden'); return; }
 
   box.innerHTML = matches.map(m => `
-    <div class="ios-row cursor-pointer suggest-item" style="padding: 9px 12px;" data-name="${escapeHtml(m.name)}" data-note="${escapeHtml(m.defNote || '')}" data-cat="${m.cat}">
-      <span class="font-medium text-sm">➕ ${escapeHtml(m.name)}</span>
-      <span class="text-xs" style="color: var(--muted);">${escapeHtml(m.defNote || '')}</span>
+    <div class="ios-row cursor-pointer suggest-item" style="padding: 9px 14px;" data-name="${escapeHtml(m.name)}" data-note="${escapeHtml(m.defNote || '')}" data-cat="${m.cat}">
+      <span class="font-bold text-sm">➕ ${escapeHtml(m.name)}</span>
+      <span class="text-xs font-semibold" style="color: var(--muted);">${escapeHtml(m.defNote || '')}</span>
     </div>
   `).join('');
   box.classList.remove('hidden');
@@ -899,23 +803,27 @@ function renderShoppingList() {
   const container = document.getElementById('shoppingListGroups');
   if (!container) return;
 
+  const total = state.shoppingList.length;
   const activeItems = state.shoppingList.filter(i => !i.done);
   const boughtItems = state.shoppingList.filter(i => i.done);
+  const doneCount = boughtItems.length;
 
-  if (state.shoppingList.length === 0) {
+  if (total === 0) {
     container.innerHTML = `
-      <div class="ios-group p-8 text-center">
-        <div class="text-3xl mb-2">🛒</div>
-        <div class="font-bold text-base mb-1">Список покупок пуст</div>
-        <div class="text-xs" style="color: var(--muted);">Начните вводить название сверху, нажмите на быстрые кнопки или перенесите продукты из вкладки «План».</div>
+      <div class="ios-group" style="padding:32px 20px;text-align:center">
+        <div style="font-size:42px">🧺</div>
+        <div style="font-weight:900;font-size:17px;margin:6px 0 2px">Пока пусто</div>
+        <div class="text-xs" style="color:var(--muted)">Добавьте продукты сверху, из быстрых кнопок или из вкладки «План» 🙂</div>
       </div>
     `;
     return;
   }
 
-  let html = '';
+  const pct = Math.round((doneCount / total) * 100);
+  let html = doneCount === total
+    ? `<div class="ios-group done-banner">Всё куплено 🎉</div>`
+    : `<div class="progress-wrap"><div class="text-xs font-extrabold">Куплено ${doneCount} из ${total}</div><div class="bar"><i style="width:${pct}%"></i></div></div>`;
 
-  // Группируем активные покупки по отделам магазина (как в AnyList)
   const groups = {};
   activeItems.forEach(item => {
     const c = item.cat || 'other';
@@ -928,38 +836,39 @@ function renderShoppingList() {
   sortedCatIds.forEach(catId => {
     const cat = getCatInfo(catId);
     html += `
-      <div class="text-xs font-bold uppercase tracking-wider px-2 mb-1 mt-2" style="color: var(--muted);">${cat.name}</div>
+      <div class="section-label">${cat.name}</div>
       <div class="ios-group">
     `;
     groups[catId].forEach(it => {
       html += `
-        <div class="ios-row cursor-pointer item-toggle" data-id="${it.id}">
+        <div class="ios-row">
           <div class="flex items-center gap-3 min-w-0 flex-1">
-            <span class="ios-check">✓</span>
-            <span class="font-medium text-[15px] truncate">${escapeHtml(it.name)}</span>
+            <span class="ios-check check-item-btn" data-id="${it.id}">✓</span>
+            <span class="font-semibold text-[15.5px] truncate cursor-pointer edit-item-btn flex-1" data-id="${it.id}">${escapeHtml(it.name)}</span>
           </div>
-          <span class="text-xs font-semibold shrink-0" style="color: var(--muted);">${escapeHtml(it.note || '')}</span>
+          <button class="text-xs font-bold px-2.5 py-1 rounded-full border-none cursor-pointer edit-item-btn shrink-0" style="background: var(--card-2); color: var(--tint);" data-id="${it.id}">
+            ${escapeHtml(it.note || 'изм.')}
+          </button>
         </div>
       `;
     });
     html += `</div>`;
   });
 
-  // Купленные позиции внизу одним аккуратным блоком
   if (boughtItems.length > 0) {
     html += `
       <div class="flex items-center justify-between px-2 mb-1 mt-3">
-        <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--muted);">Куплено (${boughtItems.length})</span>
-        <button id="btnClearBoughtInline" class="text-xs font-bold border-none bg-transparent cursor-pointer" style="color: var(--red);">Очистить купленные</button>
+        <span class="section-label m-0">Куплено (${boughtItems.length})</span>
+        <button id="btnClearBoughtInline" class="text-xs font-extrabold border-none bg-transparent cursor-pointer" style="color: var(--red);">Очистить купленные</button>
       </div>
-      <div class="ios-group" style="opacity: 0.6;">
+      <div class="ios-group" style="opacity: 0.65;">
     `;
     boughtItems.forEach(it => {
       html += `
-        <div class="ios-row cursor-pointer item-toggle" data-id="${it.id}">
-          <div class="flex items-center gap-3 min-w-0 flex-1">
+        <div class="ios-row">
+          <div class="flex items-center gap-3 min-w-0 flex-1 cursor-pointer check-item-btn" data-id="${it.id}">
             <span class="ios-check checked">✓</span>
-            <span class="font-medium text-[14.5px] line-through truncate" style="color: var(--muted);">${escapeHtml(it.name)}</span>
+            <span class="font-medium text-[15px] line-through truncate" style="color: var(--muted);">${escapeHtml(it.name)}</span>
           </div>
           <span class="text-xs shrink-0" style="color: var(--muted);">${escapeHtml(it.note || '')}</span>
         </div>
@@ -970,8 +879,10 @@ function renderShoppingList() {
 
   container.innerHTML = html;
 
-  container.querySelectorAll('.item-toggle').forEach(row => {
-    row.addEventListener('click', e => {
+  // Тап по кружочку — отметить купленным
+  container.querySelectorAll('.check-item-btn').forEach(el => {
+    el.addEventListener('click', e => {
+      e.stopPropagation();
       const id = e.currentTarget.getAttribute('data-id');
       const target = state.shoppingList.find(x => x.id === id);
       if (target) {
@@ -980,6 +891,14 @@ function renderShoppingList() {
         renderShoppingList();
         renderQuickChips();
       }
+    });
+  });
+
+  // Тап по названию или количеству — быстрое редактирование количества/заметки или удаление
+  container.querySelectorAll('.edit-item-btn').forEach(el => {
+    el.addEventListener('click', e => {
+      e.stopPropagation();
+      openEditShoppingItemSheet(e.currentTarget.getAttribute('data-id'));
     });
   });
 
@@ -995,16 +914,111 @@ function renderShoppingList() {
   }
 }
 
+/* Шторка редактирования или удаления одного товара в Списке */
+function openEditShoppingItemSheet(itemId) {
+  const item = state.shoppingList.find(x => x.id === itemId);
+  if (!item) return;
+  const sheet = document.getElementById('utilitySheet');
+  const body = document.getElementById('utilitySheetBody');
+
+  body.innerHTML = `
+    <div class="flex items-center justify-between mb-3">
+      <h3 class="text-base font-extrabold m-0">Редактировать товар</h3>
+      <button id="btnCloseEditItem" class="ios-btn ios-btn-gray ios-btn-sm">✕</button>
+    </div>
+    <div class="space-y-2.5">
+      <div>
+        <div class="text-xs font-bold mb-1 px-1" style="color: var(--muted);">Название:</div>
+        <div class="ios-input-wrap"><input id="editItemNameInp" type="text" class="ios-input" value="${escapeHtml(item.name)}"></div>
+      </div>
+      <div>
+        <div class="text-xs font-bold mb-1 px-1" style="color: var(--muted);">Количество / заметка (напр. 2 кг, по акции):</div>
+        <div class="ios-input-wrap"><input id="editItemNoteInp" type="text" class="ios-input" value="${escapeHtml(item.note || '')}" placeholder="Например: 2 упак"></div>
+      </div>
+      <div>
+        <div class="text-xs font-bold mb-1 px-1" style="color: var(--muted);">Отдел магазина:</div>
+        <select id="editItemCatSel" class="ios-input-wrap w-full p-2.5 text-sm font-semibold">
+          ${CATEGORIES.map(c => `<option value="${c.id}" ${c.id === item.cat ? 'selected' : ''}>${c.name}</option>`).join('')}
+        </select>
+      </div>
+      <div class="grid grid-cols-2 gap-2 pt-2">
+        <button id="btnDeleteSingleItem" class="ios-btn ios-btn-gray w-full" style="color: var(--red);">🗑 Удалить</button>
+        <button id="btnSaveSingleItem" class="ios-btn ios-btn-primary w-full">Сохранить</button>
+      </div>
+    </div>
+  `;
+
+  sheet.classList.add('open');
+  document.getElementById('btnCloseEditItem').addEventListener('click', () => sheet.classList.remove('open'));
+  document.getElementById('btnDeleteSingleItem').addEventListener('click', () => {
+    state.shoppingList = state.shoppingList.filter(x => x.id !== itemId);
+    saveState();
+    renderShoppingList();
+    renderQuickChips();
+    sheet.classList.remove('open');
+    showToast('Товар удалён');
+  });
+  document.getElementById('btnSaveSingleItem').addEventListener('click', () => {
+    const newName = document.getElementById('editItemNameInp').value.trim();
+    if (newName) item.name = newName;
+    item.note = document.getElementById('editItemNoteInp').value.trim();
+    item.cat = document.getElementById('editItemCatSel').value;
+    saveState();
+    renderShoppingList();
+    renderQuickChips();
+    sheet.classList.remove('open');
+    showToast('Сохранено');
+  });
+}
+
+/* Отправка списка через системное меню iPhone «Поделиться» (Telegram / Viber / WhatsApp) */
+async function shareListNative() {
+  const active = state.shoppingList.filter(i => !i.done);
+  const items = active.length > 0 ? active : state.shoppingList;
+  if (!items.length) { showToast('Список пуст'); return; }
+
+  const groups = {};
+  items.forEach(it => { const c = it.cat || 'other'; if (!groups[c]) groups[c] = []; groups[c].push(it); });
+  let text = `🛒 Список покупок (${items.length}):\n`;
+  Object.keys(groups).sort((a, b) => getCatInfo(a).order - getCatInfo(b).order).forEach(cId => {
+    text += `\n${getCatInfo(cId).name}:\n`;
+    groups[cId].forEach(it => { text += `• ${it.name}${it.note ? ' — ' + it.note : ''}\n`; });
+  });
+
+  if (navigator.share) {
+    try {
+      await navigator.share({ title: 'Список покупок', text: text.trim() });
+      return;
+    } catch (e) {}
+  }
+  copyText(text.trim(), 'Список скопирован для отправки!');
+}
+
 /* =========================================================================
-   5. ВКЛАДКА 2: 📅 ПЛАН НА НЕДЕЛЮ (7 ЧИСТЫХ СТРОК КАК В ANYLIST)
+   5. ВКЛАДКА 2: 📅 ПЛАН НА НЕДЕЛЮ (ЗАМОЧКИ 🔒 + СМЕНА ДНЕЙ ⇄ + МОРОЗИЛКА)
    ========================================================================= */
 function generateWeeklyMenu(notify = true) {
   const all = getAllRecipes();
   const bPool = all.filter(r => r.type === 'Завтрак');
   const sPool = all.filter(r => r.type === 'Перекус');
-  const dPool = all.filter(r => r.type === 'Ужин');
+  let dPool = all.filter(r => r.type === 'Ужин');
+
+  // Если в морозилке есть готовые заготовки — ставим их в приоритет!
+  const stockedIds = Object.keys(state.freezerStock || {}).filter(k => state.freezerStock[k] > 0);
+  if (stockedIds.length > 0) {
+    const stockedRecipes = dPool.filter(r => stockedIds.includes(r.id));
+    const otherRecipes = dPool.filter(r => !stockedIds.includes(r.id));
+    dPool = stockedRecipes.concat(otherRecipes);
+  }
 
   const usedB = new Set(), usedS = new Set(), usedD = new Set();
+  // Записываем уже зафиксированные замочком блюда, чтобы не дублировать их случайно
+  DAYS_CONFIG.forEach((d, idx) => {
+    if (state.lockedDays && state.lockedDays[idx] && state.weeklyMenu[idx]) {
+      usedD.add(state.weeklyMenu[idx].meals['Ужин']);
+    }
+  });
+
   const pick = (pool, set) => {
     const unused = pool.filter(r => !set.has(r.id));
     const arr = unused.length > 0 ? unused : pool;
@@ -1013,17 +1027,31 @@ function generateWeeklyMenu(notify = true) {
     return item ? item.id : pool[0].id;
   };
 
-  const monD = pick(dPool, usedD);
-  const tueD = state.batchDinners ? monD : pick(dPool, usedD);
-  const wedD = pick(dPool, usedD);
-  const thuD = state.batchDinners ? wedD : pick(dPool, usedD);
-  const friD = pick(dPool, usedD);
-  const satD = pick(dPool, usedD);
-  const sunD = pick(dPool, usedD);
+  const oldMenu = state.weeklyMenu || [];
+  const getLockedOrPickDinner = (idx) => {
+    if (state.lockedDays && state.lockedDays[idx] && oldMenu[idx]?.meals?.['Ужин']) {
+      return oldMenu[idx].meals['Ужин'];
+    }
+    return pick(dPool, usedD);
+  };
+
+  const monD = getLockedOrPickDinner(0);
+  const tueD = (state.lockedDays && state.lockedDays[1] && oldMenu[1]?.meals?.['Ужин'])
+    ? oldMenu[1].meals['Ужин']
+    : (state.batchDinners ? monD : getLockedOrPickDinner(1));
+  const wedD = getLockedOrPickDinner(2);
+  const thuD = (state.lockedDays && state.lockedDays[3] && oldMenu[3]?.meals?.['Ужин'])
+    ? oldMenu[3].meals['Ужин']
+    : (state.batchDinners ? wedD : getLockedOrPickDinner(3));
+  const friD = getLockedOrPickDinner(4);
+  const satD = getLockedOrPickDinner(5);
+  const sunD = getLockedOrPickDinner(6);
 
   const dinners = [monD, tueD, wedD, thuD, friD, satD, sunD];
 
   state.weeklyMenu = DAYS_CONFIG.map((d, idx) => {
+    const isLocked = state.lockedDays && state.lockedDays[idx] && oldMenu[idx]?.meals;
+    if (isLocked) return oldMenu[idx];
     const meals = { 'Ужин': dinners[idx] };
     if (d.isWeekend) {
       meals['Завтрак'] = pick(bPool, usedB);
@@ -1034,7 +1062,26 @@ function generateWeeklyMenu(notify = true) {
 
   saveState();
   renderWeekPlan();
-  if (notify) showToast('Меню на неделю обновлено!');
+  if (notify) showToast('Неделя заполнена (закреплённые дни сохранены)!');
+}
+
+function renderTodayCard() {
+  const card = document.getElementById('todayCard');
+  if (!card || !state.weeklyMenu || !state.weeklyMenu.length) return;
+  const idx = (new Date().getDay() + 6) % 7; // Пн = 0 .. Вс = 6
+  const day = state.weeklyMenu[idx];
+  const r = day && getRecipeById(day.meals['Ужин']);
+  if (!r) { card.innerHTML = ''; card.className = ''; return; }
+  const inFreezer = (state.freezerStock && state.freezerStock[r.id]) || 0;
+  const hint = inFreezer > 0
+    ? `❄️ В морозилке есть готовый пакет (${inFreezer} шт)`
+    : (r.isVacuumPrep ? '🧊 Достаньте заготовку из морозилки заранее' : `⏱ ${r.timeMin} мин`);
+  card.className = 'today-card';
+  card.innerHTML =
+    `<div class="today-kicker">Сегодня на ужин · ${DAYS_CONFIG[idx].name}</div>` +
+    `<div class="today-title">${r.emoji || '🍽️'} ${escapeHtml(r.name)}</div>` +
+    `<div class="today-hint">${hint}</div>`;
+  card.onclick = () => openRecipeSheet(r.id);
 }
 
 function renderWeekPlan() {
@@ -1042,6 +1089,8 @@ function renderWeekPlan() {
   if (pVal) pVal.textContent = `${state.people} чел`;
   const chk = document.getElementById('chkBatchDinners');
   if (chk) chk.checked = !!state.batchDinners;
+
+  renderTodayCard();
 
   const listEl = document.getElementById('weekDaysList');
   if (!listEl) return;
@@ -1052,6 +1101,7 @@ function renderWeekPlan() {
   let html = '';
   DAYS_CONFIG.forEach((dCfg, dIdx) => {
     const dayObj = state.weeklyMenu[dIdx] || { meals: {} };
+    const isLocked = !!(state.lockedDays && state.lockedDays[dIdx]);
     const isSecondBatchDay = state.batchDinners && (dIdx === 1 || dIdx === 3) &&
       dayObj.meals['Ужин'] === state.weeklyMenu[dIdx - 1]?.meals['Ужин'];
 
@@ -1064,29 +1114,38 @@ function renderWeekPlan() {
     });
 
     if (!dCfg.isWeekend) {
-      // Будний день: одна чистая компактная строка (ПН — Блюдо)
       const r = getRecipeById(dayObj.meals['Ужин']);
+      const stockCnt = (state.freezerStock && state.freezerStock[r.id]) || 0;
       html += `
-        <div class="ios-row" style="padding: 10px 12px;">
+        <div class="ios-row" style="padding: 10px 13px;">
           <div class="flex items-center gap-2.5 min-w-0 flex-1 cursor-pointer open-rec-sheet" data-id="${r.id}">
-            <span class="w-8 h-8 rounded-lg flex items-center justify-center font-extrabold text-xs shrink-0" style="background: var(--card-2); color: var(--text);">${dCfg.code}</span>
+            <span class="day-badge-pill">${dCfg.code}</span>
             <div class="min-w-0 flex-1">
-              <div class="font-semibold text-[14.5px] truncate">${r.emoji || '🍽️'} ${escapeHtml(r.name)}</div>
+              <div class="font-bold text-[15px] truncate">${r.emoji || '🍽️'} ${escapeHtml(r.name)}</div>
               <div class="text-xs truncate" style="color: var(--muted);">
-                ${isSecondBatchDay ? '🍲 Готово со вчерашнего дня' : `Ужин • ${r.timeMin} мин${r.isVacuumPrep ? ' • 🧊 Вакуум' : ''}`}
+                ${isSecondBatchDay ? '🍲 Готово со вчерашнего дня' : `Ужин • ${r.timeMin} мин${r.isVacuumPrep ? ' • 🧊 Вакуум' : ''}${stockCnt > 0 ? ` • ❄️ В мороз: ${stockCnt}` : ''}`}
               </div>
             </div>
           </div>
-          <button class="ios-btn ios-btn-gray ios-btn-sm open-picker-sheet shrink-0" data-day="${dIdx}" data-slot="Ужин" title="Выбрать другое блюдо">↻</button>
+          <div class="flex items-center gap-1 shrink-0">
+            <button class="ios-btn ios-btn-gray ios-btn-icon lock-day-btn" data-day="${dIdx}" title="${isLocked ? 'День закреплён' : 'Закрепить день'}" style="${isLocked ? 'background: var(--tint-soft); color: var(--tint); border-color: var(--tint);' : 'opacity: 0.65;'}">
+              ${isLocked ? '🔒' : '🔓'}
+            </button>
+            <button class="ios-btn ios-btn-gray ios-btn-icon open-picker-sheet" data-day="${dIdx}" data-slot="Ужин" title="Заменить блюдо">↻</button>
+          </div>
         </div>
       `;
     } else {
-      // Выходной день: аккуратный блок СБ / ВС с 3 строками
       html += `
-        <div class="ios-row flex-col items-stretch gap-1.5" style="padding: 10px 12px; background: var(--card-2);">
+        <div class="ios-row flex-col items-stretch gap-1.5" style="padding: 11px 14px; background: var(--card-2);">
           <div class="flex items-center justify-between">
-            <span class="font-extrabold text-xs uppercase tracking-wider" style="color: var(--tint);">${dCfg.code} — ${dCfg.name}</span>
-            <span class="text-[11px]" style="color: var(--muted);">Завтрак • Перекус • Ужин</span>
+            <span class="font-extrabold text-xs" style="color: var(--tint);">${dCfg.code} — ${dCfg.name}</span>
+            <div class="flex items-center gap-2">
+              <span class="text-[11px]" style="color: var(--muted);">Завтрак • Перекус • Ужин</span>
+              <button class="ios-btn ios-btn-gray ios-btn-sm lock-day-btn" style="padding: 2px 8px; min-height: 26px; font-size: 11px; ${isLocked ? 'background: var(--tint-soft); color: var(--tint);' : ''}" data-day="${dIdx}">
+                ${isLocked ? '🔒 Закреплён' : '🔓'}
+              </button>
+            </div>
           </div>
       `;
       dCfg.slots.forEach(slot => {
@@ -1094,10 +1153,10 @@ function renderWeekPlan() {
         html += `
           <div class="flex items-center justify-between gap-2 py-1 border-t" style="border-color: var(--line);">
             <div class="min-w-0 flex-1 cursor-pointer open-rec-sheet" data-id="${r.id}">
-              <span class="text-[11px] font-bold mr-1.5" style="color: var(--muted);">${slot}:</span>
-              <span class="font-semibold text-[14px]">${r.emoji || '🍽️'} ${escapeHtml(r.name)}</span>
+              <span class="text-[11.5px] font-bold mr-1" style="color: var(--muted);">${slot}:</span>
+              <span class="font-bold text-[14.5px]">${r.emoji || '🍽️'} ${escapeHtml(r.name)}</span>
             </div>
-            <button class="ios-btn ios-btn-gray ios-btn-sm open-picker-sheet shrink-0" style="padding: 3px 8px;" data-day="${dIdx}" data-slot="${slot}">↻</button>
+            <button class="ios-btn ios-btn-gray ios-btn-icon open-picker-sheet shrink-0" style="width: 30px; height: 30px; min-height: 30px;" data-day="${dIdx}" data-slot="${slot}">↻</button>
           </div>
         `;
       });
@@ -1107,11 +1166,27 @@ function renderWeekPlan() {
 
   listEl.innerHTML = html;
 
+  const totalFreezerStock = Object.values(state.freezerStock || {}).reduce((a, b) => a + (Number(b) || 0), 0);
   const vacLabel = document.getElementById('vacPlanCountLabel');
-  if (vacLabel) vacLabel.textContent = `${vacCount} заготовок ›`;
+  if (vacLabel) {
+    vacLabel.textContent = totalFreezerStock > 0
+      ? `${vacCount} в плане • ❄️ ${totalFreezerStock} в мороз. ›`
+      : `${vacCount} заготовок ›`;
+  }
 
   listEl.querySelectorAll('.open-rec-sheet').forEach(el => {
     el.addEventListener('click', e => openRecipeSheet(e.currentTarget.getAttribute('data-id')));
+  });
+
+  listEl.querySelectorAll('.lock-day-btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const d = Number(e.currentTarget.getAttribute('data-day'));
+      state.lockedDays[d] = !state.lockedDays[d];
+      saveState();
+      renderWeekPlan();
+      showToast(state.lockedDays[d] ? `${DAYS_CONFIG[d].name} закреплён 🔒` : `${DAYS_CONFIG[d].name} откреплён`);
+    });
   });
 
   listEl.querySelectorAll('.open-picker-sheet').forEach(btn => {
@@ -1124,6 +1199,53 @@ function renderWeekPlan() {
   });
 }
 
+/* Быстрая смена двух дней местами (⇄ Дни) */
+function openSwapDaysSheet() {
+  const sheet = document.getElementById('utilitySheet');
+  const body = document.getElementById('utilitySheetBody');
+
+  body.innerHTML = `
+    <div class="flex items-center justify-between mb-3">
+      <div>
+        <h3 class="text-base font-extrabold m-0">⇄ Поменять дни местами</h3>
+        <p class="text-xs m-0" style="color: var(--muted);">Выберите два дня, чтобы поменять их ужины местами</p>
+      </div>
+      <button id="btnCloseSwap" class="ios-btn ios-btn-gray ios-btn-sm">✕</button>
+    </div>
+    <div class="grid grid-cols-2 gap-2 mb-3">
+      <div>
+        <div class="text-xs font-bold mb-1 px-1" style="color: var(--muted);">День 1:</div>
+        <select id="swapDay1" class="ios-input-wrap w-full p-2.5 text-sm font-bold">
+          ${DAYS_CONFIG.map((d, i) => `<option value="${i}">${d.code} — ${getRecipeById(state.weeklyMenu[i].meals['Ужин']).name.slice(0, 18)}...</option>`).join('')}
+        </select>
+      </div>
+      <div>
+        <div class="text-xs font-bold mb-1 px-1" style="color: var(--muted);">День 2:</div>
+        <select id="swapDay2" class="ios-input-wrap w-full p-2.5 text-sm font-bold">
+          ${DAYS_CONFIG.map((d, i) => `<option value="${i}" ${i === 4 ? 'selected' : ''}>${d.code} — ${getRecipeById(state.weeklyMenu[i].meals['Ужин']).name.slice(0, 18)}...</option>`).join('')}
+        </select>
+      </div>
+    </div>
+    <button id="btnConfirmSwapDays" class="ios-btn ios-btn-primary w-full">⇄ Поменять ужины местами</button>
+  `;
+
+  sheet.classList.add('open');
+  document.getElementById('btnCloseSwap').addEventListener('click', () => sheet.classList.remove('open'));
+  document.getElementById('btnConfirmSwapDays').addEventListener('click', () => {
+    const d1 = Number(document.getElementById('swapDay1').value);
+    const d2 = Number(document.getElementById('swapDay2').value);
+    if (d1 !== d2) {
+      const tmp = state.weeklyMenu[d1].meals['Ужин'];
+      state.weeklyMenu[d1].meals['Ужин'] = state.weeklyMenu[d2].meals['Ужин'];
+      state.weeklyMenu[d2].meals['Ужин'] = tmp;
+      saveState();
+      renderWeekPlan();
+      showToast(`Ужины ${DAYS_CONFIG[d1].code} и ${DAYS_CONFIG[d2].code} поменялись местами!`);
+    }
+    sheet.classList.remove('open');
+  });
+}
+
 function calculateWeeklyIngredients() {
   const map = {};
   state.weeklyMenu.forEach((dayObj, idx) => {
@@ -1131,6 +1253,8 @@ function calculateWeeklyIngredients() {
     dayCfg.slots.forEach(slot => {
       const r = getRecipeById(dayObj.meals[slot]);
       if (!r) return;
+      // Если это блюдо уже лежит готовым пакетом в морозилке — помечаем, что продукты для него уже есть дома!
+      const alreadyInFreezer = (state.freezerStock && state.freezerStock[r.id] > 0);
       (r.ingredients || []).forEach(ing => {
         const key = (ing.id || ing.label).toLowerCase();
         const scaled = scaleQty(ing.qty);
@@ -1138,7 +1262,8 @@ function calculateWeeklyIngredients() {
           map[key] = {
             key, id: ing.id || key, label: ing.label, qty: 0,
             unit: ing.unit || 'г',
-            cat: INGREDIENT_CAT_MAP[ing.id] || guessCategoryByName(ing.label)
+            cat: INGREDIENT_CAT_MAP[ing.id] || guessCategoryByName(ing.label),
+            fromFreezer: alreadyInFreezer
           };
         }
         map[key].qty = Math.round((map[key].qty + scaled) * 10) / 10;
@@ -1148,7 +1273,7 @@ function calculateWeeklyIngredients() {
   return Object.values(map).sort((a, b) => getCatInfo(a.cat).order - getCatInfo(b.cat).order);
 }
 
-/* Шторка проверки продуктов перед добавлением в Список (как в Mealime) */
+/* Шторка проверки продуктов перед добавлением в Список */
 function openGroceriesReviewModal() {
   const sheet = document.getElementById('groceriesReviewSheet');
   const body = document.getElementById('groceriesReviewBody');
@@ -1160,7 +1285,7 @@ function openGroceriesReviewModal() {
       <div class="flex items-center justify-between mb-2">
         <div>
           <h3 class="text-base font-extrabold m-0">Собрать продукты на неделю</h3>
-          <p class="text-xs m-0" style="color: var(--muted);">Снимите галочку с того, что уже есть дома в холодильнике</p>
+          <p class="text-xs m-0" style="color: var(--muted);">Снимите галочку с того, что уже есть дома</p>
         </div>
         <button id="btnCloseGrocRev" class="ios-btn ios-btn-gray ios-btn-sm">✕</button>
       </div>
@@ -1169,12 +1294,12 @@ function openGroceriesReviewModal() {
         ${list.map(ing => {
           const needToBuy = !state.haveAtHome[ing.key];
           return `
-            <div class="ios-row cursor-pointer toggle-have-ing" data-key="${escapeHtml(ing.key)}" style="padding: 9px 12px;">
+            <div class="ios-row cursor-pointer toggle-have-ing" data-key="${escapeHtml(ing.key)}" style="padding: 9px 14px;">
               <div class="flex items-center gap-3 min-w-0 flex-1">
                 <span class="ios-check ${needToBuy ? 'checked' : ''}">✓</span>
-                <span class="font-medium text-sm ${needToBuy ? '' : 'line-through'}" style="${needToBuy ? '' : 'color: var(--muted);'}">${escapeHtml(ing.label)}</span>
+                <span class="font-semibold text-sm ${needToBuy ? '' : 'line-through'}" style="${needToBuy ? '' : 'color: var(--muted);'}">${escapeHtml(ing.label)}</span>
               </div>
-              <span class="text-xs font-bold" style="color: ${needToBuy ? 'var(--tint)' : 'var(--muted)'};">${needToBuy ? formatAmount(ing.qty, ing.unit) : 'Есть дома'}</span>
+              <span class="text-xs font-extrabold" style="color: ${needToBuy ? 'var(--tint)' : 'var(--muted)'};">${needToBuy ? formatAmount(ing.qty, ing.unit) : 'Есть дома'}</span>
             </div>
           `;
         }).join('')}
@@ -1224,7 +1349,7 @@ function openGroceriesReviewModal() {
 }
 
 /* =========================================================================
-   6. ВКЛАДКА 3: 📖 РЕЦЕПТЫ (8 ПАПОК КАК В PAPRIKA 4 / ANYLIST)
+   6. ВКЛАДКА 3: 📖 РЕЦЕПТЫ (8 ПАПОК)
    ========================================================================= */
 function renderRecipesTab() {
   const foldersGrid = document.getElementById('recipeFoldersGrid');
@@ -1235,10 +1360,8 @@ function renderRecipesTab() {
   const q = (document.getElementById('globalRecipeSearch')?.value || '').trim().toLowerCase();
 
   const all = getAllRecipes();
-
   if (clearSearchBtn) clearSearchBtn.classList.toggle('hidden', !q);
 
-  // Если ничего не введено в поиске и не открыта конкретная папка — показываем 8 красивых папок 2x4 на один экран
   if (!q && !state.activeFolder) {
     foldersGrid.classList.remove('hidden');
     catList.classList.add('hidden');
@@ -1253,10 +1376,10 @@ function renderRecipesTab() {
         <div class="folder-card" data-folder="${f.id}">
           <div class="flex items-center justify-between mb-1">
             <span class="text-2xl">${f.icon}</span>
-            <span class="text-xs font-extrabold px-2 py-0.5 rounded-full" style="background: var(--card-2); color: var(--muted);">${count}</span>
+            <span class="text-xs font-extrabold px-2.5 py-0.5 rounded-full" style="background: rgba(255,255,255,0.7); color: var(--text);">${count}</span>
           </div>
           <div>
-            <div class="font-bold text-[15px]">${escapeHtml(f.title)}</div>
+            <div class="font-bold text-[16px]">${escapeHtml(f.title)}</div>
             <div class="text-[11.5px] truncate" style="color: var(--muted);">${escapeHtml(f.sub)}</div>
           </div>
         </div>
@@ -1272,7 +1395,6 @@ function renderRecipesTab() {
     return;
   }
 
-  // Иначе показываем чистый список блюд выбранной папки или результатов поиска
   foldersGrid.classList.add('hidden');
   catList.classList.remove('hidden');
   backBtn.classList.toggle('hidden', !state.activeFolder && !q);
@@ -1300,7 +1422,7 @@ function renderRecipesTab() {
   catList.innerHTML = filtered.map(r => `
     <div class="ios-row cursor-pointer open-rec-from-book" data-id="${r.id}">
       <div class="min-w-0 flex-1">
-        <div class="font-semibold text-[15px] truncate">${r.emoji || '🍽️'} ${escapeHtml(r.name)}</div>
+        <div class="font-bold text-[15px] truncate">${r.emoji || '🍽️'} ${escapeHtml(r.name)}</div>
         <div class="text-xs" style="color: var(--muted);">
           ⏱ ${r.timeMin} мин • ${r.kcal} ккал${r.isVacuumPrep ? ' • 🧊 Под вакуум' : ''}
         </div>
@@ -1315,7 +1437,7 @@ function renderRecipesTab() {
 }
 
 /* =========================================================================
-   7. ШТОРКИ: РЕЦЕПТ, ВЫБОР БЛЮДА НА ДЕНЬ, КАТАЛОГ, ВАКУУМ-ПЛАН
+   7. ШТОРКИ: РЕЦЕПТ, ВЫБОР БЛЮДА, ВАКУУМАТОР И МОРОЗИЛКА, МЕНЮ ЕЩЁ
    ========================================================================= */
 function openRecipeSheet(recipeId) {
   const r = getRecipeById(recipeId);
@@ -1326,7 +1448,7 @@ function openRecipeSheet(recipeId) {
   body.innerHTML = `
     <div class="flex items-start justify-between gap-2 mb-3">
       <div>
-        <div class="text-xs font-bold uppercase tracking-wider mb-0.5" style="color: var(--tint);">
+        <div class="text-xs font-extrabold mb-0.5" style="color: var(--tint);">
           ${escapeHtml(r.type)} • ⏱ ${r.timeMin} мин • На ${state.people} чел.
         </div>
         <h3 class="text-lg font-extrabold m-0">${r.emoji || '🍽️'} ${escapeHtml(r.name)}</h3>
@@ -1335,24 +1457,24 @@ function openRecipeSheet(recipeId) {
     </div>
 
     ${r.isVacuumPrep ? `
-      <div class="ios-group p-3 mb-3" style="background: var(--cyan-soft); border-color: var(--cyan);">
+      <div class="ios-group p-3.5 mb-3" style="background: var(--cyan-soft);">
         <div class="text-xs font-extrabold mb-0.5" style="color: var(--cyan);">🧊 Заготовка в вакууматор:</div>
         <div class="text-xs">${escapeHtml(r.prepNote || 'Замариновать и запаять в вакуумный пакет.')}</div>
       </div>
     ` : ''}
 
-    <div class="text-xs font-bold uppercase tracking-wider px-1 mb-1" style="color: var(--muted);">Ингредиенты (на ${state.people} чел.):</div>
+    <div class="section-label">Ингредиенты (на ${state.people} чел.):</div>
     <div class="ios-group mb-3">
       ${(r.ingredients || []).map(i => `
-        <div class="ios-row" style="padding: 8px 12px;">
-          <span class="text-sm">${escapeHtml(i.label)}</span>
-          <span class="text-sm font-bold" style="color: var(--tint);">${scaleQty(i.qty)} ${escapeHtml(i.unit)}</span>
+        <div class="ios-row" style="padding: 9px 14px; min-height: 44px;">
+          <span class="text-sm font-semibold">${escapeHtml(i.label)}</span>
+          <span class="text-sm font-extrabold" style="color: var(--tint);">${scaleQty(i.qty)} ${escapeHtml(i.unit)}</span>
         </div>
       `).join('')}
     </div>
 
-    <div class="text-xs font-bold uppercase tracking-wider px-1 mb-1" style="color: var(--muted);">Приготовление:</div>
-    <div class="ios-group p-3 mb-3 space-y-2">
+    <div class="section-label">Приготовление:</div>
+    <div class="ios-group p-3.5 mb-3 space-y-2">
       ${(r.steps || []).map((st, idx) => `
         <div class="flex gap-2.5 text-sm">
           <span class="font-extrabold" style="color: var(--tint);">${idx + 1}.</span>
@@ -1379,17 +1501,16 @@ function openRecipeSheet(recipeId) {
   });
 
   document.getElementById('btnAssignRecToDay').addEventListener('click', () => {
-    // Позволяем выбрать день недели, куда поставить это блюдо
     body.innerHTML = `
       <div class="flex items-center justify-between mb-2">
-        <h3 class="text-base font-extrabold m-0">На какой день поставить «${escapeHtml(r.name)}»?</h3>
+        <h3 class="text-base font-extrabold m-0">На какой день поставить?</h3>
         <button id="btnCancelAssign" class="ios-btn ios-btn-gray ios-btn-sm">✕</button>
       </div>
       <div class="ios-group">
         ${DAYS_CONFIG.map((d, idx) => `
           <div class="ios-row cursor-pointer pick-day-target" data-day="${idx}">
             <span class="font-bold text-sm">${d.code} — ${d.name}</span>
-            <span class="text-xs font-semibold" style="color: var(--tint);">Выбрать ›</span>
+            <span class="text-xs font-extrabold" style="color: var(--tint);">Выбрать ›</span>
           </div>
         `).join('')}
       </div>
@@ -1450,9 +1571,7 @@ function openMealPickerSheet(dayIdx, slot) {
     const q = (document.getElementById('pickerSearchInp')?.value || '').trim().toLowerCase();
     const all = getAllRecipes();
     const filtered = all.filter(r => {
-      if (q) {
-        return r.name.toLowerCase().includes(q) || (r.ingredients || []).some(i => i.label.toLowerCase().includes(q));
-      }
+      if (q) return r.name.toLowerCase().includes(q) || (r.ingredients || []).some(i => i.label.toLowerCase().includes(q));
       if (activeFolder === 'vacuum') return r.isVacuumPrep;
       return r.subcat === activeFolder;
     });
@@ -1460,11 +1579,14 @@ function openMealPickerSheet(dayIdx, slot) {
     const box = document.getElementById('pickerListContainer');
     box.innerHTML = filtered.map(r => {
       const isCur = r.id === currentId;
+      const inStock = (state.freezerStock && state.freezerStock[r.id]) || 0;
       return `
-        <div class="ios-row cursor-pointer pick-meal-item" data-id="${r.id}" style="padding: 10px 12px;">
+        <div class="ios-row cursor-pointer pick-meal-item" data-id="${r.id}" style="padding: 10px 14px;">
           <div class="min-w-0 flex-1">
-            <div class="font-semibold text-sm truncate">${r.emoji || '🍽️'} ${escapeHtml(r.name)}</div>
-            <div class="text-xs" style="color: var(--muted);">⏱ ${r.timeMin} мин${r.isVacuumPrep ? ' • 🧊 Вакуум' : ''}</div>
+            <div class="font-bold text-sm truncate">${r.emoji || '🍽️'} ${escapeHtml(r.name)}</div>
+            <div class="text-xs" style="color: var(--muted);">
+              ⏱ ${r.timeMin} мин${r.isVacuumPrep ? ' • 🧊 Вакуум' : ''}${inStock > 0 ? ` • ❄️ В морозилке: ${inStock}` : ''}
+            </div>
           </div>
           <span class="ios-btn ${isCur ? 'ios-btn-gray' : 'ios-btn-primary'} ios-btn-sm">${isCur ? 'Выбрано' : 'Выбрать'}</span>
         </div>
@@ -1502,7 +1624,6 @@ function openMealPickerSheet(dayIdx, slot) {
   });
 }
 
-/* Шторка полного каталога товаров и бытовой химии */
 function openCatalogSheet() {
   const sheet = document.getElementById('utilitySheet');
   const body = document.getElementById('utilitySheetBody');
@@ -1526,7 +1647,7 @@ function openCatalogSheet() {
       const inList = state.shoppingList.some(x => !x.done && x.name.toLowerCase() === it.name.toLowerCase());
       return `
         <div class="ios-row cursor-pointer toggle-cat-item" data-name="${escapeHtml(it.name)}" data-note="${escapeHtml(it.defNote || '')}" data-cat="${it.cat}">
-          <span class="font-medium text-sm">${escapeHtml(it.name)}</span>
+          <span class="font-semibold text-sm">${escapeHtml(it.name)}</span>
           <span class="ios-btn ${inList ? 'ios-btn-green' : 'ios-btn-soft'} ios-btn-sm">${inList ? '✓ В списке' : '+ Добавить'}</span>
         </div>
       `;
@@ -1565,52 +1686,162 @@ function openCatalogSheet() {
   });
 }
 
-/* Шторка плана вакуумации на выходные */
+/* Шторка «🧊 Вакууматор и запасы в морозилке» (Freezer Inventory) */
 function openVacuumPlanSheet() {
   const sheet = document.getElementById('utilitySheet');
   const body = document.getElementById('utilitySheetBody');
 
-  const vacMap = {};
-  state.weeklyMenu.forEach((dayObj, dIdx) => {
-    DAYS_CONFIG[dIdx].slots.forEach(slot => {
-      const r = getRecipeById(dayObj.meals[slot]);
-      if (r && r.isVacuumPrep) {
-        if (!vacMap[r.id]) vacMap[r.id] = { r, days: [] };
-        vacMap[r.id].days.push(DAYS_CONFIG[dIdx].code);
-      }
+  const renderVacSheet = () => {
+    const vacMap = {};
+    state.weeklyMenu.forEach((dayObj, dIdx) => {
+      DAYS_CONFIG[dIdx].slots.forEach(slot => {
+        const r = getRecipeById(dayObj.meals[slot]);
+        if (r && r.isVacuumPrep) {
+          if (!vacMap[r.id]) vacMap[r.id] = { r, days: [] };
+          vacMap[r.id].days.push(DAYS_CONFIG[dIdx].code);
+        }
+      });
     });
-  });
 
-  const list = Object.values(vacMap);
+    const planList = Object.values(vacMap);
+    const allVacRecipes = getAllRecipes().filter(r => r.isVacuumPrep);
+
+    body.innerHTML = `
+      <div class="flex items-center justify-between mb-2">
+        <div>
+          <h3 class="text-base font-extrabold m-0">🧊 Вакууматор и Морозилка</h3>
+          <p class="text-xs m-0" style="color: var(--muted);">Отмечайте, сколько пакетов заготовлено в морозилке</p>
+        </div>
+        <button id="btnCloseVacSheet" class="ios-btn ios-btn-gray ios-btn-sm">Готово</button>
+      </div>
+
+      <div class="section-label">1. Заготовки по плану на эту неделю:</div>
+      ${planList.length === 0 ? `
+        <div class="ios-group p-4 text-center text-xs" style="color: var(--muted);">В текущем плане нет вакуумных блюд.</div>
+      ` : `
+        <div class="ios-group mb-3">
+          ${planList.map(item => {
+            const cnt = (state.freezerStock && state.freezerStock[item.r.id]) || 0;
+            return `
+              <div class="ios-row flex-col items-start gap-1.5">
+                <div class="flex items-center justify-between w-full gap-2">
+                  <span class="font-extrabold text-sm" style="color: var(--cyan);">${item.r.emoji} ${escapeHtml(item.r.name)} (${item.days.join(', ')})</span>
+                  <div class="flex items-center gap-1.5 shrink-0">
+                    <button class="ios-btn ios-btn-gray ios-btn-sm stock-minus" style="padding:2px 9px; min-height:28px;" data-id="${item.r.id}">−</button>
+                    <span class="text-xs font-extrabold px-1">❄️ ${cnt} пак.</span>
+                    <button class="ios-btn ios-btn-primary ios-btn-sm stock-plus" style="padding:2px 9px; min-height:28px;" data-id="${item.r.id}">+</button>
+                  </div>
+                </div>
+                <div class="text-xs" style="color: var(--muted);">${escapeHtml(item.r.prepNote || 'Замариновать и запаять в пакет.')}</div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      `}
+
+      <div class="section-label">2. Все рецепты для вакууматора (запасы впрок):</div>
+      <div class="ios-group max-h-[34vh] overflow-y-auto">
+        ${allVacRecipes.map(r => {
+          const cnt = (state.freezerStock && state.freezerStock[r.id]) || 0;
+          return `
+            <div class="ios-row" style="padding: 8px 14px; min-height: 44px;">
+              <span class="font-semibold text-xs truncate flex-1">${r.emoji} ${escapeHtml(r.name)}</span>
+              <div class="flex items-center gap-1.5 shrink-0">
+                <button class="ios-btn ios-btn-gray ios-btn-sm stock-minus" style="padding:2px 8px; min-height:26px;" data-id="${r.id}">−</button>
+                <span class="text-xs font-extrabold w-12 text-center" style="color:${cnt > 0 ? 'var(--tint)' : 'var(--muted)'};">${cnt} пак.</span>
+                <button class="ios-btn ios-btn-soft ios-btn-sm stock-plus" style="padding:2px 8px; min-height:26px;" data-id="${r.id}">+</button>
+              </div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    `;
+
+    document.getElementById('btnCloseVacSheet').addEventListener('click', () => sheet.classList.remove('open'));
+    body.querySelectorAll('.stock-plus').forEach(btn => {
+      btn.addEventListener('click', e => {
+        const id = e.currentTarget.getAttribute('data-id');
+        state.freezerStock[id] = (state.freezerStock[id] || 0) + 1;
+        saveState();
+        renderVacSheet();
+        renderWeekPlan();
+      });
+    });
+    body.querySelectorAll('.stock-minus').forEach(btn => {
+      btn.addEventListener('click', e => {
+        const id = e.currentTarget.getAttribute('data-id');
+        if ((state.freezerStock[id] || 0) > 0) {
+          state.freezerStock[id]--;
+          saveState();
+          renderVacSheet();
+          renderWeekPlan();
+        }
+      });
+    });
+  };
+
+  renderVacSheet();
+  sheet.classList.add('open');
+}
+
+function openMoreSheet(mode) {
+  const sheet = document.getElementById('utilitySheet');
+  const body = document.getElementById('utilitySheetBody');
+  const themeLabel = state.theme === 'dark' ? '☀️ Светлая тема' : '🌙 Тёмная тема';
+
+  const rows = mode === 'list'
+    ? [
+        { act: 'share', label: '📤 Отправить список (Telegram / WhatsApp)' },
+        { act: 'pdf_list', label: '📄 Скачать список в PDF' },
+        { act: 'copy_list', label: '📋 Скопировать список текстом' },
+        { act: 'theme', label: themeLabel }
+      ]
+    : [
+        { act: 'pdf_plan', label: '📄 Скачать план недели в PDF' },
+        { act: 'unlock_all', label: '🔓 Снять все замочки с дней недели' },
+        { act: 'theme', label: themeLabel }
+      ];
 
   body.innerHTML = `
     <div class="flex items-center justify-between mb-2">
-      <div>
-        <h3 class="text-base font-extrabold m-0">🧊 План вакуумации на выходные</h3>
-        <p class="text-xs m-0" style="color: var(--muted);">Замаринуйте 1 раз — в будни просто достаньте из морозилки</p>
-      </div>
-      <button id="btnCloseVacSheet" class="ios-btn ios-btn-gray ios-btn-sm">✕</button>
+      <h3 class="text-base font-extrabold m-0">Ещё</h3>
+      <button id="btnCloseMore" class="ios-btn ios-btn-gray ios-btn-sm">Готово</button>
     </div>
-
-    ${list.length === 0 ? `
-      <div class="ios-group p-6 text-center text-xs" style="color: var(--muted);">В текущем плане нет вакуумных заготовок.</div>
-    ` : `
-      <div class="ios-group mb-3">
-        ${list.map(item => `
-          <div class="ios-row flex-col items-start gap-1">
-            <div class="flex items-center justify-between w-full">
-              <span class="font-bold text-sm" style="color: var(--cyan);">${item.r.emoji} ${escapeHtml(item.r.name)}</span>
-              <span class="text-xs font-bold" style="color: var(--muted);">Дни: ${item.days.join(', ')}</span>
-            </div>
-            <div class="text-xs" style="color: var(--text);">${escapeHtml(item.r.prepNote || 'Замариновать и запаять в вакуумный пакет.')}</div>
-          </div>
-        `).join('')}
-      </div>
-    `}
+    <div class="ios-group">
+      ${rows.map(r => `
+        <div class="ios-row cursor-pointer more-action-row" data-act="${r.act}">
+          <span class="font-bold text-sm">${r.label}</span>
+          <span style="color: var(--muted);">›</span>
+        </div>
+      `).join('')}
+    </div>
   `;
 
   sheet.classList.add('open');
-  document.getElementById('btnCloseVacSheet').addEventListener('click', () => sheet.classList.remove('open'));
+  document.getElementById('btnCloseMore').addEventListener('click', () => sheet.classList.remove('open'));
+  body.querySelectorAll('.more-action-row').forEach(row => {
+    row.addEventListener('click', e => {
+      const act = e.currentTarget.getAttribute('data-act');
+      sheet.classList.remove('open');
+      if (act === 'share') shareListNative();
+      else if (act === 'pdf_list') exportShoppingListPdf();
+      else if (act === 'copy_list') {
+        const active = state.shoppingList.filter(i => !i.done);
+        if (!active.length) { showToast('Список пуст'); return; }
+        copyText(active.map(i => `• ${i.name}${i.note ? ' (' + i.note + ')' : ''}`).join('\n'), 'Список скопирован!');
+      } else if (act === 'pdf_plan') exportWeeklyPlanPdf();
+      else if (act === 'unlock_all') {
+        state.lockedDays = {};
+        saveState();
+        renderWeekPlan();
+        showToast('Все замочки сняты');
+      } else if (act === 'theme') {
+        state.theme = state.theme === 'dark' ? 'light' : 'dark';
+        applyTheme();
+        saveState();
+      }
+    });
+  });
 }
 
 function openNewCustomRecipeSheet() {
@@ -1624,7 +1855,7 @@ function openNewCustomRecipeSheet() {
     <div class="space-y-2.5">
       <div class="ios-input-wrap"><input id="cRecName" type="text" class="ios-input" placeholder="Название блюда"></div>
       <div class="grid grid-cols-2 gap-2">
-        <select id="cRecSubcat" class="ios-input-wrap p-2 text-sm">
+        <select id="cRecSubcat" class="ios-input-wrap p-2 text-sm font-bold">
           <option value="chicken">🍗 Курица</option>
           <option value="mince">🧆 Фарш и котлеты</option>
           <option value="meat">🥩 Свинина и говядина</option>
@@ -1635,8 +1866,8 @@ function openNewCustomRecipeSheet() {
         </select>
         <div class="ios-input-wrap"><input id="cRecTime" type="number" class="ios-input" value="25" placeholder="Мин"></div>
       </div>
-      <label class="flex items-center gap-2 text-xs font-semibold px-1">
-        <input id="cRecVac" type="checkbox" class="w-4 h-4 accent-blue-600">
+      <label class="flex items-center gap-2 text-xs font-bold px-1">
+        <input id="cRecVac" type="checkbox" class="w-4 h-4 accent-emerald-600">
         <span>🧊 Подходит для вакууматора в морозилку</span>
       </label>
       <div class="ios-input-wrap">
@@ -1711,7 +1942,7 @@ function buildPdfFromCanvasPages(jpegs, W, H) {
 
 async function renderBlocksToPdf(blocks, filename) {
   try { await document.fonts.ready; } catch (e) {}
-  const W = 1240, H = 1754, M = 85, F = 'Inter, Arial, sans-serif', pages = [];
+  const W = 1240, H = 1754, M = 85, F = 'Nunito, Inter, Arial, sans-serif', pages = [];
   let cv, ctx, y;
   const newPage = () => {
     cv = document.createElement('canvas'); cv.width = W; cv.height = H;
@@ -1730,11 +1961,11 @@ async function renderBlocksToPdf(blocks, filename) {
     return out;
   };
   const ST = {
-    h1: [800, 42, '#1c1c1e', 0, 12],
-    h2: [700, 28, '#007aff', 20, 8],
-    b:  [700, 24, '#1c1c1e', 10, 4],
+    h1: [800, 42, '#17331f', 0, 12],
+    h2: [700, 28, '#1f9d63', 20, 8],
+    b:  [700, 24, '#17331f', 10, 4],
     p:  [400, 21, '#3a3a3c', 0, 4],
-    row:[500, 23, '#1c1c1e', 0, 6]
+    row:[500, 23, '#17331f', 0, 6]
   };
   blocks.forEach(bk => {
     const [wt, sz, col, mt, mb] = ST[bk.k];
@@ -1744,7 +1975,7 @@ async function renderBlocksToPdf(blocks, filename) {
       if (y + mt + lh > H - M) newPage();
       y += mt; ctx.font = `${wt} ${sz}px ${F}`; ctx.fillStyle = col;
       ctx.fillText(bk.l, M, y);
-      ctx.textAlign = 'right'; ctx.fillStyle = '#007aff'; ctx.fillText(bk.r, W - M, y);
+      ctx.textAlign = 'right'; ctx.fillStyle = '#1f9d63'; ctx.fillText(bk.r, W - M, y);
       ctx.textAlign = 'left'; y += lh + mb;
       return;
     }
@@ -1821,7 +2052,7 @@ function fallbackCopy(text, msg) {
 }
 
 /* =========================================================================
-   9. ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК И СОБЫТИЯ
+   9. ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК И ИНИЦИАЛИЗАЦИЯ (СТРОГО ПОСЛЕ LOADSTATE)
    ========================================================================= */
 function switchTab(tabId) {
   state.activeTab = tabId;
@@ -1848,14 +2079,6 @@ window.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', e => switchTab(e.currentTarget.getAttribute('data-tab')));
   });
 
-  document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      state.theme = state.theme === 'dark' ? 'light' : 'dark';
-      applyTheme();
-      saveState();
-    });
-  });
-
   // Единое поле умного ввода в Списке
   const smartInp = document.getElementById('smartAddInput');
   const submitSmartAdd = () => {
@@ -1871,12 +2094,10 @@ window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('btnSmartAddSubmit').addEventListener('click', submitSmartAdd);
 
   document.getElementById('btnOpenCatalogSheet').addEventListener('click', openCatalogSheet);
-  document.getElementById('btnListSharePdf').addEventListener('click', exportShoppingListPdf);
-  document.getElementById('btnListCopyTxt').addEventListener('click', () => {
-    const active = state.shoppingList.filter(i => !i.done);
-    if (!active.length) { showToast('Список пуст'); return; }
-    copyText(active.map(i => `• ${i.name}${i.note ? ' (' + i.note + ')' : ''}`).join('\n'), 'Список скопирован!');
-  });
+  document.getElementById('btnShareListNative').addEventListener('click', shareListNative);
+  document.getElementById('btnListMore').addEventListener('click', () => openMoreSheet('list'));
+  document.getElementById('btnPlanMore').addEventListener('click', () => openMoreSheet('plan'));
+  document.getElementById('btnSwapDaysOpen').addEventListener('click', openSwapDaysSheet);
 
   // События вкладки План
   document.getElementById('btnPeopleMinus').addEventListener('click', () => {
@@ -1897,9 +2118,8 @@ window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('btnAutoFillWeek').addEventListener('click', () => generateWeeklyMenu(true));
   document.getElementById('btnOpenGroceriesModal').addEventListener('click', openGroceriesReviewModal);
   document.getElementById('btnOpenVacuumSheet').addEventListener('click', openVacuumPlanSheet);
-  document.getElementById('btnPlanPdf').addEventListener('click', exportWeeklyPlanPdf);
 
-  // События вкладки Рецепты (Папки 2x4)
+  // События вкладки Рецепты
   document.getElementById('btnBackToFolders').addEventListener('click', () => {
     state.activeFolder = null;
     const sInp = document.getElementById('globalRecipeSearch');
@@ -1913,123 +2133,11 @@ window.addEventListener('DOMContentLoaded', () => {
   });
   document.getElementById('btnNewCustomRecipe').addEventListener('click', openNewCustomRecipeSheet);
 
-  // Закрытие шторок по клику на затемнённый фон
   ['recipeSheet', 'pickerSheet', 'groceriesReviewSheet', 'utilitySheet'].forEach(id => {
     const el = document.getElementById(id);
     el.addEventListener('click', e => { if (e.target === el) el.classList.remove('open'); });
   });
 });
-</script>
-<script id="market-patch">
-/* Надстройка «Свежий рынок»: карточка «Сегодня», «⋯»-меню, живые тексты, прогресс покупок.
-   Подключать ПОСЛЕ основного <script>, перед </body>. Основной код не меняется. */
-(function () {
-  const $ = id => document.getElementById(id);
-  const wrapFn = (name, after) => {
-    const orig = window[name];
-    if (typeof orig !== 'function') return;
-    window[name] = function () {
-      const r = orig.apply(this, arguments);
-      try { after(); } catch (e) { console.error(name, e); }
-      return r;
-    };
-  };
-
-  /* 1. Карточка «Сегодня на ужин» над списком дней */
-  function renderToday() {
-    const list = $('weekDaysList');
-    if (!list || !state.weeklyMenu || !state.weeklyMenu.length) return;
-    let card = $('todayCard');
-    if (!card) {
-      card = document.createElement('div');
-      card.id = 'todayCard';
-      list.parentNode.insertBefore(card, list);
-    }
-    const idx = (new Date().getDay() + 6) % 7;           // Пн = 0
-    const day = state.weeklyMenu[idx];
-    const r = day && getRecipeById(day.meals['Ужин']);
-    if (!r) { card.innerHTML = ''; card.className = ''; return; }
-    const hint = r.isVacuumPrep ? '🧊 Достаньте заготовку из морозилки заранее' : `⏱ ${r.timeMin} мин`;
-    card.className = 'today-card';
-    card.innerHTML =
-      `<div class="today-kicker">Сегодня на ужин · ${DAYS_CONFIG[idx].name}</div>` +
-      `<div class="today-title">${r.emoji || '🍽️'} ${escapeHtml(r.name)}</div>` +
-      `<div class="today-hint">${hint}</div>`;
-    card.onclick = () => openRecipeSheet(r.id);
-  }
-
-  /* 2. Прогресс покупок, «Всё куплено 🎉», живой пустой список */
-  function renderListExtras() {
-    const c = $('shoppingListGroups');
-    if (!c) return;
-    const total = state.shoppingList.length;
-    const done = state.shoppingList.filter(i => i.done).length;
-    if (total === 0) {
-      c.innerHTML = `<div class="ios-group" style="padding:32px 20px;text-align:center">
-        <div style="font-size:42px">🧺</div>
-        <div style="font-weight:900;font-size:17px;margin:6px 0 2px">Пока пусто</div>
-        <div class="text-xs" style="color:var(--muted)">Добавьте что-нибудь вкусное 🙂</div></div>`;
-      return;
-    }
-    const pct = Math.round(done / total * 100);
-    c.insertAdjacentHTML('afterbegin', done === total
-      ? `<div class="ios-group done-banner">Всё куплено 🎉</div>`
-      : `<div class="progress-wrap"><div class="text-xs font-bold">Куплено ${done} из ${total}</div><div class="bar"><i style="width:${pct}%"></i></div></div>`);
-  }
-
-  /* 3. Одна кнопка «⋯» вместо PDF / копирования / темы */
-  function addMoreMenu(headerBtnId, items) {
-    const anchor = $(headerBtnId);
-    if (!anchor) return;
-    const box = anchor.parentNode;
-    items.forEach(it => { const b = $(it.id); if (b) b.style.display = 'none'; });
-    const more = document.createElement('button');
-    more.className = 'ios-btn ios-btn-gray ios-btn-sm';
-    more.textContent = '⋯';
-    more.setAttribute('aria-label', 'Ещё');
-    more.onclick = () => {
-      const sheet = $('utilitySheet'), body = $('utilitySheetBody');
-      const rows = items.map((it, i) => {
-        const label = it.theme ? (state.theme === 'dark' ? '☀️ Светлая тема' : '🌙 Тёмная тема') : it.label;
-        return `<div class="ios-row cursor-pointer more-row" data-i="${i}"><span style="font-weight:700">${label}</span><span style="color:var(--muted)">›</span></div>`;
-      }).join('');
-      body.innerHTML = `<div class="flex items-center justify-between mb-2">
-        <h3 class="text-base font-extrabold m-0">Ещё</h3>
-        <button id="btnCloseMore" class="ios-btn ios-btn-gray ios-btn-sm">Готово</button></div>
-        <div class="ios-group">${rows}</div>`;
-      $('btnCloseMore').onclick = () => sheet.classList.remove('open');
-      body.querySelectorAll('.more-row').forEach(row => row.onclick = () => {
-        sheet.classList.remove('open');
-        const target = $(items[Number(row.dataset.i)].id);
-        if (target) target.click();
-      });
-      sheet.classList.add('open');
-    };
-    box.appendChild(more);
-  }
-
-  /* Живые заголовки */
-  const h1 = document.querySelector('#view-plan h1');
-  if (h1) h1.textContent = 'Что готовим на этой неделе';
-  const sub = document.querySelector('#view-plan p');
-  if (sub) sub.textContent = 'Будни — ужин, выходные — завтрак, перекус и ужин';
-
-  addMoreMenu('btnListSharePdf', [
-    { id: 'btnListSharePdf', label: '📄 Скачать PDF' },
-    { id: 'btnListCopyTxt',  label: '📋 Скопировать список' },
-    { id: 'btnTheme1', theme: true }
-  ]);
-  addMoreMenu('btnPlanPdf', [
-    { id: 'btnPlanPdf', label: '📄 Скачать PDF плана' },
-    { id: 'btnTheme2', theme: true }
-  ]);
-
-  wrapFn('renderWeekPlan', renderToday);
-  wrapFn('renderShoppingList', renderListExtras);
-  renderToday();
-  renderListExtras();
-})();
-
 </script>
 </body>
 </html>
